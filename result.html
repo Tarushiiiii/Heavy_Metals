@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - HMPI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="HMPI Logo">
+                <span>HMPI Calculator</span>
+            </div>
+            <ul>
+                <li><a href="1st.html">Home</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="result.html" class="active">Results</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="sign-in">Sign In</a>
+                <a href="#" class="get-started">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="results-page">
+        <div class="container">
+            <div class="results-header">
+                <h1 class="page-title">Analysis Results</h1>
+                <p class="subtitle">Heavy Metal Pollution Index calculation complete</p>
+                <div class="header-buttons">
+                    <button class="btn btn-secondary"><i class="fas fa-download"></i> Export Report</button>
+                    <button class="btn btn-primary">Save Results</button>
+                </div>
+            </div>
+
+            <div class="results-card">
+                <h2 class="card-title">
+                    <i class="fas fa-map-marker-alt"></i> Sample Information
+                </h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Sample ID</span>
+                        <span class="info-value">GW-001</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Coordinates</span>
+                        <span class="info-value">40.7128, -74.0060</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Depth</span>
+                        <span class="info-value">15.5 m</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Date</span>
+                        <span class="info-value">9/10/2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-card">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i> HMPI Assessment
+                </h2>
+                <div class="hmpi-assessment">
+                    <div class="hmpi-score">
+                        <p class="score-value">67.3</p>
+                        <p class="score-label">HMPI Score</p>
+                    </div>
+                    <div class="hmpi-status">
+                        <div class="status-badge elevated">Moderate Pollution</div>
+                        <p class="status-subtext">Pollution Classification</p>
+                    </div>
+                    <div class="hmpi-risk">
+                        <div class="risk-icon-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <p class="risk-level">Medium Risk</p>
+                    </div>
+                </div>
+                <div class="risk-bar">
+                    <div class="risk-bar-track">
+                        <div class="risk-bar-fill moderate-fill" style="width: 67.3%;"></div>
+                    </div>
+                    <div class="risk-labels">
+                        <span>Safe (0-50)</span>
+                        <span>Moderate (50-100)</span>
+                        <span>High Risk (100+)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-options">
+                <button class="tab-btn active" onclick="showSection('metal-analysis')">Metal Analysis</button>
+                <button class="tab-btn" onclick="showSection('recommendations-section')">Recommendations</button>
+                <button class="tab-btn" onclick="showSection('methodology-section')">Methodology</button>
+            </div>
+
+            <div id="metal-analysis" class="results-section active">
+                <h2 class="section-title">Individual Heavy Metal Analysis</h2>
+                <p class="section-subtitle">Detailed breakdown of each heavy metal concentration versus safety limits</p>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Lead (Pb)</p>
+                        <p class="metal-value">8.5 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 10 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">85% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Cadmium (Cd)</p>
+                        <p class="metal-value">3.2 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 5 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">64% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 64%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+                
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Mercury (Hg)</p>
+                        <p class="metal-value">4.1 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 6 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">68% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 68%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Arsenic (As)</p>
+                        <p class="metal-value">12.8 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 10 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">128% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill elevated-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge elevated">Elevated</span>
+                    </div>
+                </div>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Chromium (Cr)</p>
+                        <p class="metal-value">75.3 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 50 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">151% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill elevated-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge elevated">Elevated</span>
+                    </div>
+                </div>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Copper (Cu)</p>
+                        <p class="metal-value">1.2 <span class="unit">mg/L</span></p>
+                        <p class="metal-limit">Limit: 2 mg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">60% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+                
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Zinc (Zn)</p>
+                        <p class="metal-value">2.8 <span class="unit">mg/L</span></p>
+                        <p class="metal-limit">Limit: 3 mg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">93% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 93%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+
+                <div class="metal-item">
+                    <div class="metal-info">
+                        <p class="metal-name">Nickel (Ni)</p>
+                        <p class="metal-value">45.6 <span class="unit">µg/L</span></p>
+                        <p class="metal-limit">Limit: 70 µg/L</p>
+                    </div>
+                    <div class="metal-graph">
+                        <div class="metal-label">65% of safety limit</div>
+                        <div class="metal-bar-track">
+                            <div class="metal-bar-fill safe-fill" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="metal-status">
+                        <span class="status-badge safe">Safe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="recommendations-section" class="results-section">
+                <div class="results-card">
+                    <h2 class="card-title">Expert Recommendations</h2>
+                    <p class="card-subtitle">Based on the analysis results, here are our professional recommendations</p>
+                    
+                    <div class="recommendation-group yellow">
+                        <p class="group-title">Immediate Actions Required</p>
+                        <ul>
+                            <li>Implement additional monitoring for Arsenic and Chromium levels</li>
+                            <li>Consider alternative water sources for consumption</li>
+                            <li>Install appropriate water treatment systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="recommendation-group blue">
+                        <p class="group-title">Long-term Monitoring</p>
+                        <ul>
+                            <li>Schedule quarterly re-testing of this location</li>
+                            <li>Monitor nearby wells for similar contamination patterns</li>
+                            <li>Investigate potential contamination sources in the area</li>
+                        </ul>
+                    </div>
+
+                    <div class="recommendation-group green">
+                        <p class="group-title">Positive Indicators</p>
+                        <ul>
+                            <li>Lead, Cadmium, and Mercury levels are within safe ranges</li>
+                            <li>Overall HMPI indicates manageable contamination level</li>
+                            <li>No immediate health emergency detected</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="methodology-section" class="results-section">
+                <div class="results-card">
+                    <h2 class="card-title">Calculation Methodology</h2>
+                    <p class="card-subtitle">Technical details of the HMPI calculation process</p>
+
+                    <div class="methodology-section">
+                        <h3>HMPI Formula</h3>
+                        <div class="formula-box">
+                            <p class="formula">
+                                HMPI = Σ(Mi/Si) × Wi
+                            </p>
+                        </div>
+                        <p class="formula-details">
+                            Where **Mi** = Measured concentration, **Si** = Standard limit, **Wi** = Weight factor
+                        </p>
+                    </div>
+
+                    <div class="methodology-section">
+                        <h3>Standards Reference</h3>
+                        <ul class="standard-list">
+                            <li>WHO Guidelines for Drinking Water Quality (2017)</li>
+                            <li>EPA National Primary Drinking Water Standards</li>
+                            <li>International standards for groundwater assessment</li>
+                        </ul>
+                    </div>
+
+                    <div class="methodology-section">
+                        <h3>Classification Ranges</h3>
+                        <div class="classification-grid">
+                            <div class="classification-box safe">
+                                <p class="range-value">Low Risk (0-50)</p>
+                                <p class="range-description">Safe for consumption</p>
+                            </div>
+                            <div class="classification-box moderate">
+                                <p class="range-value">Medium Risk (50-100)</p>
+                                <p class="range-description">Monitor closely</p>
+                            </div>
+                            <div class="classification-box elevated">
+                                <p class="range-value">High Risk (100+)</p>
+                                <p class="range-description">Immediate action required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // This script handles the tab functionality
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.results-section');
+            const tabs = document.querySelectorAll('.tab-options .tab-btn');
+            
+            // Hide all sections and deactivate all tabs
+            sections.forEach(sec => sec.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show the selected section and activate the clicked tab
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
