@@ -1,15 +1,24 @@
-import { Link } from 'react-router-dom';
+import { CTAs } from '../ui/header/cta';
+import { Logo } from '../ui/header/logo';
+import { NavBar } from '../ui/header/navbar';
 
 const Header = () => {
     return (
-        <div className="m-3 flex justify-evenly border border-gray-400 p-2">
-            <Link to="/" className="hover:underline">Home</Link>
-            <Link to="/calculator" className="hover:underline">Calculator</Link>
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
-            <Link to="/results" className="hover:underline">Results</Link>
-            <Link to="/about" className="hover:underline">About</Link>
-        </div>
+        <header className="bg-white shadow-md">
+            <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
+
+                {/* Logo */}
+                <Logo />
+
+                {/* Navigation */}
+                <NavBar />
+
+                {/* Header CTAs */}
+                <CTAs />
+
+            </div>
+        </header>
     );
-}
+};
 
 export default Header;
