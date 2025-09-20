@@ -6,31 +6,31 @@ export const NavBar = () => {
             to="/"
             className="text-gray-600 hover:text-blue-600 transition-colors"
         >
-            Home
-        </Link>
-        <Link
-            to="/calculator"
-            className="text-gray-600 hover:text-blue-600 transition-colors"
-        >
-            Calculator
-        </Link>
-        <Link
-            to="/dashboard"
-            className="text-gray-600 hover:text-blue-600 transition-colors"
-        >
             Dashboard
         </Link>
         <Link
-            to="/results"
+            to="/data_entry"
             className="text-gray-600 hover:text-blue-600 transition-colors"
         >
-            Results
+            Data Entry
         </Link>
         <Link
-            to="/about"
+            to="/map"
             className="text-gray-600 hover:text-blue-600 transition-colors"
         >
-            About
+            Map
+        </Link>
+        <Link
+            to="/reports"
+            className="text-gray-600 hover:text-blue-600 transition-colors"
+        >
+            Reports
+        </Link>
+        <Link
+            to="/public_info"
+            className="text-gray-600 hover:text-blue-600 transition-colors"
+        >
+            Public Info
         </Link>
     </nav>);
 }
