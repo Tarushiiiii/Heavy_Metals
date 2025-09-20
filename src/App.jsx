@@ -6,6 +6,7 @@ import { PublicInfo } from './pages/public_info';
 import { Reports } from './pages/reports';
 import { Map } from './pages/map';
 import { DataEntry } from './pages/data_entry';
+import { Settings } from './pages/settings';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
             <Route path="/reports" element={<Reports />} />
             <Route path="/map" element={<Map />} />
             <Route path="/data_entry" element={<DataEntry />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>
         </Routes>
