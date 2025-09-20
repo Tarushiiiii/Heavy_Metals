@@ -17,7 +17,9 @@ body {
     padding: 0 20px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1.2;
     font-weight: bold;
 }
@@ -96,7 +98,8 @@ nav ul li a:hover {
 /* Hero Section */
 .hero-section {
     position: relative;
-    background-color: #0d47a1; /* Fallback */
+    background-color: #0d47a1;
+    /* Fallback */
     background-image: url('home_pg_bg.png');
     background-size: cover;
     background-position: center;
@@ -263,29 +266,34 @@ nav ul li a:hover {
 }
 
 /* Measurable Impact Section */
-.impact-section, .features-section {
+.impact-section,
+.features-section {
     text-align: center;
     padding: 80px 20px;
 }
 
-.impact-section h2, .features-section h2 {
+.impact-section h2,
+.features-section h2 {
     font-size: 2.5em;
     margin-bottom: 10px;
 }
 
-.impact-section > p, .features-section > p {
+.impact-section>p,
+.features-section>p {
     max-width: 800px;
     margin: 0 auto 50px;
 }
 
-.impact-cards, .feature-cards {
+.impact-cards,
+.feature-cards {
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
 }
 
-.impact-card, .feature-card {
+.impact-card,
+.feature-card {
     background: #fdfdfd;
     padding: 40px 30px;
     border-radius: 10px;
@@ -306,7 +314,8 @@ nav ul li a:hover {
     align-items: center;
 }
 
-.impact-card h3, .feature-card h3 {
+.impact-card h3,
+.feature-card h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
 }
@@ -394,6 +403,7 @@ nav ul li a:hover {
     font-size: 1em;
     margin-top: 5px;
 }
+
 /* ===================================== */
 /* Calculator Page Specific Styles */
 /* ===================================== */
@@ -563,6 +573,7 @@ nav ul li a:hover {
         text-align: center;
     }
 }
+
 /* ===================================== */
 /* Bulk Upload Specific Styles */
 /* ===================================== */
@@ -671,13 +682,15 @@ nav ul li a:hover {
 }
 
 .csv-requirements-card li::before {
-    content: '\2022'; /* Unicode for a bullet point */
+    content: '\2022';
+    /* Unicode for a bullet point */
     color: #0d47a1;
     font-size: 1.2em;
     position: absolute;
     left: 0;
     top: -2px;
 }
+
 /* ===================================== */
 /* Results Page Specific Styles */
 /* ===================================== */
@@ -1008,12 +1021,14 @@ nav ul li a:hover {
     .info-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .hmpi-assessment {
         flex-direction: column;
     }
 
-    .hmpi-score, .hmpi-status, .hmpi-risk {
+    .hmpi-score,
+    .hmpi-status,
+    .hmpi-risk {
         margin-bottom: 20px;
     }
 
@@ -1022,7 +1037,7 @@ nav ul li a:hover {
         align-items: flex-start;
         text-align: left;
     }
-    
+
     .metal-info {
         margin-bottom: 10px;
     }
@@ -1038,6 +1053,7 @@ nav ul li a:hover {
         margin-top: 10px;
     }
 }
+
 /* ===================================== */
 /* Recommendations Section Styles */
 /* ===================================== */
@@ -1084,7 +1100,8 @@ nav ul li a:hover {
 }
 
 .recommendation-group li::before {
-    content: '\2022'; /* Unicode for a bullet point */
+    content: '\2022';
+    /* Unicode for a bullet point */
     font-size: 1.2em;
     position: absolute;
     left: 0;
@@ -1102,6 +1119,7 @@ nav ul li a:hover {
 .recommendation-group.green li::before {
     color: #28a745;
 }
+
 /* ===================================== */
 /* Methodology Section Styles */
 /* ===================================== */
@@ -1153,7 +1171,8 @@ nav ul li a:hover {
 }
 
 .standard-list li::before {
-    content: '\2022'; /* Unicode bullet point */
+    content: '\2022';
+    /* Unicode bullet point */
     font-size: 1.2em;
     color: #0d47a1;
     position: absolute;
@@ -1330,7 +1349,8 @@ nav ul li a:hover {
     margin-right: 8px;
 }
 
-.sample-location, .sample-date {
+.sample-location,
+.sample-date {
     font-size: 0.9em;
     color: #777;
 }
@@ -1400,26 +1420,33 @@ nav ul li a:hover {
     .overview-cards {
         grid-template-columns: 1fr;
     }
+
     .sample-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
+
     .sample-analysis {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
     }
-    .analysis-score, .analysis-risk, .analysis-status {
+
+    .analysis-score,
+    .analysis-risk,
+    .analysis-status {
         width: 100%;
         text-align: left;
     }
+
     .details-btn {
         position: absolute;
         right: 20px;
         top: 20px;
     }
 }
+
 /* ===================================== */
 /* Dashboard Tabs & Sections */
 /* ===================================== */
@@ -1487,6 +1514,7 @@ nav ul li a:hover {
     color: #adb5bd;
     font-style: italic;
 }
+
 /* ===================================== */
 /* Risk Alerts Section Styles */
 /* ===================================== */
@@ -1588,6 +1616,7 @@ nav ul li a:hover {
         gap: 15px;
         padding: 20px;
     }
+
     .alert-btn {
         width: 100%;
         text-align: center;
@@ -1678,7 +1707,8 @@ nav ul li a.active {
     gap: 10px;
 }
 
-.sign-in, .get-started {
+.sign-in,
+.get-started {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -1717,7 +1747,8 @@ nav ul li a.active {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    text-decoration: none; /* For export button which might be an <a> */
+    text-decoration: none;
+    /* For export button which might be an <a> */
 }
 
 .btn-primary {
@@ -1833,11 +1864,13 @@ nav ul li a.active {
 }
 
 .dashboard-section {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 .dashboard-section.active {
-    display: block; /* Shown when active */
+    display: block;
+    /* Shown when active */
 }
 
 /* ===================================== */
@@ -1895,7 +1928,8 @@ nav ul li a.active {
     margin-right: 8px;
 }
 
-.sample-location, .sample-date {
+.sample-location,
+.sample-date {
     font-size: 0.9em;
     color: #777;
 }
@@ -1942,7 +1976,8 @@ nav ul li a.active {
     height: 8px;
     border-radius: 4px;
     overflow: hidden;
-    width: 100%; /* Default width for the container */
+    width: 100%;
+    /* Default width for the container */
 }
 
 .risk-bar-fill {
@@ -1952,20 +1987,26 @@ nav ul li a.active {
 
 /* Specific fills for HMPI Assessment and Metal Analysis */
 .safe-fill {
-    background-color: #28a745; /* Green */
+    background-color: #28a745;
+    /* Green */
 }
 
 .moderate-fill {
-    background-color: #ffc107; /* Yellow/Orange */
+    background-color: #ffc107;
+    /* Yellow/Orange */
 }
 
-.high-fill, .elevated-fill { /* Elevated for metal analysis, High for HMPI */
-    background-color: #dc3545; /* Red */
+.high-fill,
+.elevated-fill {
+    /* Elevated for metal analysis, High for HMPI */
+    background-color: #dc3545;
+    /* Red */
 }
 
 /* Small bar for sample analysis in recent samples */
 .risk-bar-track.small-bar {
-    height: 6px; /* Smaller height for compact display */
+    height: 6px;
+    /* Smaller height for compact display */
 }
 
 .analysis-status {
@@ -1987,12 +2028,16 @@ nav ul li a.active {
     color: #155724;
 }
 
-.status-badge.elevated, .status-badge.moderate { /* Elevated for metal, Moderate for HMPI */
+.status-badge.elevated,
+.status-badge.moderate {
+    /* Elevated for metal, Moderate for HMPI */
     background-color: #fff3cd;
     color: #856404;
 }
 
-.status-badge.red, .status-badge.high-risk { /* Red for metal, High Risk for HMPI */
+.status-badge.red,
+.status-badge.high-risk {
+    /* Red for metal, High Risk for HMPI */
     background-color: #f8d7da;
     color: #721c24;
 }
@@ -2057,7 +2102,8 @@ nav ul li a.active {
 }
 
 .risk-alert-item.critical {
-    border: 1px solid #dc3545; /* Example for a more critical alert */
+    border: 1px solid #dc3545;
+    /* Example for a more critical alert */
 }
 
 .alert-details {
@@ -2101,7 +2147,8 @@ nav ul li a.active {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 30px;
-    text-align: center; /* Center the image */
+    text-align: center;
+    /* Center the image */
 }
 
 .trends-card .section-title {
@@ -2118,16 +2165,21 @@ nav ul li a.active {
 
 .trend-image-container {
     width: 100%;
-    max-width: 900px; /* Adjust max-width as needed */
-    margin: 0 auto; /* Center the image container */
+    max-width: 900px;
+    /* Adjust max-width as needed */
+    margin: 0 auto;
+    /* Center the image container */
 }
 
 .responsive-image {
     max-width: 100%;
     height: auto;
-    display: block; /* Remove extra space below image */
-    border-radius: 8px; /* Optional: adds rounded corners to the image */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+    display: block;
+    /* Remove extra space below image */
+    border-radius: 8px;
+    /* Optional: adds rounded corners to the image */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: adds a subtle shadow */
 }
 
 
@@ -2138,16 +2190,21 @@ nav ul li a.active {
     .overview-cards {
         grid-template-columns: 1fr 1fr;
     }
+
     nav ul {
         gap: 15px;
     }
+
     nav ul li a {
         font-size: 0.9em;
     }
+
     .auth-buttons {
         gap: 5px;
     }
-    .sign-in, .get-started {
+
+    .sign-in,
+    .get-started {
         padding: 8px 15px;
         font-size: 0.9em;
     }
@@ -2157,26 +2214,32 @@ nav ul li a.active {
     .overview-cards {
         grid-template-columns: 1fr;
     }
+
     nav {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
+
     nav ul {
         flex-direction: column;
         width: 100%;
         gap: 10px;
     }
+
     nav ul li a {
         display: block;
         width: 100%;
         padding: 10px 0;
     }
+
     .auth-buttons {
         width: 100%;
         justify-content: space-around;
     }
-    .sign-in, .get-started {
+
+    .sign-in,
+    .get-started {
         flex: 1;
         text-align: center;
     }
@@ -2186,30 +2249,39 @@ nav ul li a.active {
         align-items: flex-start;
         gap: 15px;
     }
+
     .sample-analysis {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
         gap: 10px;
     }
-    .analysis-score, .analysis-risk, .analysis-status {
+
+    .analysis-score,
+    .analysis-risk,
+    .analysis-status {
         width: 100%;
         text-align: left;
     }
+
     .analysis-risk {
         align-items: flex-start;
     }
+
     .details-btn {
-        position: absolute; /* Adjust for smaller screens if needed */
+        position: absolute;
+        /* Adjust for smaller screens if needed */
         right: 20px;
         top: 20px;
     }
+
     .risk-alert-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
         padding: 20px;
     }
+
     .alert-btn {
         width: 100%;
         text-align: center;
@@ -2220,20 +2292,25 @@ nav ul li a.active {
     .page-title {
         font-size: 1.8em;
     }
+
     .subtitle {
         font-size: 1em;
     }
+
     .tab-btn {
         padding: 10px 15px;
         font-size: 0.9em;
     }
+
     .section-title {
         font-size: 1.3em;
     }
+
     .overview-card .main-metric {
         font-size: 2em;
     }
 }
+
 /* ===================================== */
 /* General & Utility Styles */
 /* ===================================== */
@@ -2344,7 +2421,8 @@ nav ul li a.active {
     gap: 10px;
 }
 
-.sign-in, .get-started {
+.sign-in,
+.get-started {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -2581,6 +2659,7 @@ nav ul li a.active {
 .specs-card .card-header-icon {
     margin-bottom: 0;
 }
+
 .specs-subtitle {
     font-size: 1.2em;
     font-weight: 600;
@@ -2614,21 +2693,26 @@ nav ul li a.active {
         align-items: flex-start;
         gap: 15px;
     }
+
     nav ul {
         flex-direction: column;
         width: 100%;
         gap: 10px;
     }
+
     nav ul li a {
         display: block;
         width: 100%;
         padding: 10px 0;
     }
+
     .auth-buttons {
         width: 100%;
         justify-content: space-around;
     }
-    .sign-in, .get-started {
+
+    .sign-in,
+    .get-started {
         flex: 1;
         text-align: center;
     }
@@ -2639,18 +2723,22 @@ nav ul li a.active {
         grid-template-columns: 1fr;
         max-width: 500px;
     }
+
     .feature-card {
         align-items: center;
         text-align: center;
     }
+
     .feature-icon {
         margin-left: auto;
         margin-right: auto;
     }
+
     .impact-stats {
         flex-direction: column;
         align-items: center;
     }
+
     .steps-grid {
         gap: 20px;
     }
@@ -2660,18 +2748,23 @@ nav ul li a.active {
     .page-title {
         font-size: 1.8em;
     }
+
     .subtitle {
         font-size: 1em;
     }
+
     .about-card {
         padding: 20px;
     }
+
     .about-card .section-title {
         font-size: 1.5em;
     }
+
     .feature-card {
         padding: 20px;
     }
+
     .stat-value {
         font-size: 2em;
     }
@@ -2679,137 +2772,136 @@ nav ul li a.active {
 
 /* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-              url('https://images.unsplash.com/photo-1524592094714-0f0654e20314') no-repeat center/cover;
-  color: #fff;
-  min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1524592094714-0f0654e20314') no-repeat center/cover;
+    color: #fff;
+    min-height: 100vh;
 }
 
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 18px;
-  color: #00aaff;
+    font-weight: bold;
+    font-size: 18px;
+    color: #00aaff;
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
 .nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .nav-links a:hover {
-  color: #00aaff;
+    color: #00aaff;
 }
 
 .auth-buttons button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .signin {
-  background: #111;
-  color: #fff;
+    background: #111;
+    color: #fff;
 }
 
 .get-started {
-  background: #00aaff;
-  color: #fff;
+    background: #00aaff;
+    color: #fff;
 }
 
 /* Hero Section */
 .hero {
-  text-align: center;
-  padding: 100px 20px 60px;
+    text-align: center;
+    padding: 100px 20px 60px;
 }
 
 .hero h1 {
-  font-size: 48px;
-  font-weight: bold;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 .hero h1 span {
-  color: rgba(255,255,255,0.5);
-  font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
 }
 
 .hero p {
-  margin: 20px 0;
-  font-size: 18px;
-  line-height: 1.6;
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 .hero-buttons {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .primary-btn,
 .secondary-btn {
-  padding: 12px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .primary-btn {
-  background: #111;
-  color: #fff;
+    background: #111;
+    color: #fff;
 }
 
 .secondary-btn {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 
 /* Features Section */
 .features {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 20px;
 }
 
 .feature-box {
-  background: rgba(0,0,0,0.5);
-  padding: 20px 40px;
-  border-radius: 10px;
-  text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .feature-box h2 {
-  font-size: 28px;
-  color: #00aaff;
+    font-size: 28px;
+    color: #00aaff;
 }
 
 .feature-box p {
-  font-size: 16px;
-  margin-top: 8px;
-color: #ddd;
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ddd;
 }
-
