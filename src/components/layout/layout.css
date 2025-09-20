@@ -1,0 +1,52 @@
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+/* Content wrapper */
+.main-content-wrapper {
+    margin-left: 220px;
+    /* Same as sidebar width */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+/* Footer inside main column */
+footer {
+    background-color: #ddd;
+    padding: 10px 20px;
+    text-align: center;
+}
