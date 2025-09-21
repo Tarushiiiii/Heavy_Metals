@@ -1,30 +1,43 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useCustomFilterOptions } from './CustomFilter';
+import { ChevronDown } from 'lucide-react';
 
 export const Filters = ({ options = [] }) => {
-    const filterOptions = useCustomFilterOptions({
-        ignoreAccents: true,
-        ignoreCase: true,
-        matchFrom: 'start',
-        stringify: (opt) => (typeof opt === 'string' ? opt : opt.title),
-        limit: 100
-    });
-
     return (
-        <Autocomplete
-            options={options}
-            filterOptions={filterOptions}
-            getOptionLabel={(option) =>
-                typeof option === 'string' ? option : option.title
-            }
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label="Search Filters"
-                    variant="outlined"
-                />
-            )}
-        />
+        <div className="flex gap-4 items-center">
+            <div className="relative">
+                <select className="custom-select">
+                    <option>Region</option>
+                    <option>Gurgaon</option>
+                    <option>Delhi</option>
+                </select>
+                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                    <ChevronDown size={20} color="black" />
+                </div>
+            </div>
+
+            <div className="relative">
+                <select className="custom-select">
+                    <option>Date</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                </select>
+                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                    <ChevronDown size={20} color="black" />
+                </div>
+            </div>
+
+            <div className="relative">
+                <select className="custom-select">
+                    <option>Metal</option>
+                    <option>Lead</option>
+                    <option>Mercury</option>
+                </select>
+                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                    <ChevronDown size={20} color="black" />
+                </div>
+            </div>
+        </div>
     );
 };

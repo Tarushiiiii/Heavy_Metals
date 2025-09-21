@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { Search as SearchIcon } from 'lucide-react';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const options = ['Region', 'Date Range', 'Metal'];
+const options = ['Noida', 'Mercury', 'Ghaziabad', '2025', 'Lead'];
 
 export default function SearchAutocomplete() {
     const [value, setValue] = React.useState(null);
@@ -30,6 +30,15 @@ export default function SearchAutocomplete() {
                                 <SearchIcon size={20} strokeWidth={1.8} style={{ color: '#6b7280' }} />
                             </InputAdornment>
                         ),
+                    }}
+                    sx={{
+                        '& .MuiOutlinedInput-root': {
+                            height: '2.2rem',
+                            padding: '0px 10px', // Adjust padding for better fit
+                        },
+                        '& .MuiInputBase-input': {
+                            padding: '6px 8px',
+                        }
                     }}
                 />
             )}

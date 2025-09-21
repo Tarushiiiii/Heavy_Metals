@@ -3,11 +3,11 @@ export const Logo = () => {
         <div className="flex items-center gap-2">
             <img
                 src="https://via.placeholder.com/40"
-                alt="HMPI Logo"
+                alt="JalDhatu Logo"
                 className="rounded-full"
             />
             <span className="text-lg font-semibold text-gray-700">
-                HMPI Calculator
+                JalDhatu
             </span>
         </div>
     );
