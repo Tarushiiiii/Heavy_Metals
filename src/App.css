@@ -30,3 +30,32 @@
     margin: 10px 0;
     flex-direction: row;
 }
+
+.custom-select {
+    height: 2.5rem;
+    /* h-10 */
+    min-width: 120px;
+    /* min-w-[120px] */
+    padding-left: 1rem;
+    /* px-4 */
+    padding-right: 2.5rem;
+    /* pr-10 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    background-color: #f3f4f6;
+    /* bg-gray-100 */
+    color: #1f2937;
+    /* text-gray-800 */
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 500;
+    /* font-medium */
+    border: 1px solid #d1d5db;
+    /* border border-gray-300 */
+    outline: none;
+    /* focus:outline-none */
+    box-shadow: 0 0 0 2px #bfdbfe;
+    /* focus:ring-2 focus:ring-blue-200 */
+    appearance: none;
+    /* appearance-none */
+}
