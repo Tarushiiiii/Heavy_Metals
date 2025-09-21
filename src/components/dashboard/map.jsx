@@ -18,7 +18,7 @@ const markerPosition = {
 };
 
 function MapAndCharts() {
-    const googleMapsApiKey = process.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY || process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
     if (!googleMapsApiKey) {
         return <div>Error: Google Maps API key is missing. Please set REACT_APP_GOOGLE_MAPS_API_KEY in your .env file.</div>;
