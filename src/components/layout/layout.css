@@ -29,19 +29,90 @@
 
 /* Content wrapper */
 .main-content-wrapper {
-    margin-left: 220px;
-    /* Same as sidebar width */
+    margin-left: 222px;
     display: flex;
     flex-direction: column;
     flex: 1;
     min-height: 100vh;
 }
 
+.header-container {
+    position: sticky;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 4.5rem;
+    z-index: 1000;
+    overflow: hidden;
+    padding: 0px 10px;
+}
+
+/* Left side container (first flex) */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* 4px 4px padding */
+}
+
+/* Left Header Head (e.g., brand name or title) */
+.header-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.1rem 1rem;
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: #1a202c;
+}
+
+
+/* Right side container (second flex) */
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+    /* 6px units */
+    padding: 0.5rem 1rem;
+    /* 4px 4px padding */
+}
+
+/* Reusable flex column styling for icons */
+.header-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    /* 2px */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-item:hover {
+    color: #1a202c;
+    /* Gray 900 */
+}
+
+/* Small text under icons */
+.header-item span {
+    font-size: 0.75rem;
+    /* 12px */
+    user-select: none;
+}
+
+
 /* Main content */
 .main-content {
     flex: 1;
     padding: 20px;
     background: #f4f4f4;
+    margin: 0 0 0 2px;
 }
 
 /* Footer inside main column */
@@ -49,4 +120,5 @@ footer {
     background-color: #ddd;
     padding: 10px 20px;
     text-align: center;
+    margin: 0 0 0 2px;
 }

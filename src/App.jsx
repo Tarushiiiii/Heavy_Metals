@@ -1,30 +1,28 @@
-import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/layout/layout';
+import { Dashboard } from './pages/dashboard';
 import { PublicInfo } from './pages/public_info';
 import { Reports } from './pages/reports';
 import { Map } from './pages/map';
 import { DataEntry } from './pages/data_entry';
 import { Settings } from './pages/settings';
 
-export const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/public_info" element={<PublicInfo />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/map" element={<Map />} />
-            <Route path="/data_entry" element={<DataEntry />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<h1>Not Found</h1>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
-}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Dashboard />, handle: { header: 'Dashboard' } },
+      { path: "public_info", element: <PublicInfo />, handle: { header: 'Public Info' } },
+      { path: "reports", element: <Reports />, handle: { header: 'Reports' } },
+      { path: "map", element: <Map />, handle: { header: 'Map' } },
+      { path: "data_entry", element: <DataEntry />, handle: { header: 'Data Entry' } },
+      { path: "settings", element: <Settings />, handle: { header: 'Settings' } },
+      { path: "*", element: <h1>Not Found</h1> },
+    ]
+  }
+]);
 
+export const App = () => {
+  return <RouterProvider router={router} />;
+};

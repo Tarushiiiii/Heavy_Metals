@@ -1,30 +1,41 @@
 import { Bell, User2 } from "lucide-react";
+import './layout.css';
 
-export const Header = () => {
+export const Header = ({ userName, children }) => {
     return (
-        <div className="sticky top-0 flex justify-end items-center gap-x-6 px-4 py-2 bg-white shadow">
-            <div
-                className="flex flex-col items-center gap-1 cursor-pointer hover:text-gray-900"
-                role="button"
-                tabIndex={0}
-                aria-label="Notifications"
-                onClick={() => alert("Notifications clicked")} // optional handler
-                onKeyDown={(e) => { if (e.key === 'Enter') alert("Notifications clicked") }}
-            >
-                <Bell size={20} />
-                <span className="text-xs select-none">Notification</span>
+        <div className="header-container">
+            <div className="header-left">
+                <div className="header-head">
+                    {children}
+                </div>
+                <div className="header-item">
+                    Welcome {userName}!
+                </div>
             </div>
+            <div className="header-right">
+                <div
+                    className="header-item"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Notifications"
+                    onClick={() => alert("Notifications clicked")} // optional handler
+                    onKeyDown={(e) => { if (e.key === 'Enter') alert("Notifications clicked") }}
+                >
+                    <Bell size={20} />
+                    <span className="text-xs select-none">Notification</span>
+                </div>
 
-            <div
-                className="flex flex-col items-center gap-1 cursor-pointer hover:text-gray-900"
-                role="button"
-                tabIndex={0}
-                aria-label="User Profile"
-                onClick={() => alert("Profile clicked")} // optional handler
-                onKeyDown={(e) => { if (e.key === 'Enter') alert("Profile clicked") }}
-            >
-                <User2 size={20} />
-                <span className="text-xs select-none">Profile</span>
+                <div
+                    className="header-item"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="User Profile"
+                    onClick={() => alert("Profile clicked")} // optional handler
+                    onKeyDown={(e) => { if (e.key === 'Enter') alert("Profile clicked") }}
+                >
+                    <User2 size={20} />
+                    <span className="text-xs select-none">Profile</span>
+                </div>
             </div>
         </div>
     );
