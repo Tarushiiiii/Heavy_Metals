@@ -1,10 +1,32 @@
 @import "tailwindcss";
 
-.main-content {
-    margin-left: 200px;
-    /* Same as sidebar width */
-    padding: 20px;
-    flex: 1;
+.inside-stuff {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Left takes 2 parts, right takes 1 part */
+    gap: 1rem;
+    padding: 0px 20px;
+}
+
+.main-header-wrapper {
+    margin: 20px;
+}
+
+.main-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0c7d72;
+}
+
+.main-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.search-filter-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    flex-direction: row;
 }

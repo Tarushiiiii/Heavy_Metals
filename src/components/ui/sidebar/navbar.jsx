@@ -32,6 +32,18 @@ export const NavBar = () => {
                 Data Entry
             </NavLink>
             <NavLink
+                to="/analysis"
+                className={({ isActive }) =>
+                    `${linkBaseClass} ${isActive
+                        ? 'bg-[#0e9486] text-white'
+                        : 'text-[#0c7d72] hover:underline'
+                    }`
+                }
+            >
+                <ChartArea size={20} strokeWidth={1.8} />
+                Analysis
+            </NavLink>
+            <NavLink
                 to="/map"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive

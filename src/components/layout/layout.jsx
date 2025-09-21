@@ -23,7 +23,7 @@ export const Layout = () => {
                     <header>
                         <Header userName="John" children={currentHeader} />
                     </header>
-                    <Outlet className="main-content" />
+                    <Outlet />
                 </main>
                 <Footer />
             </div>

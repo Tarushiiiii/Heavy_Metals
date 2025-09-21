@@ -48,6 +48,7 @@
     z-index: 1000;
     overflow: hidden;
     padding: 0px 10px;
+    color: #0c7d72;
 }
 
 /* Left side container (first flex) */
@@ -55,20 +56,22 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 0.5rem 1rem;
+    color: #333;
     /* 4px 4px padding */
+
 }
 
 /* Left Header Head (e.g., brand name or title) */
 .header-head {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    padding: 0.1rem 1rem;
+    align-items: flex-start;
+    /* padding: 0.1rem 1rem; */
     font-weight: bold;
-    font-size: 1.125rem;
-    color: #1a202c;
+    font-size: 1.25rem;
+    color: #0c7d72;
 }
 
 
@@ -109,10 +112,12 @@
 
 /* Main content */
 .main-content {
-    flex: 1;
+    margin-left: 201px;
     padding: 20px;
-    background: #f4f4f4;
-    margin: 0 0 0 2px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
 }
 
 /* Footer inside main column */

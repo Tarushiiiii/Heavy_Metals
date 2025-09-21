@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { Button } from '../ui/button';
-import { CTAs } from '../ui/header/cta';
-import { Logo } from '../ui/header/logo';
-import { NavBar } from '../ui/header/navbar';
+// import { CTAs } from '../ui/sidebar/cta';
+import { Logo } from '../ui/sidebar/logo';
+import { NavBar } from '../ui/sidebar/navbar';
 import { Settings } from 'lucide-react';
 
 const Sidebar = () => {
