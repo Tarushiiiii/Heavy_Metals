@@ -1,12 +1,18 @@
-import { Reports } from "../../pages/reports";
+import { ReportsTable } from "../../components/ui/report_table.jsx";
+import { useReportStore } from "../../store/reportStore";
 
 export const RecentReports = () => {
+    const reports = useReportStore((state) => state.reports);
+
+    // Sort reports by date in descending order, then slice the first 5
+    const firstFiveReports = reports
+        .sort((a, b) => new Date(b.date) - new Date(a.date))  // Sort by date descending
+        .slice(0, 5);  // Get the first 5 reports
+
     return (
         <div className="card">
-            <div className="card-title">
-                Recent Reports
-            </div>
-            <table className="recent-reports-table">
+            <div className="card-title">Recent Reports</div>
+            <table className="reports-table">
                 <thead>
                     <tr>
                         <th>Report ID</th>
@@ -18,11 +24,11 @@ export const RecentReports = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Map through recent reports data and create rows */}
-                    <Reports />
+                    {firstFiveReports.map((report, index) => (
+                        <ReportsTable key={index} report={report} index={index} />
+                    ))}
                 </tbody>
             </table>
-
         </div>
     );
-}
+};

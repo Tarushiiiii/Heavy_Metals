@@ -1,22 +1,29 @@
-import { Link, useParams } from "react-router-dom";
+import { ReportsTable } from "../components/ui/report_table.jsx";
 import { useReportStore } from "../store/reportStore";
-import { Button } from "../components/ui/button";
+
 
 export const Reports = () => {
-
-    const { id } = useParams();
-    const { reports } = useReportStore();
-    const report = reports.find((r) => r.slug === id);
-
-    if (!report) return <div className="p-4">Report not found!</div>
+    const reports = useReportStore((state) => state.reports);
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-bold">{report.title}</h2>
-            <p>{report.company} - {report.location}</p>
-            {/* <p>{report.description}</p> */}
-            <p dangerouslySetInnerHTML={{ __html: report.description }} />
-            <Link to={`/applyReports/${report.slug}`}><Button>Apply Here!</Button></Link>
-        </div >
+        <div className="card">
+            <table className="reports-table">
+                <thead>
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Region</th>
+                        <th>Date</th>
+                        <th>Metal</th>
+                        <th>HMPI</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {reports.map((report, index) => (
+                        <ReportsTable key={index} report={report} index={index} />
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
-}
+};

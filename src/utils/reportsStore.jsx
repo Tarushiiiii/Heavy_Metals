@@ -1,21 +1,20 @@
 import { useEffect } from "react";
-import { Reports_Api } from "../utils/constants";
+import { reportsData } from "../utils/constants";
 import { useReportStore } from "../store/reportStore";
 
 const ReportFetcher = () => {
     const setReports = useReportStore((state) => state.setReports);
-    const reports = useReportStore((state) => state.reports);  // Get current reports
+    const reports = useReportStore((state) => state.reports);
 
     useEffect(() => {
-        if (reports.length === 0) {  // Only fetch if reports array is empty
-            fetch(Reports_Api)
-                .then((res) => res.json())
-                .then((data) => setReports(data.data))  // Adjust depending on API structure
-                .catch((error) => console.error("Failed to fetch reports:", error));
+        // Check if the reports array is empty and load the data.
+        // It's crucial to only do this once to avoid re-initializing the state.
+        if (reports.length === 0) {
+            setReports(reportsData);
         }
-    }, [setReports, reports.length]);  // Only re-fetch when reports array is empty
+    }, [setReports]); // Only re-run the effect if setReports changes
 
-    return null; // No need to render anything
+    return null;
 };
 
 export default ReportFetcher;
