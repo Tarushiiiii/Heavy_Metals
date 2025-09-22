@@ -1,3 +1,5 @@
+import { Reports } from "../../pages/reports";
+
 export const RecentReports = () => {
     return (
         <div className="card">
@@ -17,6 +19,7 @@ export const RecentReports = () => {
                 </thead>
                 <tbody>
                     {/* Map through recent reports data and create rows */}
+                    <Reports />
                 </tbody>
             </table>
 
