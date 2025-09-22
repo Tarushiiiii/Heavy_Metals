@@ -18,11 +18,10 @@ const markerPosition = {
 };
 
 function MapAndCharts() {
-    // For Create React App, use process.env; for Vite, use import.meta.env
-    const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY || process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
     if (!googleMapsApiKey) {
-        return <div>Error: Google Maps API key is missing. Please set REACT_APP_GOOGLE_MAPS_API_KEY (or VITE_REACT_APP_GOOGLE_MAPS_API_KEY for Vite) in your .env file and restart the development server.</div>;
+        return <div>Error: Google Maps API key is missing. Please set VITE_REACT_APP_GOOGLE_MAPS_API_KEY in your .env file and restart the development server.</div>;
     }
 
     // Prevent rendering on server side
