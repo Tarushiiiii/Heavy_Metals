@@ -1,1 +1,218 @@
 @import "tailwindcss";
+
+.main-dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-header-wrapper {
+    margin: 20px;
+}
+
+.main-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0c7d72;
+}
+
+.main-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.custom-select {
+    height: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 2.5rem;
+    border-radius: 0.5rem;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #333;
+    outline: none;
+    position: relative;
+    appearance: none;
+}
+
+.custom-select .MuiSelect-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+}
+
+.card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(22, 33, 74, 0.06);
+    padding: 1rem 1.2rem;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #212336;
+}
+
+.card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.metric-row-left {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.card-label {
+    color: #687083;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #212336;
+    /* margin-right: 8px; */
+}
+
+.status {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+.status.positive {
+    color: #19c37d;
+    /* Green */
+}
+
+.status.negative {
+    color: #ff3131;
+    /* Red */
+}
+
+.status.critical {
+    color: #ff902e;
+    /* Orange/Red */
+}
+
+/* Optional: Responsive */
+@media (max-width: 480px) {
+    .metrics-card {
+        max-width: 98vw;
+        padding: 16px 10px;
+    }
+
+    .metric-row {
+        margin-bottom: 12px;
+    }
+
+    .metric-value {
+        font-size: 1.4rem;
+    }
+}
+
+.status-legend-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.status-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.status-dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    margin-right: 14px;
+}
+
+.status-dot.positive {
+    background: #20c15b;
+}
+
+.status-dot.negative {
+    background: #ffa726;
+}
+
+.status-dot.critical {
+    background: #ff2c2c;
+}
+
+.recent-reports-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-reports-table th,
+.recent-reports-table td {
+    white-space: nowrap;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.recent-reports-table th {
+    color: #737c9b;
+    font-weight: 600;
+    background: #f7f9fb;
+    border-bottom: 2px solid #eff2f5;
+}
+
+.recent-reports-table tr {
+    border-bottom: 1px solid #efefef;
+}
+
+.recent-reports-table td {
+    color: #283048;
+}
+
+/* Status badge styles */
+.status-badge {
+    display: inline-block;
+    min-width: 64px;
+    padding: 3px 14px;
+    border-radius: 12px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-align: center;
+    background: #eee;
+}
+
+.status-badge.safe {
+    background: #d0f5d4;
+    color: #1bb581;
+}
+
+.status-badge.alert {
+    background: #fff3c8;
+    color: #ff9800;
+}
+
+.status-badge.critical {
+    background: #ffe0e0;
+    color: #ef233c;
+}

@@ -1,0 +1,129 @@
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+/* Content wrapper */
+.main-content-wrapper {
+    margin-left: 222px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+}
+
+.header-container {
+    position: sticky;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 4.5rem;
+    z-index: 1000;
+    overflow: hidden;
+    padding: 0px 10px;
+    color: #0c7d72;
+}
+
+/* Left side container (first flex) */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    color: #333;
+    /* 4px 4px padding */
+
+}
+
+/* Left Header Head (e.g., brand name or title) */
+.header-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* padding: 0.1rem 1rem; */
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #0c7d72;
+}
+
+
+/* Right side container (second flex) */
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+    /* 6px units */
+    padding: 0.5rem 1rem;
+    /* 4px 4px padding */
+}
+
+/* Reusable flex column styling for icons */
+.header-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    /* 2px */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-item:hover {
+    color: #1a202c;
+    /* Gray 900 */
+}
+
+/* Small text under icons */
+.header-item span {
+    font-size: 0.75rem;
+    /* 12px */
+    user-select: none;
+}
+
+
+/* Main content */
+.main-content {
+    margin-left: 201px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+}
+
+/* Footer inside main column */
+footer {
+    background-color: #ddd;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 0 0 0 2px;
+}
