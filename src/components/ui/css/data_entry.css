@@ -1,0 +1,206 @@
+/* Data Entry */
+
+.calculator-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.tab-btn {
+    background: #e3ebf7;
+    color: #212336;
+    border: none;
+    padding: 9px 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 20px 20px 0 0;
+    cursor: pointer;
+    box-shadow: 0 -2px 6px rgba(22, 33, 74, 0.07);
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: #0c7d72;
+    color: #fff;
+}
+
+.tab-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(22, 33, 74, 0.06);
+    padding: 2rem 2.2rem;
+    font-family: 'Inter', Arial, sans-serif;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* Card Section and Titles */
+.card-section {
+    margin-bottom: 2.2rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #212336;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-subtitle {
+    color: #687083;
+    font-size: 0.94rem;
+    margin-bottom: 14px;
+}
+
+/* Input Grid Layouts */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
+}
+
+.metal-grid {
+    margin-top: 6px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 1.02rem;
+    color: #212336;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 7px;
+    border: 1px solid #d3e3ef;
+    background: #f3f4f6;
+    color: #1f2937;
+    outline: none;
+    transition: border-color 0.16s;
+}
+
+.input-group input:focus {
+    border-color: #0c7d72;
+}
+
+.limit {
+    font-size: 0.88rem;
+    color: #687083;
+    margin-left: 10px;
+}
+
+/* Buttons */
+.button-container,
+.upload-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn,
+.choose-file-btn {
+    background: #0c7d72;
+    color: #fff;
+    border: none;
+    padding: 11px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(22, 33, 74, 0.09);
+    transition: background 0.14s, transform 0.12s;
+}
+
+.btn:hover,
+.choose-file-btn:hover {
+    background: #08554f;
+    transform: scale(1.03);
+}
+
+/* Bulk Upload UI */
+.upload-box {
+    padding: 40px 32px;
+    background: #f3f4f6;
+    border: 2px dashed #d3e3ef;
+    border-radius: 14px;
+    text-align: center;
+    width: 320px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s;
+}
+
+.upload-box:hover {
+    border-color: #0c7d72;
+}
+
+.upload-text {
+    font-size: 1rem;
+    color: #0c7d72;
+    font-weight: 600;
+    margin: 14px 0 8px 0;
+}
+
+.drag-drop-text {
+    color: #687083;
+    font-size: 0.97rem;
+    margin-bottom: 16px;
+}
+
+/* CSV Requirement Section */
+.csv-requirements-card {
+    background: #f3f4f6;
+    border: 1.5px solid #d3e3ef;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0 4px 0;
+}
+
+.csv-requirements-card h3 {
+    font-size: 1.04rem;
+    margin-bottom: 8px;
+    color: #212336;
+}
+
+.csv-requirements-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #3b4d6d;
+}
+
+.csv-requirements-card li {
+    margin-bottom: 7px;
+    font-size: 0.97rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tab-content {
+        max-width: 97vw;
+        padding: 1.2rem 4vw;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 14px 0;
+    }
+
+    .upload-box {
+        width: 95vw;
+        padding: 22px 6vw;
+    }
+}

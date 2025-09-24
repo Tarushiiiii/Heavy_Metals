@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, TextCursorInput, ChartArea, Map, BarChart2, Info } from 'lucide-react';
+import { LayoutDashboard, TextCursorInput, ChartArea, Map, BarChart2, Info, Calculator } from 'lucide-react';
 
 export const NavBar = () => {
     const linkBaseClass =
@@ -20,7 +20,8 @@ export const NavBar = () => {
                 Dashboard
             </NavLink>
             <NavLink
-                to="/data_entry"
+                // to="/data_entry"
+                to="/calculate_hmpi"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
                         ? 'bg-[#0e9486] text-white'
@@ -28,8 +29,9 @@ export const NavBar = () => {
                     }`
                 }
             >
-                <TextCursorInput size={20} strokeWidth={1.8} />
-                Data Entry
+                {/* <TextCursorInput size={20} strokeWidth={1.8} /> */}
+                <Calculator size={20} strokeWidth={1.8} />
+                Calculate
             </NavLink>
             <NavLink
                 to="/analysis"
@@ -68,7 +70,7 @@ export const NavBar = () => {
                 Reports
             </NavLink>
             <NavLink
-                to="/public_info"
+                to="/about_us"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
                         ? 'bg-[#0e9486] text-white'
@@ -77,7 +79,7 @@ export const NavBar = () => {
                 }
             >
                 <Info size={20} strokeWidth={1.8} />
-                Public Info
+                About Us
             </NavLink>
         </nav>
     );

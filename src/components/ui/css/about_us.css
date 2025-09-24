@@ -1,0 +1,266 @@
+/* Container and Page Styles */
+.about-page {
+    /* background: #f7f9fb; */
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.container {
+    /* max-width: 900px; */
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 24px 16px 0 16px;
+}
+
+/* Page Titles and Subtitles */
+.page-title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    color: #0c7d72;
+    letter-spacing: 1px;
+}
+
+.about-subtitle,
+.subtitle {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+}
+
+/* Card: Section Groupings */
+.about-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(22, 33, 74, 0.06);
+    margin-bottom: 2rem;
+    padding: 2rem 2rem 1.5rem 2rem;
+}
+
+.mission-card {
+    border-left: 6px solid #0c7d72;
+}
+
+.methodology-card {
+    border-left: 6px solid #225ca3;
+}
+
+.compliance-card {
+    border-left: 6px solid #19c37d;
+}
+
+.impact-card {
+    border-left: 6px solid #ff902e;
+}
+
+.specs-card {
+    border-left: 6px solid #212336;
+}
+
+/* Section Titles Inside Cards */
+.section-title {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: #212336;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.7rem;
+}
+
+.card-header-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+    gap: 18px;
+    margin-bottom: 2.2rem;
+}
+
+.feature-card {
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 1.2rem 1rem 1rem 1rem;
+    box-shadow: 0 1.5px 5px rgba(22, 33, 74, 0.10);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: #0c7d72;
+    margin-bottom: 8px;
+}
+
+.feature-title {
+    font-size: 1.03rem;
+    font-weight: 600;
+    color: #212336;
+    margin-bottom: 6px;
+}
+
+/* Methodology Steps Grid */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px 16px;
+    margin: 18px 0;
+}
+
+.step-item {
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #e9ecef;
+}
+
+.step-number {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    background: #e3ebf7;
+    color: #0c7d72;
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 5px;
+}
+
+.step-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212336;
+    margin-bottom: 4px;
+}
+
+/* Compliance Standards List */
+.standards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.standard-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #212336;
+}
+
+.check-icon {
+    color: #19c37d;
+    font-size: 1.1em;
+}
+
+/* Impact Stats */
+.impact-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 32px;
+    margin-top: 12px;
+}
+
+.stat-item {
+    min-width: 110px;
+    text-align: center;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #0c7d72;
+}
+
+.stat-label {
+    color: #687083;
+    font-size: 0.98rem;
+}
+
+/* Metals Badges */
+.metals-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin: 10px 0 18px 0;
+}
+
+.metal-badge {
+    display: inline-block;
+    background: #e3ebf7;
+    color: #225ca3;
+    border-radius: 18px;
+    padding: 5px 15px;
+    font-size: 0.97rem;
+    font-weight: 500;
+}
+
+/* Specs Subtitles */
+.specs-subtitle {
+    font-size: 1.08rem;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    color: #212336;
+    font-weight: 600;
+}
+
+/* Misc Utility */
+.about-card p,
+.standard-item>p,
+.impact-card p,
+.specs-card p {
+    margin-bottom: 7px;
+    font-size: 1rem;
+    color: #313846;
+}
+
+.subtitle.methodology-subtitle,
+.subtitle.compliance-subtitle,
+.subtitle.impact-subtitle {
+    font-weight: 500;
+    color: #225ca3;
+    font-size: 1.04rem;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 800px) {
+    .container {
+        padding: 12px 4vw 0 4vw;
+    }
+
+    .features-grid,
+    .steps-grid,
+    .impact-stats,
+    .metals-list {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 540px) {
+    .about-card {
+        padding: 1.3rem 0.5rem 1rem 0.8rem;
+    }
+
+    .features-grid,
+    .steps-grid,
+    .impact-stats,
+    .metals-list {
+        gap: 8px;
+    }
+
+    .main-header-wrapper {
+        padding: 8px 0 3px 0;
+    }
+}

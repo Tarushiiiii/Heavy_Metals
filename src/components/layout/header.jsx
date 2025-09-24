@@ -6,7 +6,7 @@ export const Header = ({ userName, children }) => {
         <div className="header-container">
             <div className="header-left">
                 <div className="header-head">
-                    {children}
+                    {children === "Dashboard" && children}
                 </div>
                 <div className="header-item">
                     Welcome {userName}!

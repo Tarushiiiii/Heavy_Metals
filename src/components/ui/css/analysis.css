@@ -1,0 +1,419 @@
+/* Analysis Page CSS */
+.results-header {
+    margin-bottom: 32px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 18px;
+    margin: 18px 0 8px 0;
+}
+
+/* Tab Buttons */
+.tab-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0 20px 0;
+}
+
+.tab-btn {
+    background: #e3ebf7;
+    color: #212336;
+    border: none;
+    padding: 10px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 24px 24px 0 0;
+    cursor: pointer;
+    transition: background 0.17s, color 0.17s;
+    outline: none;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: #0c7d72;
+    color: #fff;
+}
+
+/* Card Blocks */
+.results-card {
+    margin-bottom: 32px;
+    padding: 28px 30px 18px 30px;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(22, 33, 74, 0.07);
+}
+
+.card-title {
+    font-size: 1.22rem;
+    font-weight: 600;
+    color: #225ca3;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Info block for sample metadata */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+    gap: 18px 18px;
+    margin-bottom: 8px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-size: 0.98rem;
+    color: #687083;
+}
+
+.info-value {
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #212336;
+}
+
+/* Assessment block */
+.hmpi-assessment {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.hmpi-score,
+.hmpi-status,
+.hmpi-risk {
+    min-width: 120px;
+    text-align: center;
+}
+
+.score-value {
+    font-size: 2.1rem;
+    color: #0c7d72;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+.score-label {
+    color: #687083;
+    font-size: 0.98rem;
+}
+
+.status-badge {
+    display: inline-block;
+    min-width: 70px;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge.safe {
+    background: #d0f5d4;
+    color: #1bb581;
+}
+
+.status-badge.elevated {
+    background: #fff3c8;
+    color: #ff9800;
+}
+
+.status-badge.moderate {
+    background: #fff3c8;
+    color: #ff9800;
+}
+
+.status-badge.critical {
+    background: #ffe0e0;
+    color: #ef233c;
+}
+
+.status-subtext {
+    font-size: 0.94rem;
+    color: #3b4d6d;
+}
+
+.risk-icon-box {
+    font-size: 1.3rem;
+    color: #ef233c;
+    margin-bottom: 2px;
+}
+
+.risk-level {
+    color: #ff902e;
+    font-weight: 600;
+    font-size: 1.02rem;
+}
+
+/* Risk bar */
+.risk-bar {
+    margin: 16px 0 0 0;
+}
+
+.risk-bar-track {
+    height: 13px;
+    width: 100%;
+    background: #f0f4fa;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+
+.risk-bar-fill {
+    height: 13px;
+    border-radius: 8px 0 0 8px;
+}
+
+.risk-bar-fill.safe-fill {
+    background: #20c15b;
+}
+
+.risk-bar-fill.moderate-fill {
+    background: #ff902e;
+}
+
+.risk-bar-fill.elevated-fill,
+.risk-bar-fill.critical-fill {
+    background: #ef233c;
+}
+
+.risk-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    color: #868ea9;
+    margin-top: 4px;
+}
+
+/* Tab Content/Results Section */
+.results-section {
+    padding: 18px 18px 10px 18px;
+    border-radius: 14px;
+    background: #fff;
+    margin-bottom: 32px;
+    box-shadow: 0 1px 8px rgba(22, 33, 74, 0.06);
+}
+
+.section-title {
+    font-size: 1.13rem;
+    color: #225ca3;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.section-subtitle {
+    color: #3b4d6d;
+    font-size: 1.03rem;
+    margin-bottom: 16px;
+}
+
+/* Metal analysis items */
+.metal-item {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    border-bottom: 1px solid #eef2f7;
+    padding: 13px 0 13px 0;
+    margin-bottom: 7px;
+}
+
+.metal-item:last-child {
+    border-bottom: none;
+}
+
+.metal-info {
+    flex-basis: 180px;
+}
+
+.metal-name {
+    font-weight: 600;
+    color: #212336;
+    margin-bottom: 1px;
+}
+
+.metal-value {
+    color: #0c7d72;
+    font-size: 1.13rem;
+    margin-bottom: 1px;
+}
+
+.metal-limit {
+    font-size: 0.94rem;
+    color: #7787ad;
+}
+
+.unit {
+    font-size: 0.92rem;
+    color: #687083;
+}
+
+.metal-graph {
+    flex: 1;
+    min-width: 180px;
+}
+
+.metal-label {
+    color: #868ea9;
+    font-size: 0.97rem;
+    margin-bottom: 4px;
+}
+
+.metal-bar-track {
+    background: #e3ebf7;
+    height: 9px;
+    border-radius: 6px;
+    width: 100%;
+    position: relative;
+}
+
+.metal-bar-fill {
+    height: 9px;
+    border-radius: 6px 0 0 6px;
+    background: #20c15b;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.safe-fill {
+    background: #20c15b;
+}
+
+.elevated-fill {
+    background: #ff9800;
+}
+
+/* Metal status badge */
+.metal-status .status-badge {
+    min-width: 60px;
+    font-size: 0.97rem;
+    margin-left: 6px;
+}
+
+/* Recommendations and Methodology */
+.recommendation-group,
+.methodology-section {
+    margin-bottom: 22px;
+    padding-bottom: 5px;
+}
+
+.group-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #225ca3;
+    margin-bottom: 6px;
+}
+
+.recommendation-group.yellow {
+    background: #fffbe7;
+    border-left: 4px solid #ffdf7b;
+    padding-left: 18px;
+}
+
+.recommendation-group.blue {
+    background: #ebf5ff;
+    border-left: 4px solid #97b3e8;
+    padding-left: 18px;
+}
+
+.recommendation-group.green {
+    background: #e6f9ee;
+    border-left: 4px solid #38d39f;
+    padding-left: 18px;
+}
+
+.recommendation-group ul {
+    margin-top: 6px;
+    margin-bottom: 3px;
+}
+
+.recommendation-group li {
+    margin-bottom: 5px;
+    color: #3b4d6d;
+}
+
+.formula-box {
+    background: #f3f4f6;
+    padding: 9px 14px;
+    border-radius: 8px;
+    margin-bottom: 7px;
+}
+
+.classification-grid {
+    display: flex;
+    gap: 18px;
+    margin-top: 11px;
+}
+
+.classification-box {
+    flex: 1;
+    border-radius: 10px;
+    background: #f3f4f6;
+    padding: 12px 7px;
+    text-align: center;
+}
+
+.classification-box.safe {
+    border: 2px solid #20c15b;
+}
+
+.classification-box.moderate {
+    border: 2px solid #ff902e;
+}
+
+.classification-box.elevated {
+    border: 2px solid #ff3131;
+}
+
+.range-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.range-description {
+    color: #7a868e;
+    font-size: 0.95rem;
+}
+
+/* Typography and small elements */
+.subtitle,
+.card-subtitle,
+.range-value,
+.range-description {
+    margin-bottom: 6px;
+    color: #3b4d6d;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .container {
+        padding: 0 8px;
+    }
+
+    .results-card,
+    .results-section {
+        padding: 10px 4vw;
+    }
+
+    .classification-grid {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .metal-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

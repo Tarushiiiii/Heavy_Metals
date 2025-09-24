@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/layout/layout';
 import { Dashboard } from './pages/dashboard';
-import { PublicInfo } from './pages/public_info';
+import { AboutUs } from './pages/about_us';
 import { Reports } from './pages/reports';
 import { Map } from './pages/map';
-import { DataEntry } from './pages/data_entry';
+import { CalculateHMPI } from './pages/data_entry';
 import { Settings } from './pages/settings';
 import { Analysis } from './pages/analysis';
 
@@ -14,10 +14,11 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Dashboard />, handle: { header: 'Dashboard' } },
-      { path: "public_info", element: <PublicInfo />, handle: { header: 'Public Info' } },
+      { path: "about_us", element: <AboutUs />, handle: { header: 'About Us' } },
       { path: "reports", element: <Reports />, handle: { header: 'Reports' } },
       { path: "map", element: <Map />, handle: { header: 'Map' } },
-      { path: "data_entry", element: <DataEntry />, handle: { header: 'Data Entry' } },
+      // { path: "data_entry", element: <DataEntry />, handle: { header: 'Data Entry' } },
+      { path: "calculate_hmpi", element: <CalculateHMPI />, handle: { header: 'Calculate HMPI' } },
       { path: "analysis", element: <Analysis />, handle: { header: 'Analysis' } },
       { path: "settings", element: <Settings />, handle: { header: 'Settings' } },
       { path: "*", element: <h1>Not Found</h1> },

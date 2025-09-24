@@ -16,8 +16,8 @@ export const Dashboard = () => {
                 <div className='main-text'>
                     Visualize and analyze heavy metal pollution indices across different regions and time periods.
                 </div>
-
             </div>
+
             {/* Main content with two columns */}
             <div className="flex flex-row space-x-4">
                 <div className="flex w-[75%] flex-col space-y-1 mx-2">
