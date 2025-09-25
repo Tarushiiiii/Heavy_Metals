@@ -3,7 +3,7 @@ import { Layout } from './components/layout/layout';
 import { Dashboard } from './pages/dashboard';
 import { AboutUs } from './pages/about_us';
 import { Reports } from './pages/reports';
-import { Map } from './pages/map';
+import Map from './pages/map';
 import { CalculateHMPI } from './pages/data_entry';
 import { Settings } from './pages/settings';
 import { Analysis } from './pages/analysis';

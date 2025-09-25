@@ -45,7 +45,7 @@ export const NavBar = () => {
                 <ChartArea size={20} strokeWidth={1.8} />
                 Analysis
             </NavLink>
-            <NavLink
+            {/* <NavLink
                 to="/map"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
@@ -56,7 +56,7 @@ export const NavBar = () => {
             >
                 <Map size={20} strokeWidth={1.8} />
                 Map
-            </NavLink>
+            </NavLink> */}
             <NavLink
                 to="/reports"
                 className={({ isActive }) =>

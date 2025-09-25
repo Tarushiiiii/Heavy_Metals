@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import "../components/ui/css/analysis.css";
+import { FileWarning } from "lucide-react";
 
 export const Analysis = () => {
     // Tabs state control
@@ -17,13 +18,12 @@ export const Analysis = () => {
             <main className="results-page">
                 <div className="container">
                     <div className="results-header">
-                        <div className="header-buttons">
-                            <Button colorVariant="secondary" type="main" onClickHandler={() => { }}>
-                                Export Report
-                            </Button>
-                            <Button colorVariant="primary" type="main" onClickHandler={() => { }}>
-                                Save Results
-                            </Button>
+                        <Button colorVariant="primary" type="main" onClickHandler={() => { }}>
+                            Export Report
+                        </Button>
+                        <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded flex items-center gap-2">
+                            <FileWarning size={24} strokeWidth={1.8} />
+                            For the privacy concerns we do not store any data on our servers. If you wish then click to save your results locally.
                         </div>
                     </div>
 

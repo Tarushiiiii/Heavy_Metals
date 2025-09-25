@@ -11,6 +11,7 @@ export const Filters = ({ options = [] }) => {
                     <option>Region</option>
                     <option>Gurgaon</option>
                     <option>Delhi</option>
+                    <option>Greater Noida</option>
                 </select>
                 <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                     <ChevronDown size={20} color="black" />
@@ -19,7 +20,7 @@ export const Filters = ({ options = [] }) => {
 
             <div className="relative">
                 <select className="custom-select">
-                    <option>Date</option>
+                    <option>Year</option>
                     <option>2025</option>
                     <option>2024</option>
                 </select>
@@ -32,6 +33,7 @@ export const Filters = ({ options = [] }) => {
                 <select className="custom-select">
                     <option>Metal</option>
                     <option>Lead</option>
+                    <option>Arsenic</option>
                     <option>Mercury</option>
                 </select>
                 <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
