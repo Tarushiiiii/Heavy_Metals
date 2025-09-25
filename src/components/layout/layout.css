@@ -95,6 +95,7 @@
     /* 2px */
     cursor: pointer;
     transition: color 0.2s;
+    font-weight: bold;
 }
 
 .header-item:hover {
