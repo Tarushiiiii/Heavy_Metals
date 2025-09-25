@@ -127,6 +127,18 @@ export const Analysis = () => {
                                     <span className="status-badge safe">Safe</span>
                                 </div>
                             </div>
+                            <div>
+                                {/* --- Graph for Lead --- */}
+                                <div className="metal-graph">
+                                    <div>
+                                        <img
+                                            src="src/assets/images/lead.jpeg"
+                                            alt="Lead Graph"
+                                            className="w-60% h-auto mx-auto mt-10"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                             {/* ...repeat for other metals */}
                             {/* --- Cadmium --- */}
                             <div className="metal-item">
@@ -143,6 +155,18 @@ export const Analysis = () => {
                                 </div>
                                 <div className="metal-status">
                                     <span className="status-badge safe">Safe</span>
+                                </div>
+                            </div>
+                            <div>
+                                {/* --- Graph for Cadmium --- */}
+                                <div className="metal-graph">
+                                    <div>
+                                        <img
+                                            src="src/assets/images/cadmium.png"
+                                            alt="Cadmium Graph"
+                                            className="w-80% h-auto mx-auto mt-10"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             {/* Add remaining metal blocks similarly... */}
