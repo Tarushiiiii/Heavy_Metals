@@ -6,6 +6,7 @@ import { Chart as ChartJs } from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
 
 import sourceData from "../components/graphs/sourceData.json"
+import { Methodology } from "../components/analysis/methodology";
 
 export const Analysis = () => {
     // Tabs state control
@@ -16,7 +17,7 @@ export const Analysis = () => {
             <div className="main-header-wrapper">
                 <div className="main-header">Analysis</div>
                 <div className="main-text">
-                    Visualize and interpret your HMPI results with detailed breakdowns, risk assessments, and expert recommendations.
+                    Visualize and interpret your HMPI results with detailed breakdowns, risk assessments, and expert suggestions.
                 </div>
             </div>
             <main className="results-page">
@@ -88,33 +89,31 @@ export const Analysis = () => {
                     </div>
 
                     <div className="tab-options">
-                        <button
+                        {/* <button
                             className={`tab-btn ${activeTab === "metal-analysis" ? "active" : ""}`}
                             onClick={() => setActiveTab("metal-analysis")}
                         >
                             Metal Analysis
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === "recommendations-section" ? "active" : ""}`}
-                            onClick={() => setActiveTab("recommendations-section")}
+                        </button> */}
+                        {/* <button
+                            className={`tab-btn ${activeTab === "suggestions-section" ? "active" : ""}`}
+                            onClick={() => setActiveTab("suggestions-section")}
                         >
-                            Recommendations
-                        </button>
-                        <button
+                            suggestions
+                        </button> */}
+                        {/* <button
                             className={`tab-btn ${activeTab === "methodology-section" ? "active" : ""}`}
                             onClick={() => setActiveTab("methodology-section")}
                         >
                             Methodology
-                        </button>
+                        </button> */}
                     </div>
 
                     {/* Metal Analysis Tab */}
-                    {activeTab === "metal-analysis" && (
+                    {/* {activeTab === "metal-analysis" && (
                         <div id="metal-analysis" className="results-section active">
                             <h2 className="section-title">Individual Heavy Metal Analysis</h2>
                             <p className="section-subtitle">Detailed breakdown of each heavy metal concentration versus safety limits</p>
-                            {/* Sample analysis for each metal */}
-                            {/* Repeat for each metal as below */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Lead (Pb)</p>
@@ -132,15 +131,8 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Lead --- */}
                                 <div className="metal-graph">
                                     <div>
-                                        {/* <img
-                                            src="src/assets/images/lead.jpeg"
-                                            alt="Lead Graph"
-                                            className="w-60% h-auto mx-auto mt-10"
-                                        /> */}
-
                                         <Bar
                                             data={{
                                                 labels: ["A", "B", "C", "d", "e", "f", "g"],
@@ -163,8 +155,6 @@ export const Analysis = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* ...repeat for other metals */}
-                            {/* --- Cadmium --- */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Cadmium (Cd)</p>
@@ -182,7 +172,6 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Cadmium --- */}
                                 <div className="pie-chart">
                                     <Pie
                                         data={{
@@ -197,19 +186,95 @@ export const Analysis = () => {
                                     />
                                 </div>
                             </div>
-                            {/* Add remaining metal blocks similarly... */}
+                        </div>
+                    )} */}
+
+                    <div id="metal-analysis" className="results-section active">
+                            <h2 className="section-title">Individual Heavy Metal Analysis</h2>
+                            <p className="section-subtitle">Detailed breakdown of each heavy metal concentration versus safety limits</p>
+                            <div className="metal-item">
+                                <div className="metal-info">
+                                    <p className="metal-name">Lead (Pb)</p>
+                                    <p className="metal-value">8.5 <span className="unit">µg/L</span></p>
+                                    <p className="metal-limit">Limit: 10 µg/L</p>
+                                </div>
+                                <div className="metal-graph">
+                                    <div className="metal-label">85% of safety limit</div>
+                                    <div className="metal-bar-track">
+                                        <div className="metal-bar-fill safe-fill" style={{ width: "85%" }}></div>
+                                    </div>
+                                </div>
+                                <div className="metal-status">
+                                    <span className="status-badge safe">Safe</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="metal-graph">
+                                    <div>
+                                        <Bar
+                                            data={{
+                                                labels: ["A", "B", "C", "d", "e", "f", "g"],
+                                                datasets: [
+                                                    {
+                                                        label: "Place1",
+                                                        data: [2, 3, 5, 6, 2, 7, 8],
+                                                    },
+                                                    {
+                                                        label: "Place2",
+                                                        data: [1, 5, 9, 4, 1, 8, 3],
+                                                    },
+                                                    {
+                                                        label: "Place3",
+                                                        data: [8, 3, 1, 7, 4, 2, 1]
+                                                    }
+                                                ]
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="metal-item">
+                                <div className="metal-info">
+                                    <p className="metal-name">Cadmium (Cd)</p>
+                                    <p className="metal-value">3.2 <span className="unit">µg/L</span></p>
+                                    <p className="metal-limit">Limit: 5 µg/L</p>
+                                </div>
+                                <div className="metal-graph">
+                                    <div className="metal-label">64% of safety limit</div>
+                                    <div className="metal-bar-track">
+                                        <div className="metal-bar-fill safe-fill" style={{ width: "64%" }}></div>
+                                    </div>
+                                </div>
+                                <div className="metal-status">
+                                    <span className="status-badge safe">Safe</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="pie-chart">
+                                    <Pie
+                                        data={{
+                                            labels: sourceData.map((data) => data.label),
+                                            datasets: [
+                                                {
+                                                    label: "Count",
+                                                    data: sourceData.map((data) => data.value),
+                                                },
+                                            ]
+                                        }}
+                                    />
+                                </div>
+                            </div>
                             {/* Mercury, Arsenic, Chromium, Copper, Zinc, Nickel */}
                         </div>
-                    )}
 
-                    {/* Recommendations Tab */}
-                    {activeTab === "recommendations-section" && (
-                        <div id="recommendations-section" className="results-section active">
+                    {/* suggestions Tab */}
+                    {activeTab === "suggestions-section" && (
+                        <div id="suggestions-section" className="results-section active">
                             <div className="results-card">
-                                <h2 className="card-title">Expert Recommendations</h2>
-                                <p className="card-subtitle">Based on the analysis results, here are our professional recommendations</p>
-                                {/* Recommendations */}
-                                <div className="recommendation-group yellow">
+                                <h2 className="card-title">Expert suggestions</h2>
+                                <p className="card-subtitle">Based on the analysis results, here are our professional suggestions</p>
+                                {/* suggestions */}
+                                <div className="suggestion-group yellow">
                                     <p className="group-title">Immediate Actions Required</p>
                                     <ul>
                                         <li>Implement additional monitoring for Arsenic and Chromium levels</li>
@@ -217,7 +282,7 @@ export const Analysis = () => {
                                         <li>Install appropriate water treatment systems</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group blue">
+                                <div className="suggestion-group blue">
                                     <p className="group-title">Long-term Monitoring</p>
                                     <ul>
                                         <li>Schedule quarterly re-testing of this location</li>
@@ -225,7 +290,7 @@ export const Analysis = () => {
                                         <li>Investigate potential contamination sources in the area</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group green">
+                                <div className="suggestion-group green">
                                     <p className="group-title">Positive Indicators</p>
                                     <ul>
                                         <li>Lead, Cadmium, and Mercury levels are within safe ranges</li>
@@ -238,50 +303,9 @@ export const Analysis = () => {
                     )}
 
                     {/* Methodology Tab */}
-                    {activeTab === "methodology-section" && (
-                        <div id="methodology-section" className="results-section active">
-                            <div className="results-card">
-                                <h2 className="card-title">Calculation Methodology</h2>
-                                <p className="card-subtitle">Technical details of the HMPI calculation process</p>
-                                <div className="methodology-section">
-                                    <h3>HMPI Formula</h3>
-                                    <div className="formula-box">
-                                        <p className="formula">
-                                            HMPI = Σ(Mi/Si) × Wi
-                                        </p>
-                                    </div>
-                                    <p className="formula-details">
-                                        Where <b>Mi</b> = Measured concentration, <b>Si</b> = Standard limit, <b>Wi</b> = Weight factor
-                                    </p>
-                                </div>
-                                <div className="methodology-section">
-                                    <h3>Standards Reference</h3>
-                                    <ul className="standard-list">
-                                        <li>WHO Guidelines for Drinking Water Quality (2017)</li>
-                                        <li>EPA National Primary Drinking Water Standards</li>
-                                        <li>International standards for groundwater assessment</li>
-                                    </ul>
-                                </div>
-                                <div className="methodology-section">
-                                    <h3>Classification Ranges</h3>
-                                    <div className="classification-grid">
-                                        <div className="classification-box safe">
-                                            <p className="range-value">Low Risk (0-50)</p>
-                                            <p className="range-description">Safe for consumption</p>
-                                        </div>
-                                        <div className="classification-box moderate">
-                                            <p className="range-value">Medium Risk (50-100)</p>
-                                            <p className="range-description">Monitor closely</p>
-                                        </div>
-                                        <div className="classification-box elevated">
-                                            <p className="range-value">High Risk (100+)</p>
-                                            <p className="range-description">Immediate action required</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    {/* {activeTab === "methodology-section" 
+                        && <Methodology/>
+                    } */}
 
                 </div>
             </main>

@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Map, Calculator, CircleStar } from 'lucide-react';
+import { LayoutDashboard, CircleStar, PencilRuler } from 'lucide-react';
 
 const Dropdown = () => {
     const linkBaseClass =
-        'flex items-center gap-3 px-1 py-2 rounded transition-colors whitespace-nowrap';
+        'flex items-center gap-3 px-2 py-2 rounded transition-colors whitespace-nowrap';
 
     return (
         <nav className='mt-2'>
-            <NavLink
+            {/* <NavLink
                 to="/results"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
@@ -16,12 +16,12 @@ const Dropdown = () => {
                     }`
                 }
             >
-                <LayoutDashboard size={20} strokeWidth={1.8} />
+                <LayoutDashboard size={18} strokeWidth={1.8} />
                 Result
-            </NavLink>
+            </NavLink> */}
 
             <NavLink
-                to="/recommendations"
+                to="/suggestions"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
                         ? 'bg-[#0e9486] text-white'
@@ -29,8 +29,8 @@ const Dropdown = () => {
                     }`
                 }
             >
-                <CircleStar size={20} strokeWidth={1.8} />
-                Recommendations
+                <CircleStar size={18} strokeWidth={1.8} />
+                Suggestions
             </NavLink>
 
             <NavLink
@@ -42,7 +42,7 @@ const Dropdown = () => {
                     }`
                 }
             >
-                <LayoutDashboard size={20} strokeWidth={1.8} />
+                <PencilRuler size={18} strokeWidth={1.8} />
                 Methodology
             </NavLink>
 
