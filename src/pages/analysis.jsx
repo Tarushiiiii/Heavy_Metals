@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import "../components/ui/css/analysis.css";
 import { FileWarning } from "lucide-react";
+import { Chart as ChartJs } from "chart.js/auto";
+import { Bar, Pie, Line } from "react-chartjs-2";
 
 export const Analysis = () => {
     // Tabs state control
@@ -131,10 +133,16 @@ export const Analysis = () => {
                                 {/* --- Graph for Lead --- */}
                                 <div className="metal-graph">
                                     <div>
-                                        <img
+                                        {/* <img
                                             src="src/assets/images/lead.jpeg"
                                             alt="Lead Graph"
                                             className="w-60% h-auto mx-auto mt-10"
+                                        /> */}
+
+                                        <Bar
+                                            data={{
+                                                labels: ["A", "B", "C", "d", "e", "f"]
+                                            }}
                                         />
                                     </div>
                                 </div>
