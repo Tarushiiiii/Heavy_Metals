@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import "../components/ui/css/analysis.css";
 import { FileWarning } from "lucide-react";
-
-// Graphs dependencies
 import { Chart as ChartJs } from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
@@ -105,7 +103,7 @@ export const Analysis = () => {
                             </div>
                         </div>
                     </div>
-
+                    {/* 
                     <div className="tab-options">
                         <button
                             className={`tab-btn ${activeTab === "metal-analysis" ? "active" : ""}`}
@@ -125,15 +123,13 @@ export const Analysis = () => {
                         >
                             Methodology
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* Metal Analysis Tab */}
                     {activeTab === "metal-analysis" && (
                         <div id="metal-analysis" className="results-section active">
                             <h2 className="section-title">Individual Heavy Metal Analysis</h2>
                             <p className="section-subtitle">Detailed breakdown of each heavy metal concentration versus safety limits</p>
-                            {/* Sample analysis for each metal */}
-                            {/* Repeat for each metal as below */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Lead (Pb)</p>
@@ -151,15 +147,8 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Lead --- */}
                                 <div className="metal-graph card">
                                     <div>
-                                        {/* <img
-                                            src="src/assets/images/lead.jpeg"
-                                            alt="Lead Graph"
-                                            className="w-60% h-auto mx-auto mt-10"
-                                        /> */}
-                                        {/*  BAR GRAPH */}
                                         <Bar
                                             data={barData}
                                             options={{
@@ -177,13 +166,9 @@ export const Analysis = () => {
                                                 }
                                             }}
                                         />
-                                        {/* BAR GRAPH END HERE */}
-
                                     </div>
                                 </div>
                             </div>
-                            {/* ...repeat for other metals */}
-                            {/* --- Cadmium --- */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Cadmium (Cd)</p>
@@ -201,8 +186,6 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Cadmium --- */}
-                                {/* PIE CHART */}
                                 <div className="pie-chart">
                                     <Pie
                                         data={{
@@ -228,21 +211,17 @@ export const Analysis = () => {
                                         }}
                                     />
                                 </div>
-                                {/* PIE CHART END HERE */}
                             </div>
-                            {/* Add remaining metal blocks similarly... */}
-                            {/* Mercury, Arsenic, Chromium, Copper, Zinc, Nickel */}
                         </div>
                     )}
 
-                    {/* Recommendations Tab */}
-                    {activeTab === "recommendations-section" && (
-                        <div id="recommendations-section" className="results-section active">
+                    {/* suggestions Tab */}
+                    {/* {activeTab === "suggestions-section" && (
+                        <div id="suggestions-section" className="results-section active">
                             <div className="results-card">
-                                <h2 className="card-title">Expert Recommendations</h2>
-                                <p className="card-subtitle">Based on the analysis results, here are our professional recommendations</p>
-                                {/* Recommendations */}
-                                <div className="recommendation-group yellow">
+                                <h2 className="card-title">Expert suggestions</h2>
+                                <p className="card-subtitle">Based on the analysis results, here are our professional suggestions</p>
+                                <div className="suggestion-group yellow">
                                     <p className="group-title">Immediate Actions Required</p>
                                     <ul>
                                         <li>Implement additional monitoring for Arsenic and Chromium levels</li>
@@ -250,7 +229,7 @@ export const Analysis = () => {
                                         <li>Install appropriate water treatment systems</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group blue">
+                                <div className="suggestion-group blue">
                                     <p className="group-title">Long-term Monitoring</p>
                                     <ul>
                                         <li>Schedule quarterly re-testing of this location</li>
@@ -258,7 +237,7 @@ export const Analysis = () => {
                                         <li>Investigate potential contamination sources in the area</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group green">
+                                <div className="suggestion-group green">
                                     <p className="group-title">Positive Indicators</p>
                                     <ul>
                                         <li>Lead, Cadmium, and Mercury levels are within safe ranges</li>
@@ -268,10 +247,10 @@ export const Analysis = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                     {/* Methodology Tab */}
-                    {activeTab === "methodology-section" && (
+                    {/* {activeTab === "methodology-section" && (
                         <div id="methodology-section" className="results-section active">
                             <div className="results-card">
                                 <h2 className="card-title">Calculation Methodology</h2>
@@ -314,7 +293,7 @@ export const Analysis = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                 </div>
             </main>

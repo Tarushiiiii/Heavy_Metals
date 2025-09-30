@@ -17,10 +17,9 @@ function AnalysisLink() {
       <NavLink
         to="/analysis"
         className={({ isActive }) =>
-          `${
-            isActive
-              ? 'bg-[#0e9486] text-white'
-              : 'text-[#0c7d72] hover:underline'
+          `${isActive
+            ? 'bg-[#0e9486] text-white'
+            : 'text-[#0c7d72] hover:underline'
           } flex items-center justify-between`
         }
         onClick={toggleDropdown} // toggle dropdown on click
@@ -32,15 +31,14 @@ function AnalysisLink() {
 
         <ChevronDown
           size={16}
-          className={`transform transition-transform duration-200 ${
-            open ? 'rotate-180' : ''
-          }`}
+          className={`transform transition-transform duration-200 ${open ? 'rotate-180' : ''
+            }`}
         />
       </NavLink>
 
       {/* Dropdown only shows if open */}
       {open && (
-          <Dropdown />
+        <Dropdown />
       )}
     </div>
   );

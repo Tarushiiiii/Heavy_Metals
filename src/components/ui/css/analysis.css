@@ -301,8 +301,8 @@
     margin-left: 6px;
 }
 
-/* Recommendations and Methodology */
-.recommendation-group,
+/* suggestions and Methodology */
+.suggestion-group,
 .methodology-section {
     margin-bottom: 22px;
     padding-bottom: 5px;
@@ -315,30 +315,30 @@
     margin-bottom: 6px;
 }
 
-.recommendation-group.yellow {
+.suggestion-group.yellow {
     background: #fffbe7;
     border-left: 4px solid #ffdf7b;
     padding-left: 18px;
 }
 
-.recommendation-group.blue {
+.suggestion-group.blue {
     background: #ebf5ff;
     border-left: 4px solid #97b3e8;
     padding-left: 18px;
 }
 
-.recommendation-group.green {
+.suggestion-group.green {
     background: #e6f9ee;
     border-left: 4px solid #38d39f;
     padding-left: 18px;
 }
 
-.recommendation-group ul {
+.suggestion-group ul {
     margin-top: 6px;
     margin-bottom: 3px;
 }
 
-.recommendation-group li {
+.suggestion-group li {
     margin-bottom: 5px;
     color: #3b4d6d;
 }
