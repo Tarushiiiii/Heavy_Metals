@@ -5,6 +5,8 @@ import { FileWarning } from "lucide-react";
 import { Chart as ChartJs } from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
 
+import sourceData from "../components/graphs/sourceData.json"
+
 export const Analysis = () => {
     // Tabs state control
     const [activeTab, setActiveTab] = useState("metal-analysis");
@@ -141,7 +143,21 @@ export const Analysis = () => {
 
                                         <Bar
                                             data={{
-                                                labels: ["A", "B", "C", "d", "e", "f"]
+                                                labels: ["A", "B", "C", "d", "e", "f", "g"],
+                                                datasets: [
+                                                    {
+                                                        label: "Place1",
+                                                        data: [2, 3, 5, 6, 2, 7, 8],
+                                                    },
+                                                    {
+                                                        label: "Place2",
+                                                        data: [1, 5, 9, 4, 1, 8, 3],
+                                                    },
+                                                    {
+                                                        label: "Place3",
+                                                        data: [8, 3, 1, 7, 4, 2, 1]
+                                                    }
+                                                ]
                                             }}
                                         />
                                     </div>
@@ -167,14 +183,18 @@ export const Analysis = () => {
                             </div>
                             <div>
                                 {/* --- Graph for Cadmium --- */}
-                                <div className="metal-graph">
-                                    <div>
-                                        <img
-                                            src="src/assets/images/cadmium.png"
-                                            alt="Cadmium Graph"
-                                            className="w-80% h-auto mx-auto mt-10"
-                                        />
-                                    </div>
+                                <div className="pie-chart">
+                                    <Pie
+                                        data={{
+                                            labels: sourceData.map((data) => data.label),
+                                            datasets: [
+                                                {
+                                                    label: "Count",
+                                                    data: sourceData.map((data) => data.value),
+                                                },
+                                            ]
+                                        }}
+                                    />
                                 </div>
                             </div>
                             {/* Add remaining metal blocks similarly... */}
