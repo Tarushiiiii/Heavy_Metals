@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import "../components/ui/css/analysis.css";
 import { FileWarning } from "lucide-react";
+
+// Graphs dependencies
 import { Chart as ChartJs } from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
@@ -11,14 +13,18 @@ import {
     BarElement,
     Title,
     Tooltip,
+    ArcElement,
     Legend
 } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement, Legend);
 
 
 import pieData from "../components/graphs/pieData.json";
 import barData from "../components/graphs/barData.json";
+
+//Graph dependecies end here 
 
 export const Analysis = () => {
     // Tabs state control
@@ -153,6 +159,7 @@ export const Analysis = () => {
                                             alt="Lead Graph"
                                             className="w-60% h-auto mx-auto mt-10"
                                         /> */}
+                                        {/*  BAR GRAPH */}
                                         <Bar
                                             data={barData}
                                             options={{
@@ -170,6 +177,7 @@ export const Analysis = () => {
                                                 }
                                             }}
                                         />
+                                        {/* BAR GRAPH END HERE */}
 
                                     </div>
                                 </div>
@@ -194,6 +202,7 @@ export const Analysis = () => {
                             </div>
                             <div>
                                 {/* --- Graph for Cadmium --- */}
+                                {/* PIE CHART */}
                                 <div className="pie-chart">
                                     <Pie
                                         data={{
@@ -202,11 +211,24 @@ export const Analysis = () => {
                                                 {
                                                     label: "Percentage",
                                                     data: pieData.map((data) => data.value),
+                                                    backgroundColor: [
+                                                        "rgb(46, 184, 122)",   // slice 1 color
+                                                        "rgb(53, 83, 133)",   // slice 2 color
+                                                        "rgba(225, 255, 187, 1)",
+                                                        "rgb(0, 90, 157)",
+                                                        "rgba(20, 61, 96, 1)",
+                                                        "rgb(0, 117, 121)",
+                                                        "rgba(160, 200, 120, 1)"
+                                                        // slice 3 color
+                                                    ],
+                                                    borderColor: "white",           // border between slices
+                                                    borderWidth: 2
                                                 },
                                             ]
                                         }}
                                     />
                                 </div>
+                                {/* PIE CHART END HERE */}
                             </div>
                             {/* Add remaining metal blocks similarly... */}
                             {/* Mercury, Arsenic, Chromium, Copper, Zinc, Nickel */}
