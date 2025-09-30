@@ -5,7 +5,8 @@
 
 /* Sidebar */
 .sidebar {
-    width: 30vw; /* Use 30% of viewport width */
+    /* width: 30vw; */
+    /* Use 30% of viewport width */
     background-color: #333;
     color: white;
     padding-top: 20px;
@@ -15,14 +16,16 @@
     position: fixed;
     left: 0;
     top: 0;
-    overflow-y: auto; /* scroll if content overflows */
+    overflow-y: auto;
+    /* scroll if content overflows */
 }
 
 .sidebar a {
     color: white;
     text-decoration: none;
     padding: 15px 20px;
-    display: block; /* ensure full clickable area */
+    display: block;
+    /* ensure full clickable area */
 }
 
 .sidebar a:hover {
@@ -32,10 +35,13 @@
 
 /* Content wrapper */
 .main-content-wrapper {
-    margin-left: 30vw; /* match sidebar width */
+    margin-left: 18vw;
+    /* match sidebar width */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-width: 80vw;
+    margin-right: 2vw;
 }
 
 .main-content {
@@ -47,7 +53,8 @@
 
 .header-container {
     position: sticky;
-    top: 0; /* usually 0, not 10px */
+    top: 0;
+    /* usually 0, not 10px */
     display: flex;
     justify-content: space-between;
     align-items: center;

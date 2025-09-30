@@ -11,14 +11,18 @@ import {
     BarElement,
     Title,
     Tooltip,
+    ArcElement,
     Legend
 } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement, Legend);
 
 
 import pieData from "../components/graphs/pieData.json";
 import barData from "../components/graphs/barData.json";
+
+//Graph dependecies end here 
 
 export const Analysis = () => {
     // Tabs state control
@@ -99,7 +103,7 @@ export const Analysis = () => {
                             </div>
                         </div>
                     </div>
-
+                    {/* 
                     <div className="tab-options">
                         <button
                             className={`tab-btn ${activeTab === "metal-analysis" ? "active" : ""}`}
@@ -119,15 +123,13 @@ export const Analysis = () => {
                         >
                             Methodology
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* Metal Analysis Tab */}
                     {activeTab === "metal-analysis" && (
                         <div id="metal-analysis" className="results-section active">
                             <h2 className="section-title">Individual Heavy Metal Analysis</h2>
                             <p className="section-subtitle">Detailed breakdown of each heavy metal concentration versus safety limits</p>
-                            {/* Sample analysis for each metal */}
-                            {/* Repeat for each metal as below */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Lead (Pb)</p>
@@ -145,14 +147,8 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Lead --- */}
                                 <div className="metal-graph card">
                                     <div>
-                                        {/* <img
-                                            src="src/assets/images/lead.jpeg"
-                                            alt="Lead Graph"
-                                            className="w-60% h-auto mx-auto mt-10"
-                                        /> */}
                                         <Bar
                                             data={barData}
                                             options={{
@@ -170,12 +166,9 @@ export const Analysis = () => {
                                                 }
                                             }}
                                         />
-
                                     </div>
                                 </div>
                             </div>
-                            {/* ...repeat for other metals */}
-                            {/* --- Cadmium --- */}
                             <div className="metal-item">
                                 <div className="metal-info">
                                     <p className="metal-name">Cadmium (Cd)</p>
@@ -193,7 +186,6 @@ export const Analysis = () => {
                                 </div>
                             </div>
                             <div>
-                                {/* --- Graph for Cadmium --- */}
                                 <div className="pie-chart">
                                     <Pie
                                         data={{
@@ -202,25 +194,34 @@ export const Analysis = () => {
                                                 {
                                                     label: "Percentage",
                                                     data: pieData.map((data) => data.value),
+                                                    backgroundColor: [
+                                                        "rgb(46, 184, 122)",   // slice 1 color
+                                                        "rgb(53, 83, 133)",   // slice 2 color
+                                                        "rgba(225, 255, 187, 1)",
+                                                        "rgb(0, 90, 157)",
+                                                        "rgba(20, 61, 96, 1)",
+                                                        "rgb(0, 117, 121)",
+                                                        "rgba(160, 200, 120, 1)"
+                                                        // slice 3 color
+                                                    ],
+                                                    borderColor: "white",           // border between slices
+                                                    borderWidth: 2
                                                 },
                                             ]
                                         }}
                                     />
                                 </div>
                             </div>
-                            {/* Add remaining metal blocks similarly... */}
-                            {/* Mercury, Arsenic, Chromium, Copper, Zinc, Nickel */}
                         </div>
                     )}
 
-                    {/* Recommendations Tab */}
-                    {activeTab === "recommendations-section" && (
-                        <div id="recommendations-section" className="results-section active">
+                    {/* suggestions Tab */}
+                    {/* {activeTab === "suggestions-section" && (
+                        <div id="suggestions-section" className="results-section active">
                             <div className="results-card">
-                                <h2 className="card-title">Expert Recommendations</h2>
-                                <p className="card-subtitle">Based on the analysis results, here are our professional recommendations</p>
-                                {/* Recommendations */}
-                                <div className="recommendation-group yellow">
+                                <h2 className="card-title">Expert suggestions</h2>
+                                <p className="card-subtitle">Based on the analysis results, here are our professional suggestions</p>
+                                <div className="suggestion-group yellow">
                                     <p className="group-title">Immediate Actions Required</p>
                                     <ul>
                                         <li>Implement additional monitoring for Arsenic and Chromium levels</li>
@@ -228,7 +229,7 @@ export const Analysis = () => {
                                         <li>Install appropriate water treatment systems</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group blue">
+                                <div className="suggestion-group blue">
                                     <p className="group-title">Long-term Monitoring</p>
                                     <ul>
                                         <li>Schedule quarterly re-testing of this location</li>
@@ -236,7 +237,7 @@ export const Analysis = () => {
                                         <li>Investigate potential contamination sources in the area</li>
                                     </ul>
                                 </div>
-                                <div className="recommendation-group green">
+                                <div className="suggestion-group green">
                                     <p className="group-title">Positive Indicators</p>
                                     <ul>
                                         <li>Lead, Cadmium, and Mercury levels are within safe ranges</li>
@@ -246,10 +247,10 @@ export const Analysis = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                     {/* Methodology Tab */}
-                    {activeTab === "methodology-section" && (
+                    {/* {activeTab === "methodology-section" && (
                         <div id="methodology-section" className="results-section active">
                             <div className="results-card">
                                 <h2 className="card-title">Calculation Methodology</h2>
@@ -292,7 +293,7 @@ export const Analysis = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                 </div>
             </main>

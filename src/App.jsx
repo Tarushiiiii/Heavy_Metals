@@ -8,6 +8,7 @@ import { CalculateHMPI } from './pages/data_entry';
 import { Settings } from './pages/settings';
 import { Analysis } from './pages/analysis';
 import { Methodology } from './components/analysis/methodology';
+import { Suggestion } from './components/analysis/suggestions';
 
 const router = createBrowserRouter([
   {
@@ -18,10 +19,10 @@ const router = createBrowserRouter([
       { path: "about_us", element: <AboutUs />, handle: { header: 'About Us' } },
       { path: "reports", element: <Reports />, handle: { header: 'Reports' } },
       { path: "map", element: <Map />, handle: { header: 'Map' } },
-      // { path: "data_entry", element: <DataEntry />, handle: { header: 'Data Entry' } },
       { path: "calculate_hmpi", element: <CalculateHMPI />, handle: { header: 'Calculate HMPI' } },
       { path: "analysis", element: <Analysis />, handle: { header: 'Analysis' } },
       { path: "methodology", element: <Methodology />, handle: { header: 'Methodology' } },
+      { path: "suggestions", element: <Suggestion />, handle: { header: 'Suggestion' } },
       { path: "settings", element: <Settings />, handle: { header: 'Settings' } },
       { path: "*", element: <h1>Not Found</h1> },
     ]
