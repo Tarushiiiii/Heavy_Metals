@@ -1,0 +1,55 @@
+{
+    "labels": [
+        "A",
+        "B",
+        "C",
+        "d",
+        "e",
+        "f",
+        "g"
+    ],
+    "datasets": [
+        {
+            "label": "Place1",
+            "data": [
+                2,
+                3,
+                5,
+                6,
+                2,
+                7,
+                8
+            ],
+            "backgroundColor": "rgb(53, 83, 133)",
+            "borderRadius": 3
+        },
+        {
+            "label": "Place2",
+            "data": [
+                1,
+                5,
+                9,
+                4,
+                1,
+                8,
+                3
+            ],
+            "backgroundColor": "rgb(46, 184, 122)",
+            "borderRadius": 3
+        },
+        {
+            "label": "Place3",
+            "data": [
+                8,
+                3,
+                1,
+                7,
+                4,
+                2,
+                1
+            ],
+            "backgroundColor": "rgb(155, 217, 127)",
+            "borderRadius": 3
+        }
+    ]
+}

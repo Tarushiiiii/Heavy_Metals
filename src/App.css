@@ -222,3 +222,12 @@
     background: #ffe0e0;
     color: #ef233c;
 }
+
+.pie-chart {
+    height: 70%;
+    width: 50%;
+    margin: 0 auto;
+    /* horizontally center */
+    display: block;
+    /* ensures margin auto works */
+}

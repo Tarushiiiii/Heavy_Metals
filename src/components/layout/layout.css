@@ -5,7 +5,7 @@
 
 /* Sidebar */
 .sidebar {
-    width: 220px;
+    width: 30vw; /* Use 30% of viewport width */
     background-color: #333;
     color: white;
     padding-top: 20px;
@@ -15,30 +15,39 @@
     position: fixed;
     left: 0;
     top: 0;
+    overflow-y: auto; /* scroll if content overflows */
 }
 
 .sidebar a {
     color: white;
     text-decoration: none;
     padding: 15px 20px;
+    display: block; /* ensure full clickable area */
 }
 
 .sidebar a:hover {
     background-color: #444;
 }
 
+
 /* Content wrapper */
 .main-content-wrapper {
-    margin-left: 222px;
+    margin-left: 30vw; /* match sidebar width */
     display: flex;
     flex-direction: column;
-    flex: 1;
     min-height: 100vh;
+}
+
+.main-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .header-container {
     position: sticky;
-    top: 10px;
+    top: 0; /* usually 0, not 10px */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,9 +55,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     height: 4.5rem;
     z-index: 1000;
-    overflow: hidden;
     padding: 0px 10px;
-    color: #0c7d72;
 }
 
 /* Left side container (first flex) */
@@ -95,6 +102,7 @@
     /* 2px */
     cursor: pointer;
     transition: color 0.2s;
+    font-weight: bold;
 }
 
 .header-item:hover {
