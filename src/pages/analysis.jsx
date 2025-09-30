@@ -4,8 +4,21 @@ import "../components/ui/css/analysis.css";
 import { FileWarning } from "lucide-react";
 import { Chart as ChartJs } from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+} from "chart.js";
 
-import sourceData from "../components/graphs/sourceData.json"
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+
+import pieData from "../components/graphs/pieData.json";
+import barData from "../components/graphs/barData.json";
 
 export const Analysis = () => {
     // Tabs state control
@@ -133,33 +146,31 @@ export const Analysis = () => {
                             </div>
                             <div>
                                 {/* --- Graph for Lead --- */}
-                                <div className="metal-graph">
+                                <div className="metal-graph card">
                                     <div>
                                         {/* <img
                                             src="src/assets/images/lead.jpeg"
                                             alt="Lead Graph"
                                             className="w-60% h-auto mx-auto mt-10"
                                         /> */}
-
                                         <Bar
-                                            data={{
-                                                labels: ["A", "B", "C", "d", "e", "f", "g"],
-                                                datasets: [
-                                                    {
-                                                        label: "Place1",
-                                                        data: [2, 3, 5, 6, 2, 7, 8],
+                                            data={barData}
+                                            options={{
+                                                scales: {
+                                                    x: {
+                                                        grid: {
+                                                            display: false  // vertical grid lines
+                                                        }
                                                     },
-                                                    {
-                                                        label: "Place2",
-                                                        data: [1, 5, 9, 4, 1, 8, 3],
-                                                    },
-                                                    {
-                                                        label: "Place3",
-                                                        data: [8, 3, 1, 7, 4, 2, 1]
+                                                    y: {
+                                                        grid: {
+                                                            display: false  // horizontal grid lines
+                                                        }
                                                     }
-                                                ]
+                                                }
                                             }}
                                         />
+
                                     </div>
                                 </div>
                             </div>
@@ -186,11 +197,11 @@ export const Analysis = () => {
                                 <div className="pie-chart">
                                     <Pie
                                         data={{
-                                            labels: sourceData.map((data) => data.label),
+                                            labels: pieData.map((data) => data.label),
                                             datasets: [
                                                 {
-                                                    label: "Count",
-                                                    data: sourceData.map((data) => data.value),
+                                                    label: "Percentage",
+                                                    data: pieData.map((data) => data.value),
                                                 },
                                             ]
                                         }}
