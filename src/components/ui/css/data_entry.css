@@ -187,6 +187,35 @@
     font-size: 0.97rem;
 }
 
+.card-section {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.card-section:hover {
+  box-shadow: 0 6px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.card-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748; /* dark gray */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-section h3::before {
+  font-size: 1.2rem;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .tab-content {

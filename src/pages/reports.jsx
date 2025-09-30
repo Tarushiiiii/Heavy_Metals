@@ -1,4 +1,5 @@
 import { ReportsTable } from "../components/ui/report_table.jsx";
+import SearchAutocomplete from "../components/ui/searchbar.jsx";
 import { useReportStore } from "../store/reportStore";
 
 
@@ -14,6 +15,10 @@ export const Reports = () => {
                 </div>
             </div>
 
+            <div className="m-4" style={{ width: 400, padding: 2 }}>
+                <SearchAutocomplete/>
+            </div>
+            
             <div className="card">
                 <table className="reports-table">
                     <thead>
