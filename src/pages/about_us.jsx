@@ -1,15 +1,9 @@
+import { CircleCheckBig } from "lucide-react";
 import "../components/ui/css/about_us.css";
 
 export const AboutUs = () => {
     return (
         <div>
-            {/* <div className="main-header-wrapper">
-                <div className="main-header">Public Information</div>
-                <div className="main-text">
-                    Enter groundwater sample data to calculate Heavy Metal Pollution Index (HMPI) or upload bulk data via CSV for batch processing.
-                </div>
-            </div> */}
-
             <main className="about-page">
                 <div className="container">
 
@@ -55,6 +49,13 @@ export const AboutUs = () => {
                             <h3 className="feature-title">Precision Analytics</h3>
                             <p>State-of-the-art methodologies provide reliable, scientifically-backed results.</p>
                         </div>
+                        <div className="feature-card">
+                            <div className="feature-icon">
+                                <i className="fas fa-bullseye"></i>
+                            </div>
+                            <h3 className="feature-title">Blockchain Approach</h3>
+                            <p>We securely store geo-tagged HMPI results immutably, by storing only the final HMPI value, not the user’s raw data, to ensure integrity.</p>
+                        </div>
                     </div>
 
                     <div className="about-card methodology-card">
@@ -91,33 +92,62 @@ export const AboutUs = () => {
 
                     <div className="about-card compliance-card">
                         <div className="card-header-icon">
-                            <i className="fas fa-gavel"></i>
+                            <CircleCheckBig className="check-icon title" />
                             <h2 className="section-title">Regulatory Standards & Compliance</h2>
                         </div>
                         <p className="subtitle compliance-subtitle">
                             Our calculations are based on internationally recognized water quality standards
                         </p>
                         <div className="standards-list">
-                            <div className="standard-item">
-                                <i className="fas fa-check-circle check-icon"></i>
+                            <a
+                                href="https://www.who.int/publications/i/item/9789241549950"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
                                 <p>WHO Guidelines for Drinking Water Quality (2017)</p>
-                            </div>
-                            <div className="standard-item">
-                                <i className="fas fa-check-circle check-icon"></i>
+                            </a>
+
+                            <a
+                                href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
                                 <p>EPA National Primary Drinking Water Standards</p>
-                            </div>
-                            <div className="standard-item">
-                                <i className="fas fa-check-circle check-icon"></i>
+                            </a>
+
+                            <a
+                                href="https://eur-lex.europa.eu/eli/dir/2020/2184/oj"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
                                 <p>EU Drinking Water Directive 2020/2184</p>
-                            </div>
-                            <div className="standard-item">
-                                <i className="fas fa-check-circle check-icon"></i>
+                            </a>
+
+                            <a
+                                href="https://www.bis.gov.in/productdetails/is/10500"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
                                 <p>Indian Standard IS 10500:2012</p>
-                            </div>
-                            <div className="standard-item">
-                                <i className="fas fa-check-circle check-icon"></i>
+                            </a>
+
+                            <a
+                                href="https://www.nhmrc.gov.au/about-us/publications/australian-drinking-water-guidelines"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
                                 <p>Australian Drinking Water Guidelines</p>
-                            </div>
+                            </a>
                         </div>
                     </div>
 

@@ -1,7 +1,10 @@
-import { Bell, User2 } from "lucide-react";
+import { NavLink } from 'react-router-dom';
+import { Bell, User2, Settings } from "lucide-react";
 import './layout.css';
 
 export const Header = ({ userName, children }) => {
+    const linkBaseClass = 'flex items-center justify-center gap-3 px-4 py-2 rounded transition-colors whitespace-nowrap';
+
     return (
         <div className="header-container">
             <div className="header-left">
@@ -36,6 +39,18 @@ export const Header = ({ userName, children }) => {
                     <User2 size={20} />
                     <span className="text-xs select-none">Profile</span>
                 </div>
+                {/* <NavLink
+                    to="/settings"
+                    className={({ isActive }) =>
+                        `${linkBaseClass} ${isActive
+                            ? 'bg-gray-800 text-white'
+                            : 'text-gray-800 border border-gray-800 hover:underline'
+                        }`
+                    }
+                >
+                    <Settings size={20} strokeWidth={1.8} />
+                    Settings
+                </NavLink> */}
             </div>
         </div>
     );

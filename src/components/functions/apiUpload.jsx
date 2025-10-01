@@ -58,7 +58,7 @@ export default function APIUpload() {
 
 
             <div className="csv-requirements-card">
-                <h3 className="card-title">CSV Format Requirements:</h3>
+                <h3 className="card-title">API Format Requirements:</h3>
                 <ul>
                     <li>First row should contain column headers</li>
                     <li>Include columns: <b>sample_id</b>, <b>latitude</b>, <b>longitude</b>, <b>depth</b></li>

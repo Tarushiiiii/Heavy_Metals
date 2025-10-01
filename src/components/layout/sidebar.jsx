@@ -1,9 +1,7 @@
 import { NavLink } from 'react-router-dom';
-// import { Button } from '../ui/button';
-// import { CTAs } from '../ui/sidebar/cta';
 import { Logo } from '../ui/sidebar/logo';
 import { NavBar } from '../ui/sidebar/navbar';
-import { Settings } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 
 const Sidebar = () => {
     const linkBaseClass = 'flex items-center justify-center gap-3 px-4 py-2 rounded transition-colors whitespace-nowrap';
@@ -19,7 +17,7 @@ const Sidebar = () => {
                 Settings
             </Button> */}
             <NavLink
-                to="/settings"
+                to="/logout"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
                         ? 'bg-gray-800 text-white'
@@ -27,8 +25,8 @@ const Sidebar = () => {
                     }`
                 }
             >
-                <Settings size={20} strokeWidth={1.8} />
-                Settings
+                <LogOut size={20} strokeWidth={1.8} />
+                LogOut
             </NavLink>
         </aside>
     );
