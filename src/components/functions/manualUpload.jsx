@@ -1,7 +1,11 @@
-export default function ManualUpload() {
+import { FlaskConical, TestTubeDiagonal } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
+export default function ManualUpload() {
+    const navigate = useNavigate();
     const handleManualSubmit = (event) => {
         event.preventDefault();
+        navigate("/analysis");
     };
 
     return (
@@ -9,7 +13,8 @@ export default function ManualUpload() {
             <form className="calculator-form" onSubmit={handleManualSubmit}>
                 <div className="card-section">
                     <h2 className="card-title">
-                        <i className="fas fa-map-marker-alt"></i> Sample Information
+                        <FlaskConical size={20} strokeWidth={2} />
+                        Sample Information
                     </h2>
                     <p className="card-subtitle">
                         Enter basic information about your groundwater sample
@@ -36,7 +41,8 @@ export default function ManualUpload() {
 
                 <div className="card-section">
                     <h2 className="card-title">
-                        <i className="fas fa-file-alt"></i> Heavy Metal Concentrations
+                        <TestTubeDiagonal size={20} strokeWidth={2} />
+                        Heavy Metal Concentrations
                     </h2>
                     <p className="card-subtitle">
                         Enter the concentration values for each heavy metal detected
@@ -93,7 +99,7 @@ export default function ManualUpload() {
                     </div>
                 </div>
                 <div className="button-container">
-                    <button type="submit" className="btn calculate-btn">
+                    <button type="submit" className="btn calculate-btn" onClick={handleManualSubmit}>
                         Calculate HMPI
                     </button>
                 </div>

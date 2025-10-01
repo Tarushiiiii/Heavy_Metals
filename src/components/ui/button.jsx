@@ -12,7 +12,7 @@ export const Button = ({
 
     const variants = {
         primary:
-            "bg-[#0e9486] text-[white] hover:bg-[#0c7d72] transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed",
+            "bg-[#0c7d72] text-[white] hover:bg-[#0c7d72] transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed",
         secondary:
             "bg-[white] border border-[#d1d5db] text-gray-800 hover:bg-[#d1d5db] transition-colors duration-200 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed",
         "secondary-blue":

@@ -57,7 +57,7 @@ export default function BulkUpload() {
       )}
 
 
-      <div className="csv-requirements-card">
+      <div className="requirements-card">
         <h3 className="card-title">CSV Format Requirements:</h3>
         <ul>
           <li>First row should contain column headers</li>
