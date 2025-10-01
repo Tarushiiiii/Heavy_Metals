@@ -5,25 +5,25 @@ export default function APIUpload() {
     const [csvFile, setCsvFile] = useState(null);
 
     const handleAPIUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setCsvFile(file);
+        // const file = event.target.files[0];
+        // if (file) {
+        //     setCsvFile(file);
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const text = e.target.result;
-                const rows = text.split("\n").map((row) => row.split(","));
-            };
-            reader.readAsText(file);
-        }
+        //     const reader = new FileReader();
+        //     reader.onload = (e) => {
+        //         const text = e.target.result;
+        //         const rows = text.split("\n").map((row) => row.split(","));
+        //     };
+        //     reader.readAsText(file);
+        // }
     };
 
     return (
         <div id="bulk-upload-form" className="tab-content active">
             <h2 className="card-title">
-                <i className="fas fa-upload"></i> Bulk Data Upload
+                <i className="fas fa-upload"></i> Process API Data
             </h2>
-            <div className="upload-area">
+            {/* <div className="upload-area">
                 <div className="upload-box">
                     <i className="fas fa-upload fa-3x"></i>
                     <p className="upload-text">Upload CSV File</p>
@@ -44,7 +44,17 @@ export default function APIUpload() {
                         onChange={handleAPIUpload}
                     />
                 </div>
+            </div> */}
+            <div className="card">
+                <div className="input-group">
+                    <label htmlFor="api_key">
+                        API Key
+                        {/* <span className="key">Key: 10 µg/L</span> */}
+                    </label>
+                    <input type="text" id="api_key" placeholder="Enter your Data API key" />
+                </div>
             </div>
+
 
             {/* Show uploaded file name */}
             {csvFile && (
@@ -57,7 +67,7 @@ export default function APIUpload() {
             )}
 
 
-            <div className="csv-requirements-card">
+            <div className="requirements-card">
                 <h3 className="card-title">API Format Requirements:</h3>
                 <ul>
                     <li>First row should contain column headers</li>

@@ -1,4 +1,4 @@
-import { CircleCheckBig } from "lucide-react";
+import { CircleCheckBig, Earth, HandHeart, LaptopMinimalCheck, PencilRuler } from "lucide-react";
 import "../components/ui/css/about_us.css";
 
 export const AboutUs = () => {
@@ -13,7 +13,11 @@ export const AboutUs = () => {
                     </p>
 
                     <div className="about-card mission-card">
-                        <h2 className="section-title">Our Mission</h2>
+
+                        <h2 className="section-title">
+                            <HandHeart className="icon title" />
+                            Our Mission
+                        </h2>
                         <p>
                             To provide accessible, reliable, and scientifically accurate tools for assessing heavy metal contamination in groundwater, enabling better decision-making for public health protection and environmental conservation.
                         </p>
@@ -59,10 +63,10 @@ export const AboutUs = () => {
                     </div>
 
                     <div className="about-card methodology-card">
-                        <div className="card-header-icon">
-                            <i className="fas fa-flask"></i>
-                            <h2 className="section-title">Scientific Methodology</h2>
-                        </div>
+                        <h2 className="section-title">
+                            <PencilRuler className="icon title" />
+                            Scientific Methodology
+                        </h2>
                         <p className="subtitle methodology-subtitle">
                             Our HMPI calculation follows rigorous scientific protocols and international standards
                         </p>
@@ -92,8 +96,10 @@ export const AboutUs = () => {
 
                     <div className="about-card compliance-card">
                         <div className="card-header-icon">
-                            <CircleCheckBig className="check-icon title" />
-                            <h2 className="section-title">Regulatory Standards & Compliance</h2>
+                            <h2 className="section-title">
+                                <CircleCheckBig className="icon title" />
+                                Regulatory Standards & Compliance
+                            </h2>
                         </div>
                         <p className="subtitle compliance-subtitle">
                             Our calculations are based on internationally recognized water quality standards
@@ -119,7 +125,7 @@ export const AboutUs = () => {
                                 <p>EPA National Primary Drinking Water Standards</p>
                             </a>
 
-                            <a
+                            {/* <a
                                 href="https://eur-lex.europa.eu/eli/dir/2020/2184/oj"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -127,6 +133,16 @@ export const AboutUs = () => {
                             >
                                 <CircleCheckBig className="check-icon" />
                                 <p>EU Drinking Water Directive 2020/2184</p>
+                            </a> */}
+
+                            <a
+                                href="https://cpcb.nic.in/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
+                                <p>Central Pollution Control Board</p>
                             </a>
 
                             <a
@@ -139,7 +155,7 @@ export const AboutUs = () => {
                                 <p>Indian Standard IS 10500:2012</p>
                             </a>
 
-                            <a
+                            {/* <a
                                 href="https://www.nhmrc.gov.au/about-us/publications/australian-drinking-water-guidelines"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -147,43 +163,53 @@ export const AboutUs = () => {
                             >
                                 <CircleCheckBig className="check-icon" />
                                 <p>Australian Drinking Water Guidelines</p>
+                            </a> */}
+
+                            <a
+                                href="https://cgwb.gov.in/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="standard-item"
+                            >
+                                <CircleCheckBig className="check-icon" />
+                                <p>Central Ground Water Board</p>
                             </a>
                         </div>
                     </div>
 
                     <div className="about-card impact-card">
-                        <div className="card-header-icon">
-                            <i className="fas fa-users"></i>
-                            <h2 className="section-title">Global Impact</h2>
-                        </div>
+                        <h2 className="section-title">
+                            <Earth className="icon title" />
+                            Global Impact
+                        </h2>
                         <p className="subtitle impact-subtitle">
                             Supporting researchers, institutions, and policymakers worldwide
                         </p>
                         <div className="impact-stats">
                             <div className="stat-item">
-                                <p className="stat-value">500+</p>
+                                <p style={{ fontSize: '2rem', fontWeight: 700, color: '#212336' }}>500+</p>
                                 <p className="stat-label">Research Institutions</p>
                             </div>
                             <div className="stat-item">
-                                <p className="stat-value">50k+</p>
+                                <p style={{ fontSize: '2rem', fontWeight: 700, color: '#212336' }}>50k+</p>
                                 <p className="stat-label">Samples Analyzed</p>
                             </div>
                             <div className="stat-item">
-                                <p className="stat-value">25</p>
+                                <p style={{ fontSize: '2rem', fontWeight: 700, color: '#212336' }}>25</p>
                                 <p className="stat-label">Countries</p>
                             </div>
                             <div className="stat-item">
-                                <p className="stat-value">99.9%</p>
+                                <p style={{ fontSize: '2rem', fontWeight: 700, color: '#212336' }}>99.9%</p>
                                 <p className="stat-label">Accuracy Rate</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="about-card specs-card">
-                        <div className="card-header-icon">
-                            <i className="fas fa-cog"></i>
-                            <h2 className="section-title">Technical Specifications</h2>
-                        </div>
+                        <h2 className="section-title">
+                            <LaptopMinimalCheck className="icon title" />
+                            Technical Specifications
+                        </h2>
                         <h3 className="specs-subtitle">Heavy Metals Assessed</h3>
                         <div className="metals-list">
                             <span className="metal-badge">Lead (Pb)</span>

@@ -25,8 +25,8 @@ const Sidebar = () => {
                     }`
                 }
             >
-                <LogOut size={20} strokeWidth={1.8} />
-                LogOut
+                <LogOut size={20} strokeWidth={2} />
+                Log Out
             </NavLink>
         </aside>
     );

@@ -162,7 +162,7 @@
 }
 
 /* CSV Requirement Section */
-.csv-requirements-card {
+.requirements-card {
     background: #f3f4f6;
     border: 1.5px solid #d3e3ef;
     border-radius: 12px;
@@ -170,49 +170,50 @@
     margin: 18px 0 4px 0;
 }
 
-.csv-requirements-card h3 {
+.requirements-card h3 {
     font-size: 1.04rem;
     margin-bottom: 8px;
     color: #212336;
 }
 
-.csv-requirements-card ul {
+.requirements-card ul {
     margin: 0;
     padding-left: 18px;
     color: #3b4d6d;
 }
 
-.csv-requirements-card li {
+.requirements-card li {
     margin-bottom: 7px;
     font-size: 0.97rem;
 }
 
 .card-section {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-top: 16px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 .card-section:hover {
-  box-shadow: 0 6px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .card-section h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2d3748; /* dark gray */
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    /* dark gray */
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .card-section h3::before {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 
