@@ -2,7 +2,7 @@ export const Logo = () => {
     return (
         <div className="flex items-center gap-2">
             <img
-                src="../../../assets/images/logo.png"
+                src="./logo.png"
                 alt="JalDhatu Logo"
                 className="h-15 w-15 object-cover"
             />
