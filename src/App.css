@@ -62,11 +62,15 @@
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 1.22rem;
     font-weight: 600;
-    margin-bottom: 18px;
-    color: #212336;
+    color: #225ca3;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
 
 .card-row {
     display: flex;

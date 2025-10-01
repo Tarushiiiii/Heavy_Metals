@@ -109,7 +109,7 @@
 /* Methodology Steps Grid */
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
     gap: 18px 16px;
     margin: 18px 0;
 }
@@ -142,49 +142,57 @@
     margin-bottom: 4px;
 }
 
-/* Compliance Standards List */
 .standards-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 14px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .standard-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1rem;
-    color: #212336;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.3s ease;
+}
+
+.standard-item:last-child {
+    border-bottom: none;
+}
+
+.standard-item:hover {
+    background-color: #eef8ff;
+    border-radius: 6px;
+    padding-left: 5px;
 }
 
 .check-icon {
-    color: #19c37d;
-    font-size: 1.1em;
+    color: #28a745;
+    margin-right: 12px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
 }
 
-/* Impact Stats */
-.impact-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px 32px;
-    margin-top: 12px;
+.standard-item:hover .check-icon {
+    transform: scale(1.2);
 }
 
-.stat-item {
-    min-width: 110px;
-    text-align: center;
+.check-icon.title {
+    color: #225ca3;
+    margin-right: 12px;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
 }
 
-.stat-value {
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: #0c7d72;
-}
-
-.stat-label {
-    color: #687083;
-    font-size: 0.98rem;
+.standard-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Metals Badges */

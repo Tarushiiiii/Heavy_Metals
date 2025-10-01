@@ -21,19 +21,6 @@ const Dropdown = () => {
             </NavLink> */}
 
             <NavLink
-                to="/suggestions"
-                className={({ isActive }) =>
-                    `${linkBaseClass} ${isActive
-                        ? 'bg-[#0e9486] text-white'
-                        : 'text-[#0c7d72] hover:underline'
-                    }`
-                }
-            >
-                <CircleStar size={18} strokeWidth={1.8} />
-                Suggestions
-            </NavLink>
-
-            <NavLink
                 to="/methodology"
                 className={({ isActive }) =>
                     `${linkBaseClass} ${isActive
@@ -44,6 +31,19 @@ const Dropdown = () => {
             >
                 <PencilRuler size={18} strokeWidth={1.8} />
                 Methodology
+            </NavLink>
+
+            <NavLink
+                to="/suggestions"
+                className={({ isActive }) =>
+                    `${linkBaseClass} ${isActive
+                        ? 'bg-[#0e9486] text-white'
+                        : 'text-[#0c7d72] hover:underline'
+                    }`
+                }
+            >
+                <CircleStar size={18} strokeWidth={1.8} />
+                Suggestions
             </NavLink>
 
         </nav>
