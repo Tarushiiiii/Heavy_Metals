@@ -205,9 +205,34 @@ export const Analysis = () => {
                                                         // slice 3 color
                                                     ],
                                                     borderColor: "white",           // border between slices
-                                                    borderWidth: 2
+                                                    borderWidth: 2,
+                                                    hoverOffset:15
                                                 },
                                             ]
+                                        }}
+                                        options={{
+                                            responsive: true,
+                                            plugins: {
+                                                legend: {
+                                                    lineDashOffset: 9,
+                                                    align: 'end',
+                                                    position: 'bottom',
+                                                    padding: 20,
+                                                    
+                                                    labels: {
+                                                        boxWidth: 25,
+                                                        boxHeight: 25,
+                                                        padding: 15,
+                                                        font: {
+                                                            size: 14,
+                                                        },
+                                                    },
+                                                },
+                                                title: {
+                                                    display: true,
+                                                    text: 'Heavy Metal Composition',
+                                                },
+                                            }
                                         }}
                                     />
                                 </div>
