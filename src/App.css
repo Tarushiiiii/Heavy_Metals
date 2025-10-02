@@ -256,9 +256,28 @@
 
 .pie-chart {
     height: 70%;
-    width: 50%;
-    margin: 0 auto;
+    width: 55%;
+    margin: 10 auto;
+    padding: 10px;
     /* horizontally center */
-    display: block;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+    gap:80px;
     /* ensures margin auto works */
+}
+.graph-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(22, 33, 74, 0.06);
+    padding: 1rem 1.2rem;
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 15px;
+}
+
+.custom-legend {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  color: black;
 }

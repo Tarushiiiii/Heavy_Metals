@@ -1,30 +1,30 @@
 [
     {
-        "label": "A",
+        "label": "Chromium",
         "value": 12
     },
     {
-        "label": "B",
+        "label": "Manganese",
         "value": 14
     },
     {
-        "label": "C",
+        "label": "Iron",
         "value": 9
     },
     {
-        "label": "D",
+        "label": "Nickel",
         "value": 22
     },
     {
-        "label": "E",
+        "label": "Copper",
         "value": 7
     },
     {
-        "label": "F",
+        "label": "Zinc",
         "value": 25
     },
     {
-        "label": "G",
+        "label": "Arsenic",
         "value": 11
     }
 ]
