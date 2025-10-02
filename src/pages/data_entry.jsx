@@ -22,7 +22,7 @@ export const CalculateHMPI = () => {
                 </div>
             </div>
 
-            <div className="calculator-tabs">
+            <div className="tabs">
                 <button
                     className={`tab-btn ${activeTab === "manual" ? "active" : ""}`}
                     onClick={() => showTab("manual")}
