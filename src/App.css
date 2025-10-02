@@ -111,18 +111,15 @@
 }
 
 .status.positive {
-    color: #19c37d;
-    /* Green */
+    color: #20c15b;
 }
 
 .status.negative {
-    color: #ff3131;
-    /* Red */
+    color: #ff2c2c;
 }
 
 .status.critical {
     color: #ff902e;
-    /* Orange/Red */
 }
 
 /* Optional: Responsive */
@@ -165,7 +162,7 @@
 }
 
 .status-dot.negative {
-    background: #ffa726;
+    background: #ff902e;
 }
 
 .status-dot.critical {
@@ -218,46 +215,25 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin: 5px 0px;
-    transition: all 0.3s ease;
     line-height: 1.4;
 }
 
 .status-badge.alert {
     background: #fff4c8;
-    color: #f9a602;
-    border: 1px solid #f9a602;
+    color: #ff902e;
+    border: 1px solid #ff902e;
 }
 
 .status-badge.safe {
     background: #d6f3e3;
-    color: #249d58;
-    border: 1px solid #249d58;
+    color: #20c15b;
+    border: 1px solid #20c15b;
 }
 
 .status-badge.critical {
     background: #fbe2e5;
-    color: #dc2e40;
-    border: 1px solid #dc2e40;
-}
-
-.status-badge:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.status-badge.alert:hover {
-    background: #f9a602;
-    color: #fff;
-}
-
-.status-badge.safe:hover {
-    background: #249d58;
-    color: #fff;
-}
-
-.status-badge.critical:hover {
-    background: #dc2e40;
-    color: #fff;
+    color: #ff2c2c;
+    border: 1px solid #ff2c2c;
 }
 
 .pie-chart {
@@ -265,13 +241,10 @@
     width: 55%;
     margin: 10 auto;
     padding: 10px;
-    /* horizontally center */
     display: flex;
-
     align-items: center;
     justify-content: center;
     gap: 80px;
-    /* ensures margin auto works */
 }
 
 .graph-card {
