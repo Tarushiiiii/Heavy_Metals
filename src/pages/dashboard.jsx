@@ -30,7 +30,7 @@ export const Dashboard = () => {
                     {/* Key Metrics to be added here */}
                     <KeyMetrics />
                     {/* Status Legend to be added here */}
-                    <StatusLegend />
+                    <StatusLegend statusLabels={['Safe', 'Alert', 'Critical']} />
                 </div>
             </div>
             {/* Recent Reports to be added here */}
