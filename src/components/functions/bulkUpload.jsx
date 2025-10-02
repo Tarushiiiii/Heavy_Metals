@@ -21,7 +21,7 @@ export default function BulkUpload() {
   return (
     <div id="bulk-upload-form" className="tab-content active">
       <h2 className="card-title">
-        <i className="fas fa-upload"></i> Bulk Data Upload
+        Bulk Data Upload
       </h2>
       <div className="upload-area">
         <div className="upload-box">

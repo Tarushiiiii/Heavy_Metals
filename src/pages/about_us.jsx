@@ -177,7 +177,7 @@ export const AboutUs = () => {
                         </div>
                     </div>
 
-                    <div className="about-card impact-card">
+                    {/* <div className="about-card impact-card">
                         <h2 className="section-title">
                             <Earth className="icon title" />
                             Global Impact
@@ -203,7 +203,7 @@ export const AboutUs = () => {
                                 <p className="stat-label">Accuracy Rate</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="about-card specs-card">
                         <h2 className="section-title">
@@ -225,7 +225,8 @@ export const AboutUs = () => {
                         <p>Our platform can accurately assess concentrations as low as 0.1 µg/L for most heavy metals, ensuring precise detection even at trace levels.</p>
                         <h3 className="specs-subtitle">Data Security</h3>
                         <p>
-                            All data is encrypted in transit and at rest. We comply with GDPR, HIPAA, and other relevant data protection regulations to ensure your research data remains secure.
+                            {/* All data is encrypted in transit and at rest. We comply with GDPR, HIPAA, and other relevant data protection regulations to ensure your research data remains secure. */}
+                            All data is encrypted in transit and at rest to ensure your research data remains secure.
                         </p>
                     </div>
                 </div>
