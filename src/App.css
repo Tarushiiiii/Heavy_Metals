@@ -202,29 +202,56 @@
 
 /* Status badge styles */
 .status-badge {
-    display: inline-block;
-    min-width: 80px;
-    padding: 3px 12px;
-    border-radius: 8px;
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 35px;
+    padding: 0px;
+    border-radius: 20px;
+    font-size: 1.1rem;
     font-weight: 600;
-    line-height: 1.2;
-    text-align: center;
-}
-
-.status-badge.safe {
-    background: #d0f5d4;
-    color: #1bb581;
+    margin: 5px 0px;
+    transition: all 0.3s ease;
+    line-height: 1.4;
 }
 
 .status-badge.alert {
-    background: #fff3c8;
-    color: #ff9800;
+    background: #fff4c8;
+    color: #f9a602;
+    border: 1px solid #f9a602;
+}
+
+.status-badge.safe {
+    background: #d6f3e3;
+    color: #249d58;
+    border: 1px solid #249d58;
 }
 
 .status-badge.critical {
-    background: #ffe0e0;
-    color: #ef233c;
+    background: #fbe2e5;
+    color: #dc2e40;
+    border: 1px solid #dc2e40;
+}
+
+.status-badge:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.status-badge.alert:hover {
+    background: #f9a602;
+    color: #fff;
+}
+
+.status-badge.safe:hover {
+    background: #249d58;
+    color: #fff;
+}
+
+.status-badge.critical:hover {
+    background: #dc2e40;
+    color: #fff;
 }
 
 .pie-chart {

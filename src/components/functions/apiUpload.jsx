@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check } from 'lucide-react';
+import { KeyRound } from 'lucide-react';
 
 export default function APIUpload() {
     const [csvFile, setCsvFile] = useState(null);
@@ -21,7 +21,7 @@ export default function APIUpload() {
     return (
         <div id="bulk-upload-form" className="tab-content active">
             <h2 className="card-title">
-                <i className="fas fa-upload"></i>
+                <KeyRound size={24} strokeWidth={2.5} />
                 Process API Data
             </h2>
             {/* <div className="upload-area">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check } from 'lucide-react';
+import { Check, FolderUp } from 'lucide-react';
 
 export default function BulkUpload() {
   const [csvFile, setCsvFile] = useState(null);
@@ -21,6 +21,7 @@ export default function BulkUpload() {
   return (
     <div id="bulk-upload-form" className="tab-content active">
       <h2 className="card-title">
+        <FolderUp size={24} strokeWidth={2} />
         Bulk Data Upload
       </h2>
       <div className="upload-area">
