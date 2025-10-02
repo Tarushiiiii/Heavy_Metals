@@ -15,12 +15,12 @@ import {
     Legend
 } from "chart.js";
 
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement, Legend);
 
 
 import pieData from "../components/graphs/pieData.json";
 import barData from "../components/graphs/barData.json";
+import barData2 from "../components/graphs/barData2.json";
 
 //Graph dependecies end here 
 
@@ -189,10 +189,31 @@ export const Analysis = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="metal-graph grpah-card">
+                  <div className="graph-card metal-graph">
                     <div>
                       <Bar
                         data={barData}
+                        options={{
+                          scales: {
+                            x: {
+                              grid: {
+                                display: false, // vertical grid lines
+                              },
+                            },
+                            y: {
+                              grid: {
+                                display: false, // horizontal grid lines
+                              },
+                            },
+                          },
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="graph-card metal-graph">
+                    <div>
+                      <Bar
+                        data={barData2}
                         options={{
                           scales: {
                             x: {
