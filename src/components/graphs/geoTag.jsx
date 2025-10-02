@@ -24,12 +24,14 @@ export const DelhiHeatMap = () => {
     const [hovered, setHovered] = React.useState(null);
 
     const dataPoints = React.useMemo(() => {
-        if (!isLoaded || !window.google) return [];
+        if (!isLoaded) return [];
+        const google = window.google;
         return reportsData.map(item => ({
-            location: new window.google.maps.LatLng(item.lat, item.lng),
+            location: new google.maps.LatLng(item.lat, item.lng),
             weight: item.hmpi
         }));
     }, [isLoaded]);
+
 
     return isLoaded ? (
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
