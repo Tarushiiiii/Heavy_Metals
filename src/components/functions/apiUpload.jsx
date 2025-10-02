@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check } from 'lucide-react';
+import { KeyRound } from 'lucide-react';
 
 export default function APIUpload() {
     const [csvFile, setCsvFile] = useState(null);
@@ -21,7 +21,8 @@ export default function APIUpload() {
     return (
         <div id="bulk-upload-form" className="tab-content active">
             <h2 className="card-title">
-                <i className="fas fa-upload"></i> Process API Data
+                <KeyRound size={24} strokeWidth={2.5} />
+                Process API Data
             </h2>
             {/* <div className="upload-area">
                 <div className="upload-box">
@@ -57,23 +58,22 @@ export default function APIUpload() {
 
 
             {/* Show uploaded file name */}
-            {csvFile && (
+            {/* {csvFile && (
                 <div className="card-section grid grid-cols-[auto_1fr] items-center gap-3">
                     <Check size={20} strokeWidth={3} className="text-green-600" />
                     <div className="font-medium text-gray-700">
                         Uploaded File: <span className="font-semibold">{csvFile.name}</span>
                     </div>
                 </div>
-            )}
+            )} */}
 
 
             <div className="requirements-card">
                 <h3 className="card-title">API Format Requirements:</h3>
                 <ul>
-                    <li>First row should contain column headers</li>
-                    <li>Include columns: <b>sample_id</b>, <b>latitude</b>, <b>longitude</b>, <b>depth</b></li>
-                    <li>Heavy metal columns: <b>pb</b>, <b>cd</b>, <b>hg</b>, <b>as</b>, <b>cr</b>, <b>cu</b>, <b>zn</b>, <b>ni</b></li>
-                    <li>Use numeric values only for concentrations</li>
+                    <li>Enter your API Key to connect your account</li>
+                    <li>Your API Key will be processed securely and is never shared.</li>
+                    <li>Keep this key safe - it works like a password.</li>
                 </ul>
             </div>
         </div>
