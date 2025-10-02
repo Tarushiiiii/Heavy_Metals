@@ -1,0 +1,44 @@
+{
+    "labels": [
+        "Manganese",
+        "Iron",
+        "Zinc",
+        "Arsenic"
+    ],
+    "datasets": [
+        {
+            "label": "Kanjhawala",
+            "data": [
+                30,
+                207.33,
+                0.7,
+                2590
+            ],
+            "backgroundColor": "rgb(53, 83, 133)",
+            "borderRadius": 3
+        },
+        {
+            "label": "Dwarka Sec 23",
+            "data": [
+                11,
+                9.67,
+                0.92,
+                1580
+            ],
+            "backgroundColor": "rgb(46, 184, 122)",
+            "borderRadius": 3
+        },
+        {
+            "label": "India Gate",
+            "data": [
+                33,
+                14.67,
+                1.38,
+                1270
+                
+            ],
+            "backgroundColor": "rgb(155, 217, 127)",
+            "borderRadius": 3
+        }
+    ]
+}
