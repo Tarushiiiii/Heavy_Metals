@@ -36,7 +36,7 @@
 /* Content wrapper */
 .main-content-wrapper {
     margin-left: 18vw;
-    /* match sidebar width */
+    scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
