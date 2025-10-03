@@ -59,6 +59,7 @@
     box-shadow: 0 2px 12px rgba(22, 33, 74, 0.06);
     padding: 1rem 1.2rem;
     font-family: 'Inter', Arial, sans-serif;
+    margin: 10px;
 }
 
 .card-title {
@@ -91,10 +92,27 @@
     flex-direction: column;
 }
 
+.card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 1.02rem;
+    color: #212336;
+    list-style-type: disc;
+}
+
+.card li {
+    margin: 2px;
+}
+
 .card-label {
     color: #687083;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+.card p {
+    color: #212336;
+    margin: 10px 0px;
 }
 
 .metric-value {
