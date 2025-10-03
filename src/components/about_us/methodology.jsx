@@ -7,7 +7,7 @@ export const Methodology = () => {
         <PencilRuler className="icon title" />
         Scientific Methodology
       </h2>
-      <p className="subtitle methodology-subtitle">
+      <p className="subtitle methodolośgy-subtitle">
         Our methodology integrates established indices, composite modeling, and
         machine learning aligned with international standards
       </p>
