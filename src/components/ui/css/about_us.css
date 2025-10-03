@@ -77,7 +77,7 @@
 /* Features Grid */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+    grid-template-columns: repeat(3, minmax(216px, 1fr));
     gap: 18px;
     margin-bottom: 2.2rem;
 }
@@ -118,7 +118,7 @@
     background: #f3f4f6;
     border-radius: 10px;
     padding: 1rem;
-    text-align: center;
+    /* text-align: center; */
     border: 1px solid #e9ecef;
 }
 
@@ -133,6 +133,8 @@
     font-weight: bold;
     font-size: 1.05rem;
     margin-bottom: 5px;
+    text-align: center;
+    align-items: center;
 }
 
 .step-title {
@@ -294,13 +296,6 @@
     transform: translateY(-6px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
-
-/* .value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #28a745;
-    margin: 0 0 10px;
-} */
 
 .stat-label {
     font-size: 0.95rem;
