@@ -151,9 +151,23 @@
 }
 
 .risk-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.risk-level.high {
+    color: #ef233c;
+}
+
+.risk-level.moderate {
     color: #ff902e;
-    font-weight: 600;
-    font-size: 1.02rem;
+}
+
+.risk-level.low {
+    color: #20c15b;
 }
 
 /* Risk bar */
@@ -371,6 +385,7 @@
     border-radius: 10px;
     background: #f3f4f6;
     text-align: center;
+    padding: 2px;
 }
 
 .classification-box.safe {
