@@ -1,0 +1,63 @@
+[
+  {
+    "title": "Chromium (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [10, 15, 12]
+  },
+  {
+    "title": "Manganese (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [20, 25, 22]
+  },
+  {
+    "title": "Iron (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [30, 35, 32]
+  },
+  {
+    "title": "Nickel (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [12, 18, 15]
+  },
+  {
+    "title": "Copper (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [15, 20, 18]
+  },
+  {
+    "title": "Zinc (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [25, 28, 26]
+  },
+  {
+    "title": "Arsenic (PPM)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [8, 12, 10]
+  },
+  {
+    "title": "Selenium (PPB)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [40, 38, 35]
+  },
+  {
+    "title": "Silver (PPB)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [5, 8, 6]
+  },
+  {
+    "title": "Cadmium (PPB)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [6, 10, 8]
+  },
+  {
+    "title": "Lead (PPB)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [7, 12, 9]
+  },
+  {
+    "title": "Uranuim (PPB)",
+    "labels": ["Place 1", "Place 2", "Place 3"],
+    "data": [2, 3, 4]
+  }
+]
+
