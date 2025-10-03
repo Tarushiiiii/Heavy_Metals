@@ -20,6 +20,8 @@
     "@vis.gl/react-google-maps": "^1.5.5",
     "axios": "^1.12.2",
     "chart.js": "^4.5.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.3",
     "katex": "^0.16.22",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
