@@ -76,6 +76,7 @@ const Graphs = () => {
                 backgroundColor: colors,
                 barPercentage: 0.6,
                 categoryPercentage: 0.55,
+                borderRadius: 3,
               },
             ],
           };
