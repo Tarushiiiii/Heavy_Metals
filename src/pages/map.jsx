@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StatusLegend } from "../components/dashboard/legend";
 import { DelhiHeatMap } from "../components/graphs/geoTag";
+import { EnhancedGeoTag } from "../components/graphs/enhancedGeoTag";
 
 export const Map = () => {
   // State for tab switching
@@ -53,7 +54,25 @@ export const Map = () => {
       )}
 
       {/* Enhanced */}
-      {activeTab === "enhanced" && <DelhiHeatMap />}
+      {activeTab === "enhanced" && (
+        <div className="card">
+          <div className="card-title">HMPI Based Classification</div>
+          <div className="map-status-grid">
+            <div className="map-section">
+              <EnhancedGeoTag />
+            </div>
+            <div className="legend-section">
+              <StatusLegend
+                statusLabels={[
+                  "Safe (CI < 0.5)",
+                  "Alert (0.5 ≤ CI < 0.9)",
+                  "Critical (CI ≥ 0.9)",
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

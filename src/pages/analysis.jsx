@@ -68,6 +68,7 @@ export const Analysis = () => {
           </div>
 
           <div id="report-content">
+            {/* Sample Information */}
             <div className="results-card">
               <h2 className="card-title">
                 <FlaskConical size={20} strokeWidth={2} />
@@ -93,6 +94,7 @@ export const Analysis = () => {
               </div>
             </div>
 
+            {/* HMPI Assessment */}
             <div className="results-card">
               <h2 className="card-title">
                 <ChartLine size={20} strokeWidth={2} />
@@ -130,9 +132,10 @@ export const Analysis = () => {
                 </div>
               </div>
             </div>
-            {/* Metal Analysis Tab */}
+
+            {/* Individual Analysis */}
             {activeTab === "metal-analysis" && (
-              <div id="metal-analysis" className="results-section active">
+              <div className="results-card">
                 <h2 className="section-title">
                   Individual Heavy Metal Analysis
                 </h2>
@@ -140,6 +143,7 @@ export const Analysis = () => {
                   Detailed breakdown of each heavy metal concentration versus
                   safety limits
                 </p>
+
                 <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Lead (Pb)</p>
@@ -161,6 +165,7 @@ export const Analysis = () => {
                     <span className="status-badge safe">Safe</span>
                   </div>
                 </div>
+
                 <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Cadmium (Cd)</p>
@@ -182,85 +187,92 @@ export const Analysis = () => {
                     <span className="status-badge safe">Safe</span>
                   </div>
                 </div>
-                <div>
-                  <Graphs />
-                </div>
+              </div>
+            )}
 
-                <div>
-                  <div className="pie-chart graph-card">
-                    <Pie
-                      data={{
-                        labels: pieData.map((data) => data.label),
-                        datasets: [
-                          {
-                            label: "Percentage",
-                            data: pieData.map((data) => data.value),
-                            backgroundColor: [
-                              "rgb(46, 184, 122)", // slice 1 color
-                              "rgb(53, 83, 133)", // slice 2 color
-                              "rgba(225, 255, 187, 1)",
-                              "rgb(0, 90, 157)",
-                              "rgba(20, 61, 96, 1)",
-                              "rgb(0, 117, 121)",
-                              "rgba(160, 200, 120, 1)",
-                            ],
-                            borderColor: "white", // default border
-                            borderWidth: 2,
-                            hoverOffset: 15,
-                            hoverBorderColor: "white",
-                          },
-                        ],
-                      }}
-                      options={{
-                        responsive: true,
-                        layout: {
-                          padding: {
-                            right: 0,
-                            top: 16,
-                            left: 10,
-                          },
+            {/* Metal Concentration Comparison (Bar Charts) */}
+            {activeTab === "metal-analysis" && (
+              <div className="results-card">
+                <Graphs />
+              </div>
+            )}
+
+            {/* Heavy Metal Composition (Pie Chart) */}
+            {activeTab === "metal-analysis" && (
+              <div className="results-card">
+                <div className="pie-chart graph-card">
+                  <Pie
+                    data={{
+                      labels: pieData.map((data) => data.label),
+                      datasets: [
+                        {
+                          label: "Percentage",
+                          data: pieData.map((data) => data.value),
+                          backgroundColor: [
+                            "rgb(46, 184, 122)",
+                            "rgb(53, 83, 133)",
+                            "rgba(225, 255, 187, 1)",
+                            "rgb(0, 90, 157)",
+                            "rgba(20, 61, 96, 1)",
+                            "rgb(0, 117, 121)",
+                            "rgba(160, 200, 120, 1)",
+                          ],
+                          borderColor: "white",
+                          borderWidth: 2,
+                          hoverOffset: 15,
+                          hoverBorderColor: "white",
                         },
-                        plugins: {
-                          legend: {
-                            fullSize: false,
-                            align: "end",
-                            position: "right",
-                            title: {
-                              display: true,
-                              text: "Legend",
-                              color: "black",
-                              font: {
-                                size: 15,
-                                weight: "",
-                              },
-                              padding: {
-                                top: 0,
-                                bottom: 3,
-                              },
-                            },
-                            labels: {
-                              boxWidth: 20,
-                              boxHeight: 15,
-                              padding: 6,
-                              font: {
-                                size: 12,
-                              },
-                              color: "black",
-                            },
-                          },
+                      ],
+                    }}
+                    options={{
+                      responsive: true,
+                      layout: {
+                        padding: {
+                          right: 0,
+                          top: 16,
+                          left: 10,
+                        },
+                      },
+                      plugins: {
+                        legend: {
+                          fullSize: false,
+                          align: "end",
+                          position: "right",
                           title: {
                             display: true,
-                            text: "Heavy Metal Composition",
+                            text: "Legend",
                             color: "black",
                             font: {
-                              size: 22,
-                              weight: "530",
+                              size: 15,
+                              weight: "",
+                            },
+                            padding: {
+                              top: 0,
+                              bottom: 3,
                             },
                           },
+                          labels: {
+                            boxWidth: 20,
+                            boxHeight: 15,
+                            padding: 6,
+                            font: {
+                              size: 12,
+                            },
+                            color: "black",
+                          },
                         },
-                      }}
-                    />
-                  </div>
+                        title: {
+                          display: true,
+                          text: "Heavy Metal Composition",
+                          color: "black",
+                          font: {
+                            size: 22,
+                            weight: "530",
+                          },
+                        },
+                      },
+                    }}
+                  />
                 </div>
               </div>
             )}
