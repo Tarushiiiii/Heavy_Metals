@@ -15,7 +15,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElem
 
 import barData from "./barData.json";
 import barData2 from "./barData2.json";
-import metalConc from "./metalConc.json";
+import metalConc from "./metalConc.js";
 
 // common colors for places
 const colors = ["#355384", "#2ab97a", "#9ada80"];
@@ -75,7 +75,7 @@ const Graphs = () => {
                 data: graph.data,
                 backgroundColor: colors,
                 barPercentage: 0.6,
-                categoryPercentage: 0.6,
+                categoryPercentage: 0.55,
               },
             ],
           };

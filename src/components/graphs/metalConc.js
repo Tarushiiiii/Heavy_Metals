@@ -1,4 +1,4 @@
-[
+export default[
   {
     "title": "Chromium (PPM)",
     "labels": ["Place 1", "Place 2", "Place 3"],
@@ -34,16 +34,16 @@
     "labels": ["Place 1", "Place 2", "Place 3"],
     "data": [8, 12, 10]
   },
-  {
-    "title": "Selenium (PPB)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [40, 38, 35]
-  },
-  {
-    "title": "Silver (PPB)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [5, 8, 6]
-  },
+  // {
+  //   "title": "Selenium (PPB)",
+  //   "labels": ["Place 1", "Place 2", "Place 3"],
+  //   "data": [40, 38, 35]
+  // },
+  // {
+  //   "title": "Silver (PPB)",
+  //   "labels": ["Place 1", "Place 2", "Place 3"],
+  //   "data": [5, 8, 6]
+  // },
   {
     "title": "Cadmium (PPB)",
     "labels": ["Place 1", "Place 2", "Place 3"],
@@ -54,10 +54,10 @@
     "labels": ["Place 1", "Place 2", "Place 3"],
     "data": [7, 12, 9]
   },
-  {
-    "title": "Uranuim (PPB)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [2, 3, 4]
-  }
+  // {
+  //   "title": "Uranuim (PPB)",
+  //   "labels": ["Place 1", "Place 2", "Place 3"],
+  //   "data": [2, 3, 4]
+  // }
 ]
 

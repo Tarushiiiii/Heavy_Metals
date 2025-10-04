@@ -34,6 +34,13 @@ import Graphs from "../components/graphs/graphs.jsx";
 import pieData from "../components/graphs/pieData.json";
 import { ExportReport } from "../utils/export"; // adjust path as needed
 
+import CompositeIndexChart from "../components/graphs/advanced/CompositeIndexChart.jsx";
+import CorrelationHeatmap from "../components/graphs/advanced/CorrelationHeatmap";
+import EnrichmentFactorChart from "../components/graphs/advanced/EnrichmentFactorChart.jsx";
+import ResultStandardsChart from "../components/graphs/advanced/ResultStandardsChart";
+// import ForecastingTrendChart from "../components/advanced/ForecastingTrendChart";
+// import SummaryDashboard from "../components/advanced/SummaryDashboard";
+
 //Graph dependecies end here
 
 export const Analysis = () => {
@@ -194,6 +201,10 @@ export const Analysis = () => {
             {activeTab === "metal-analysis" && (
               <div className="results-card">
                 <Graphs />
+                <CompositeIndexChart />
+                <CorrelationHeatmap />
+                <EnrichmentFactorChart />
+                <ResultStandardsChart />
               </div>
             )}
 
