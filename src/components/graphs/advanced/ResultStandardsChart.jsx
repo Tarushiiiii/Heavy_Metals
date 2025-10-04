@@ -74,7 +74,7 @@ const ResultStandardsChart = () => {
     plugins: {
       title: {
         display: true,
-        text: `Observed vs WHO/CPCB Limits (${unit})`,
+        text: `Observed Vs WHO/CPCB Limits (${unit})`,
         font: { size: 18, weight: "bold" },
         color: "#080808",
         padding: { bottom: 10 },

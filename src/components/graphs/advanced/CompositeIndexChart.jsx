@@ -69,7 +69,7 @@ const CompositeIndexChart = () => {
         text: "Composite Index Comparison (HPI, HEI, MI, Cd)",
         font: { size: 18, weight: "bold" },
         color: "#111",
-        padding: { bottom: 10 },
+        padding: { bottom: 10, top: 8},
       },
     },
     scales: {
