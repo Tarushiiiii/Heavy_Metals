@@ -203,21 +203,21 @@ const CorrelationHeatmap = () => {
     // Legend labels
     legendSvg
       .append("text")
-      .attr("x", -16)
-      .attr("y", legendHeight + 25)
+      .attr("x", -36)
+      .attr("y", legendHeight + 22)
       .style("font-size", "12px")
       .text("Low correlation (–1)");
 
     legendSvg
       .append("text")
-      .attr("x", +22)
+      .attr("x", 22)
       .attr("y", legendHeight / 2 + 20)
       .style("font-size", "12px")
       .text("Moderate (0)");
 
     legendSvg
       .append("text")
-      .attr("x", -19)
+      .attr("x", -36)
       .attr("y", -13)
       .style("font-size", "12px")
       .text("High correlation (+1)");
@@ -231,7 +231,9 @@ const CorrelationHeatmap = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-    }} >
+      minHeight: "500px",
+      maxHeight:"650px",
+    }}  >
       <svg ref={svgRef} style={{ display: "block" }}></svg>
     </div>);
 };

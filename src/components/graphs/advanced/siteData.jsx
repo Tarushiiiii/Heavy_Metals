@@ -2,7 +2,7 @@
 import React from "react";
 const sitesData = [
   {
-    name: "Site 1",
+    name: "Mayur Vihar",
     compositeIndex: 67.3,
     metals: { Pb: 8.5, Fe: 12.0, Cd: 3.2 },
     limits: { Pb: 10, Fe: 9, Cd: 5 },
@@ -10,7 +10,7 @@ const sitesData = [
     forecast: { Pb: [8.5, 9, 9.5], Fe: [12, 12.5, 13], Cd: [3.2, 3.3, 3.5] },
   },
   {
-    name: "Site 2",
+    name: "Dwarka Sec 23",
     compositeIndex: 52.1,
     metals: { Pb: 9.5, Ni: 6, Cd: 3.5 },
     limits: { Pb: 10, Ni: 5, Cd: 5 },
@@ -18,7 +18,7 @@ const sitesData = [
     forecast: { Pb: [9.5, 9.7, 10], Ni: [6, 6.2, 6.5], Cd: [3.5, 3.6, 3.8] },
   },
   {
-    name: "Site 3",
+    name: "Shahdara",
     compositeIndex: 28.7,
     metals: { Zn: 8, Fe: 7, Cu: 4 },
     limits: { Zn: 10, Fe: 9, Cu: 5 },

@@ -14,7 +14,7 @@ import { Line } from "react-chartjs-2";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const ForecastTrendChart = () => {
-  const sites = ["Site 1", "Site 2", "Site 3"];
+  const sites = ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   // Observed HPI data until June
@@ -101,7 +101,13 @@ const datasets = sites.map((site, i) => [
   };
 
   return (
-    <div className="graph-card" >
+    <div className="graph-card" style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "500px",
+      maxHeight:"550px",
+    }} >
       
       <Line data={data} options={options} />
     </div>
