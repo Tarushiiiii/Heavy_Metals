@@ -41,6 +41,23 @@ export const ExportReport = async (
     console.log("Waiting for 5 seconds to allow for full render...");
     await new Promise((resolve) => setTimeout(resolve, 5000)); // You can tweak the time as needed
 
+     // -------------------
+    // FIX: Sanitize unsupported OKLCH colors for html2canvas
+    const sanitizeColors = () => {
+      document.querySelectorAll("*").forEach((el) => {
+        const style = window.getComputedStyle(el);
+        ["color", "backgroundColor", "borderColor"].forEach((prop) => {
+          const val = style[prop];
+          if (val && val.includes("oklch")) {
+            el.style[prop] = "rgba(0,0,0,0.2)"; // fallback to black
+          }
+        });
+      });
+    };
+    sanitizeColors();
+    // -------------------
+
+
     // Render the report content to canvas
     const canvas = await html2canvas(reportElement, {
       scale: 2, // Increased for better quality

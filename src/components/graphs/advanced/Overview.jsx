@@ -5,29 +5,29 @@ import "react-circular-progressbar/dist/styles.css";
 const siteIndices = [
   {
     name: "Site 1",
-    HPI: 68,
+    HPI: 78,
     HEI: 72,
     Cd: 65,
     MI: 70,
-    CI: 75,
+    CI: 76,
     classification: "Critical",
   },
   {
     name: "Site 2",
-    HPI: 55,
-    HEI: 50,
-    Cd: 48,
-    MI: 53,
-    CI: 56,
+    HPI: 65,
+    HEI: 60,
+    Cd: 58,
+    MI: 59,
+    CI: 63,
     classification: "Alert",
   },
   {
     name: "Site 3",
-    HPI: 35,
-    HEI: 38,
-    Cd: 30,
-    MI: 33,
-    CI: 36,
+    HPI: 55,
+    HEI: 58,
+    Cd: 60,
+    MI: 53,
+    CI: 57,
     classification: "Safe",
   },
 ];
@@ -61,9 +61,10 @@ const Overview = () => {
 
       <div className="features-grid">
         {siteIndices.map((site) => (
+          <div className="card">
           <div key={site.name}>
             <div className="flex justify-between items-center w-full">
-              <h3 className="text-lg font-semibold text-[#212336]">
+              <h3 className="text-xl font-semibold text-[#212336] mb-2">
                 {site.name}
               </h3>
               <span
@@ -75,7 +76,7 @@ const Overview = () => {
               </span>
             </div>
             {/* Indices as numbers */}
-            <div className="card">
+            <div>
               <div className="card-row">
                 <div className="metric-row-left">
                   <span className="metric-value">HPI : </span>
@@ -110,12 +111,12 @@ const Overview = () => {
               </div>
             </div>
             {/* Composite Index as progress bar */}
-            <div className="card">
+            <div style={{ width: "150px", height: "150px", margin: "0 auto" }}>
               <CircularProgressbar
                 value={site.CI}
                 text={`${site.CI}%`}
                 styles={buildStyles({
-                  textSize: "20px",
+                  textSize: "24px",
                   pathColor: "#2ab97a",
                   textColor: "#333",
                   trailColor: "#eee",
@@ -124,7 +125,8 @@ const Overview = () => {
                 width={60}
               />
             </div>
-            <p className="font-semibold text-center">Composite Index + ML</p>
+            <p className="font-semibold text-center">Composite Index + ML Result</p>
+          </div>
           </div>
         ))}
       </div>

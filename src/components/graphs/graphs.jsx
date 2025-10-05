@@ -51,13 +51,13 @@ const Graphs = () => {
     <div className="space-y-0">
       {/* Old 2 Graphs */}
       <div className="grid grid-cols-2 gap-0 graph-card">
-        <div className="p-4 h-90">
-          <h3 className="text-lg font-semibold mb-2">
+        <div className="p-2 h-80">
+          <h3 className="text-lg font-semibold ">
             Metal Concentration Comparison (PPM)
           </h3>
           <Bar data={barData} options={barOptions} />
         </div>
-        <div className="p-4 h-85">
+        <div className="p-2 h-80 mb-8">
           <h3 className="text-lg font-semibold mb-2">
             Metal Concentration Comparison (PPb)
           </h3>

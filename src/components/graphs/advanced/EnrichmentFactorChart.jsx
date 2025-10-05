@@ -13,18 +13,22 @@ const EnrichmentFactorChart = () => {
         data: [12, 7, 4, 2, 1],
         backgroundColor: "rgba(53, 83, 132, 1)",
          borderRadius: 6,
+         barPercentage: 0.9,
+         
       },
       {
         label: "Site 2",
         data: [10, 8, 5, 1, 0],
         backgroundColor: "rgba(42, 185, 122, 1)",
          borderRadius: 6,
+         barPercentage: 0.9,
       },
       {
         label: "Site 3",
         data: [8, 6, 7, 2, 1],
         backgroundColor: "rgba(154, 218, 128, 1)",
          borderRadius: 6,
+         barPercentage: 0.9,
       },
     ],
   };

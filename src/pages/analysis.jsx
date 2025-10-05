@@ -44,10 +44,13 @@ export const Analysis = () => {
             >
               {exporting ? "Exporting..." : "Export Report"}
             </Button>
-            <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded flex items-center gap-2">
-              <FileWarning size={24} strokeWidth={1.8} />
-              For the privacy concerns we do not store any data on our servers.
-              If you wish then click to save your results locally.
+            <div className="suggestion-group yellow px-4 py-2 rounded flex items-center gap-2">
+              <div class="warning-text" >
+                <FileWarning size={24} strokeWidth={1.8} />
+                For the privacy concerns we do not store any data on our
+                servers. If you wish then click to save your results locally.
+              </div>
+              
             </div>
           </div>
 
@@ -86,7 +89,7 @@ export const Analysis = () => {
               </h2>
               <div className="hmpi-assessment">
                 <div className="hmpi-score">
-                  <p className="score-value">67.3</p>
+                  <p className="score-value">70.3</p>
                   <p className="score-label">HMPI Score</p>
                 </div>
                 <div className="hmpi-status">
@@ -119,16 +122,20 @@ export const Analysis = () => {
 
             {/* Individual Analysis */}
             {activeTab === "metal-analysis" && (
-              <div className="results-card">
-                <h2 className="section-title">
-                  Individual Heavy Metal Analysis
-                </h2>
-                <p className="section-subtitle">
-                  Detailed breakdown of each heavy metal concentration versus
-                  safety limits
-                </p>
+              <div>
+                <Overview />
+                <div className="results-card">
+                  <h2 className="section-title">
+                    <h3 className="text-2xl">
+                      Individual Heavy Metal Analysis
+                    </h3>
+                  </h2>
+                  <p className="section-subtitle">
+                    Detailed breakdown of each heavy metal concentration.
+                  </p>
+                  <Graphs />
 
-                <div className="metal-item">
+                  {/* <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Lead (Pb)</p>
                     <p className="metal-value">
@@ -148,9 +155,9 @@ export const Analysis = () => {
                   <div className="metal-status">
                     <span className="status-badge safe">Safe</span>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="metal-item">
+                  {/* <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Cadmium (Cd)</p>
                     <p className="metal-value">
@@ -170,14 +177,14 @@ export const Analysis = () => {
                   <div className="metal-status">
                     <span className="status-badge safe">Safe</span>
                   </div>
+                </div> */}
                 </div>
-
                 <div>
-                  {" "}
-                  <Overview />
-                  <Graphs />
-                  <CompositeIndexChart />
-                  <PieChart />
+                  <div className="chart-grid">
+                    <CompositeIndexChart />
+                    <PieChart />
+                  </div>
+
                   <CorrelationHeatmap />
                   <EnrichmentFactorChart />
                   <ResultStandardsChart />

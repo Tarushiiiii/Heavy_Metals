@@ -73,7 +73,7 @@ const datasets = sites.map((site, i) => [
     plugins: {
       title: {
         display: true,
-        text: "Observed Vs Predicted HPI Trends",
+        text: "Predicted HPI Trends",
         font: { size: 18, weight: "bold" },
         color: "#080808",
         padding: { bottom: 15, top: 8},
