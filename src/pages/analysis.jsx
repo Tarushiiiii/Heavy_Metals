@@ -8,7 +8,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import Graphs from "../components/graphs/graphs.jsx";
-import { ExportReport } from "../utils/export"; // adjust path as needed
+import { ExportReport } from "../utils/export";
 import PieChart from "../components/graphs/pieChart.jsx";
 import CompositeIndexChart from "../components/graphs/advanced/CompositeIndexChart.jsx";
 import CorrelationHeatmap from "../components/graphs/advanced/CorrelationHeatmap";
@@ -33,7 +33,7 @@ export const Analysis = () => {
         </div>
       </div>
       <main className="results-page">
-        <div className="container">
+        <div className="card">
           <div className="results-header">
             <Button
               colorVariant="primary"
@@ -170,12 +170,7 @@ export const Analysis = () => {
                     <span className="status-badge safe">Safe</span>
                   </div>
                 </div>
-              </div>
-            )}
 
-            {/* Metal Concentration Comparison (Bar Charts) */}
-            {activeTab === "metal-analysis" && (
-              <div className="results-card">
                 <Overview />
                 <Graphs />
                 <CompositeIndexChart />
@@ -187,9 +182,6 @@ export const Analysis = () => {
                 <Summary />
               </div>
             )}
-
-            {/* Heavy Metal Composition (Pie Chart) */}
-            
           </div>
         </div>
       </main>
