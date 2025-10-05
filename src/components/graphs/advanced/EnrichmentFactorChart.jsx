@@ -57,7 +57,13 @@ const EnrichmentFactorChart = () => {
   };
 
   return (
-    <div className="graph-card">
+    <div className="graph-card" style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "500px",
+      maxHeight:"550px",
+    }}>
         <Bar data={data} options={options} plugins={[ChartDataLabels]} />
     </div>
   );

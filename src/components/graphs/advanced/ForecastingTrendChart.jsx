@@ -101,7 +101,13 @@ const datasets = sites.map((site, i) => [
   };
 
   return (
-    <div className="graph-card" >
+    <div className="graph-card" style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "500px",
+      maxHeight:"550px",
+    }} >
       
       <Line data={data} options={options} />
     </div>

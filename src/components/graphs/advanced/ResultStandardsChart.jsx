@@ -25,24 +25,23 @@ const ResultStandardsChart = () => {
   ];
 
   // Observed data
-  const ppmObserved = [
-    [12, 8, 18],
-    [20, 25, 22],
-    [50, 55, 48],
-    [10, 14, 12],
-    [8, 10, 7],
-    [15, 12, 17],
-    [5, 6, 4],
-  ];
-  const ppmStandard = [10, 20, 50, 12, 10, 15, 5];
-
+ const ppmObserved = [
+  [0.059, 0.043, 0.089], // Chromium
+  [0.060, 0.031, 0.140],       // Manganese
+  [0.204, 0.079, 0.064],       // Iron
+  [0.024, 0.044, 0.094], // Nickel
+  [0.055, 0.150, 0.040],    // Copper
+  [0.035, 0.046, 0.069],     // Zinc
+  [0.0259, 0.0158, 0.0127],     // Arsenic
+];
+ const ppmStandard = [0.05, 0.1, 0.2, 0.02, 0.05, 5, 0.01]; 
   const ppbObserved = [
-    [70, 65, 80],
-    [90, 85, 95],
-    [3, 4, 2],
-    [8, 9, 7],
+    [12, 23, 48],
+    [102, 75, 20],
+    [2, 4, 2.5],
+    [4, 5, 12],
   ];
-  const ppbStandard = [60, 80, 5, 5];
+  const ppbStandard = [40, 100, 3, 10];
 
   // Generate datasets
   const generateDatasets = (observed, standard) =>
