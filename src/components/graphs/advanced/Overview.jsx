@@ -23,11 +23,11 @@ const siteIndices = [
   },
   {
     name: "Site 3",
-    HPI: 35,
+    HPI: 45,
     HEI: 38,
     Cd: 30,
     MI: 33,
-    CI: 36,
+    CI: 48,
     classification: "Safe",
   },
 ];
@@ -61,9 +61,10 @@ const Overview = () => {
 
       <div className="features-grid">
         {siteIndices.map((site) => (
+          <div className="card">
           <div key={site.name}>
             <div className="flex justify-between items-center w-full">
-              <h3 className="text-lg font-semibold text-[#212336]">
+              <h3 className="text-xl font-semibold text-[#212336] mb-2">
                 {site.name}
               </h3>
               <span
@@ -75,7 +76,7 @@ const Overview = () => {
               </span>
             </div>
             {/* Indices as numbers */}
-            <div className="card">
+            <div>
               <div className="card-row">
                 <div className="metric-row-left">
                   <span className="metric-value">HPI : </span>
@@ -110,12 +111,12 @@ const Overview = () => {
               </div>
             </div>
             {/* Composite Index as progress bar */}
-            <div className="card">
+            <div style={{ width: "150px", height: "150px", margin: "0 auto" }}>
               <CircularProgressbar
                 value={site.CI}
                 text={`${site.CI}%`}
                 styles={buildStyles({
-                  textSize: "20px",
+                  textSize: "24px",
                   pathColor: "#2ab97a",
                   textColor: "#333",
                   trailColor: "#eee",
@@ -124,7 +125,8 @@ const Overview = () => {
                 width={60}
               />
             </div>
-            <p className="font-semibold text-center">Composite Index + ML</p>
+            <p className="font-semibold text-center">Composite Index + ML Result</p>
+          </div>
           </div>
         ))}
       </div>
