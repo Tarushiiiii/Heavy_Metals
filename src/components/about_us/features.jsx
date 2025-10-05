@@ -1,6 +1,6 @@
 export const Features = () => {
   return (
-    <div>
+    <div className="card">
       <h2 className="section-title why-choose-title">
         Why Choose Our Platform?
       </h2>

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Check, FolderUp } from 'lucide-react';
+import { Check, FolderUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function BulkUpload() {
   const [csvFile, setCsvFile] = useState(null);
+  const navigate = useNavigate();
 
   const handleBulkUpload = (event) => {
     const file = event.target.files[0];
@@ -18,6 +20,10 @@ export default function BulkUpload() {
     }
   };
 
+  const calculate_hmpi = (event) => {
+    navigate("/analysis");
+  };
+
   return (
     <div id="bulk-upload-form" className="tab-content active">
       <h2 className="card-title">
@@ -29,7 +35,8 @@ export default function BulkUpload() {
           <i className="fas fa-upload fa-3x"></i>
           <p className="upload-text">Upload CSV File</p>
           <p className="card-subtitle">
-            Upload a CSV file with multiple groundwater samples for batch processing
+            Upload a CSV file with multiple groundwater samples for batch
+            processing
           </p>
           <button
             className="btn choose-file-btn"
@@ -57,15 +64,30 @@ export default function BulkUpload() {
         </div>
       )}
 
-
       <div className="requirements-card">
         <h3 className="card-title">CSV Format Requirements:</h3>
         <ul>
           <li>First row should contain column headers</li>
-          <li>Include columns: <b>sample_id</b>, <b>latitude</b>, <b>longitude</b>, <b>depth</b></li>
-          <li>Heavy metal columns: <b>pb</b>, <b>cd</b>, <b>hg</b>, <b>as</b>, <b>cr</b>, <b>cu</b>, <b>zn</b>, <b>ni</b></li>
+          <li>
+            Include columns: <b>sample_id</b>, <b>latitude</b>, <b>longitude</b>
+            , <b>depth</b>
+          </li>
+          <li>
+            Heavy metal columns: <b>pb</b>, <b>cd</b>, <b>hg</b>, <b>as</b>,{" "}
+            <b>cr</b>, <b>cu</b>, <b>zn</b>, <b>ni</b>
+          </li>
           <li>Use numeric values only for concentrations</li>
         </ul>
+      </div>
+
+      <div className="button-container">
+        <button
+          type="submit"
+          className="btn calculate-btn"
+          onClick={calculate_hmpi}
+        >
+          Calculate HMPI
+        </button>
       </div>
     </div>
   );
