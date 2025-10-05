@@ -16,7 +16,7 @@ import EnrichmentFactorChart from "../components/graphs/advanced/EnrichmentFacto
 import ResultStandardsChart from "../components/graphs/advanced/ResultStandardsChart";
 import ForecastingTrendChart from "../components/graphs/advanced/ForecastingTrendChart";
 import Summary from "../components/graphs/advanced/Summary.jsx";
-
+import Overview from "../components/graphs/advanced/Overview.jsx";
 //Graph dependecies end here
 
 export const Analysis = () => {
@@ -176,6 +176,7 @@ export const Analysis = () => {
             {/* Metal Concentration Comparison (Bar Charts) */}
             {activeTab === "metal-analysis" && (
               <div className="results-card">
+                <Overview />
                 <Graphs />
                 <CompositeIndexChart />
                 <PieChart />
