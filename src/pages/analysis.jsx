@@ -22,6 +22,7 @@ import Overview from "../components/graphs/advanced/Overview.jsx";
 export const Analysis = () => {
   // Tabs state control
   const [activeTab, setActiveTab] = useState("metal-analysis");
+  const [exporting, setExporting] = useState(false);
 
   return (
     <div>
@@ -38,11 +39,11 @@ export const Analysis = () => {
             <Button
               colorVariant="primary"
               type="main"
-              onClickHandler={ExportReport}
+              onClickHandler={() => ExportReport("GW-001", setExporting)}
+              disabled={exporting}
             >
-              Export Report
+              {exporting ? "Exporting..." : "Export Report"}
             </Button>
-
             <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded flex items-center gap-2">
               <FileWarning size={24} strokeWidth={1.8} />
               For the privacy concerns we do not store any data on our servers.
@@ -171,15 +172,18 @@ export const Analysis = () => {
                   </div>
                 </div>
 
-                <Overview />
-                <Graphs />
-                <CompositeIndexChart />
-                <PieChart />
-                <CorrelationHeatmap />
-                <EnrichmentFactorChart />
-                <ResultStandardsChart />
-                <ForecastingTrendChart />
-                <Summary />
+                <div>
+                  {" "}
+                  <Overview />
+                  <Graphs />
+                  <CompositeIndexChart />
+                  <PieChart />
+                  <CorrelationHeatmap />
+                  <EnrichmentFactorChart />
+                  <ResultStandardsChart />
+                  <ForecastingTrendChart />
+                  <Summary />
+                </div>
               </div>
             )}
           </div>
