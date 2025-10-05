@@ -11,12 +11,17 @@ export const Specifications = () => {
       <div className="metals-list">
         <span className="metal-badge">Lead (Pb)</span>
         <span className="metal-badge">Cadmium (Cd)</span>
-        <span className="metal-badge">Mercury (Hg)</span>
+        <span className="metal-badge"> Manganese (Mn)</span>
         <span className="metal-badge">Arsenic (As)</span>
         <span className="metal-badge">Chromium (Cr)</span>
         <span className="metal-badge">Copper (Cu)</span>
         <span className="metal-badge">Zinc (Zn)</span>
         <span className="metal-badge">Nickel (Ni)</span>
+        <span className="metal-badge">Iron (Fe)</span>
+        <span className="metal-badge">Selenium (Se)</span>
+        <span className="metal-badge">Silver (Ag)</span>
+        <span className="metal-badge">Uranium (U)</span>
+
       </div>
       <h3 className="specs-subtitle">Detection Limits</h3>
       <p>

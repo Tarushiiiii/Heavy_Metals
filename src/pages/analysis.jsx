@@ -7,33 +7,16 @@ import {
   FlaskConical,
   TriangleAlert,
 } from "lucide-react";
-import { Chart as ChartJs } from "chart.js/auto";
-import { Bar, Pie, Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  ArcElement,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  ArcElement,
-  Legend
-);
 import Graphs from "../components/graphs/graphs.jsx";
-
-import pieData from "../components/graphs/pieData.json";
 import { ExportReport } from "../utils/export"; // adjust path as needed
-
+import PieChart from "../components/graphs/pieChart.jsx";
+import CompositeIndexChart from "../components/graphs/advanced/CompositeIndexChart.jsx";
+import CorrelationHeatmap from "../components/graphs/advanced/CorrelationHeatmap";
+import EnrichmentFactorChart from "../components/graphs/advanced/EnrichmentFactorChart.jsx";
+import ResultStandardsChart from "../components/graphs/advanced/ResultStandardsChart";
+import ForecastingTrendChart from "../components/graphs/advanced/ForecastingTrendChart";
+import Summary from "../components/graphs/advanced/Summary.jsx";
+import Overview from "../components/graphs/advanced/Overview.jsx";
 //Graph dependecies end here
 
 export const Analysis = () => {
@@ -193,89 +176,20 @@ export const Analysis = () => {
             {/* Metal Concentration Comparison (Bar Charts) */}
             {activeTab === "metal-analysis" && (
               <div className="results-card">
+                <Overview />
                 <Graphs />
+                <CompositeIndexChart />
+                <PieChart />
+                <CorrelationHeatmap />
+                <EnrichmentFactorChart />
+                <ResultStandardsChart />
+                <ForecastingTrendChart />
+                <Summary />
               </div>
             )}
 
             {/* Heavy Metal Composition (Pie Chart) */}
-            {activeTab === "metal-analysis" && (
-              <div className="results-card">
-                <div className="pie-chart graph-card">
-                  <Pie
-                    data={{
-                      labels: pieData.map((data) => data.label),
-                      datasets: [
-                        {
-                          label: "Percentage",
-                          data: pieData.map((data) => data.value),
-                          backgroundColor: [
-                            "rgb(46, 184, 122)",
-                            "rgb(53, 83, 133)",
-                            "rgba(225, 255, 187, 1)",
-                            "rgb(0, 90, 157)",
-                            "rgba(20, 61, 96, 1)",
-                            "rgb(0, 117, 121)",
-                            "rgba(160, 200, 120, 1)",
-                          ],
-                          borderColor: "white",
-                          borderWidth: 2,
-                          hoverOffset: 15,
-                          hoverBorderColor: "white",
-                        },
-                      ],
-                    }}
-                    options={{
-                      responsive: true,
-                      layout: {
-                        padding: {
-                          right: 0,
-                          top: 16,
-                          left: 10,
-                        },
-                      },
-                      plugins: {
-                        legend: {
-                          fullSize: false,
-                          align: "end",
-                          position: "right",
-                          title: {
-                            display: true,
-                            text: "Legend",
-                            color: "black",
-                            font: {
-                              size: 15,
-                              weight: "",
-                            },
-                            padding: {
-                              top: 0,
-                              bottom: 3,
-                            },
-                          },
-                          labels: {
-                            boxWidth: 20,
-                            boxHeight: 15,
-                            padding: 6,
-                            font: {
-                              size: 12,
-                            },
-                            color: "black",
-                          },
-                        },
-                        title: {
-                          display: true,
-                          text: "Heavy Metal Composition",
-                          color: "black",
-                          font: {
-                            size: 22,
-                            weight: "530",
-                          },
-                        },
-                      },
-                    }}
-                  />
-                </div>
-              </div>
-            )}
+            
           </div>
         </div>
       </main>
