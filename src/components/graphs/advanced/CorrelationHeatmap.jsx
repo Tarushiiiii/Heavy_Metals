@@ -121,7 +121,7 @@ const CorrelationHeatmap = () => {
   };
 
   return (
-    <div className="graph-card" style={{ height: "550px", padding: "1.5rem 1.5rem 4rem 1.5rem" }}>
+    <div className="graph-card" style={{ height: "600px", padding: "1.5rem 1.5rem 4rem 1.5rem" }}>
       <Chart type="matrix" data={data} options={options} />
       <div className="legend" style={{ textAlign: "center", marginTop: "10px" }}>
         <div

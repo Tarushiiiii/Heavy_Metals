@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-
+import ChartDataLabels from "chartjs-plugin-datalabels";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const EnrichmentFactorChart = () => {
@@ -36,6 +36,14 @@ const EnrichmentFactorChart = () => {
       title: { display: true, text: "Enrichment Factor (EF) Source Attribution", font: { size: 18, weight: "bold" },
         color: "#080808",
         padding: { bottom: 15 }, },
+      datalabels: {
+        color: "white", // ✅ White font for data labels
+         // optional: adds readability
+        textShadowBlur: 1, // optional: adds readability
+        font: {
+          weight: 400,
+          size: 14,
+        },},
       tooltip: { mode: "index", intersect: false },
     },
     scales: {
@@ -46,7 +54,7 @@ const EnrichmentFactorChart = () => {
 
   return (
     <div className="graph-card">
-        <Bar data={data} options={options} />
+        <Bar data={data} options={options} plugins={[ChartDataLabels]} />
     </div>
   );
 };

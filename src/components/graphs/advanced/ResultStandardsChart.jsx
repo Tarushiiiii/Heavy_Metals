@@ -9,7 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
+import ChartDataLabels from "chartjs-plugin-datalabels";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ResultStandardsChart = () => {
@@ -79,6 +79,14 @@ const ResultStandardsChart = () => {
         color: "#080808",
         padding: { bottom: 10 },
       },
+      datalabels: {
+        color: "white", // ✅ White font for data labels
+         // optional: adds readability
+        textShadowBlur: 1, // optional: adds readability
+        font: {
+          weight: 300,
+          size: 12,
+        },},
       tooltip: { mode: "nearest", intersect: true },
       legend: { position: "top" },
     },
@@ -136,7 +144,7 @@ const ResultStandardsChart = () => {
         className="graph-card"
         style={{ marginBottom: "2rem", height: `${ppmMetals.length * 110}px` }}
       >
-        <Bar data={ppmData} options={options(ppmStandard, "PPM")} />
+        <Bar data={ppmData} options={options(ppmStandard, "PPM")} plugins={[ChartDataLabels]} />
       </div>
 
       {/* PPB Metals */}
@@ -144,7 +152,7 @@ const ResultStandardsChart = () => {
         className="graph-card"
         style={{ height: `${ppbMetals.length * 130}px` }}   
       >
-        <Bar data={ppbData} options={options(ppbStandard, "PPB")} />
+        <Bar data={ppbData} options={options(ppbStandard, "PPB")} plugins={[ChartDataLabels]} />
       </div>
     </div>
   );
