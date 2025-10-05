@@ -119,7 +119,8 @@ export const Analysis = () => {
 
             {/* Individual Analysis */}
             {activeTab === "metal-analysis" && (
-              <div className="results-card">
+              <div >
+                <div className="results-card">
                 <h2 className="section-title">
                   Individual Heavy Metal Analysis
                 </h2>
@@ -171,7 +172,7 @@ export const Analysis = () => {
                     <span className="status-badge safe">Safe</span>
                   </div>
                 </div>
-
+                </div>
                 <div>
                   {" "}
                   <Overview />
