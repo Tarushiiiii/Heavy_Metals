@@ -119,17 +119,19 @@ export const Analysis = () => {
 
             {/* Individual Analysis */}
             {activeTab === "metal-analysis" && (
-              <div >
+              <div>
+                <Overview />
                 <div className="results-card">
-                <h2 className="section-title">
-                  Individual Heavy Metal Analysis
-                </h2>
-                <p className="section-subtitle">
-                  Detailed breakdown of each heavy metal concentration versus
-                  safety limits
-                </p>
+                  <h2 className="section-title">
+                    Individual Heavy Metal Analysis
+                  </h2>
+                  <p className="section-subtitle">
+                    Detailed breakdown of each heavy metal concentration versus
+                    safety limits
+                  </p>
+                  <Graphs />
 
-                <div className="metal-item">
+                  {/* <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Lead (Pb)</p>
                     <p className="metal-value">
@@ -149,9 +151,9 @@ export const Analysis = () => {
                   <div className="metal-status">
                     <span className="status-badge safe">Safe</span>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="metal-item">
+                  {/* <div className="metal-item">
                   <div className="metal-info">
                     <p className="metal-name">Cadmium (Cd)</p>
                     <p className="metal-value">
@@ -171,14 +173,14 @@ export const Analysis = () => {
                   <div className="metal-status">
                     <span className="status-badge safe">Safe</span>
                   </div>
-                </div>
+                </div> */}
                 </div>
                 <div>
-                  {" "}
-                  <Overview />
-                  <Graphs />
-                  <CompositeIndexChart />
-                  <PieChart />
+                  <div className="chart-grid">
+                    <CompositeIndexChart />
+                    <PieChart />
+                  </div>
+
                   <CorrelationHeatmap />
                   <EnrichmentFactorChart />
                   <ResultStandardsChart />

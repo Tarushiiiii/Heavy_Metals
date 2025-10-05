@@ -69,7 +69,7 @@ const CompositeIndexChart = () => {
         text: "Composite Index Comparison (HPI, HEI, MI, Cd)",
         font: { size: 18, weight: "bold" },
         color: "#111",
-        padding: { bottom: 10, top: 8},
+        padding: { bottom: 12, top: 10},
       },
     },
     scales: {
@@ -99,7 +99,7 @@ const CompositeIndexChart = () => {
   };
 
   return (
-    <div className="graph-card" style={{ height: "400px", padding: "1rem" }}>
+    <div className="graph-card" style={{ height: "500px", padding: "1rem" }}>
       <Radar data={data} options={options} />
     </div>
   );

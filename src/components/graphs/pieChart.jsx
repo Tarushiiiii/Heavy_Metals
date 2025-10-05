@@ -39,26 +39,25 @@ const PieChart = () => {
   const options = {
     responsive: true,
     layout: {
-      padding: {
-        top: 16,
-      },
+      
     },
     plugins: {
       legend: {
         position: "right",
         align: "center",
         labels: {
-          boxWidth: 20,
+          boxWidth: 25,
+          boxHeight: 20,
           font: { size: 12 },
           color: "black",
-          padding: 8,
+          padding: 14,
         },
       },
       title: {
         display: true,
-        text: "Heavy Metal Composition",
+        text: "Heavy Metal Composition (Cumiliative %)",
         color: "black",
-        font: { size: 22, weight: "530" },
+        font: { size: 18, weight: "bold" },
       },
       datalabels: {
         color: "white",
@@ -78,7 +77,7 @@ const PieChart = () => {
 
   return (
     <div className="pie-chart-container">
-      <div className="graph-card" style={{ maxWidth: "600px", margin: "0 auto", paddingLeft: "2.5rem" }}>
+      <div className="graph-card" style={{ maxHeight:"500px", paddingLeft: "4rem" }}>
         <Pie data={chartData} options={options} plugins={[ChartDataLabels]} />
       </div>
     </div>
