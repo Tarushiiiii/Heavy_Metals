@@ -9,7 +9,7 @@ const EnrichmentFactorChart = () => {
     labels: ["Minimal (<2)", "Moderate (2-5)", "Significant (5-20)", "Very High (20-40)", "Extremely High (≥40)"],
     datasets: [
       {
-        label: "Site 1",
+        label: "Mayur Vihar",
         data: [12, 7, 4, 2, 1],
         backgroundColor: "rgba(53, 83, 132, 1)",
          borderRadius: 6,
@@ -17,14 +17,14 @@ const EnrichmentFactorChart = () => {
          
       },
       {
-        label: "Site 2",
+        label: "Dwarka Sec 23",
         data: [10, 8, 5, 1, 0],
         backgroundColor: "rgba(42, 185, 122, 1)",
          borderRadius: 6,
          barPercentage: 0.9,
       },
       {
-        label: "Site 3",
+        label: "Shahdara",
         data: [8, 6, 7, 2, 1],
         backgroundColor: "rgba(154, 218, 128, 1)",
          borderRadius: 6,

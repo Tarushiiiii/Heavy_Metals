@@ -7,12 +7,12 @@
     ],
     "datasets": [
         {
-            "label": "Kanjhawala",
+            "label": "Mayur Vihar",
             "data": [
-                30,
-                207.33,
-                0.7,
-                2590
+                0.20,
+                0.23,
+                0.5,
+                0.2
             ],
             "backgroundColor": "rgb(53, 83, 133)",
             "borderRadius": 3
@@ -20,21 +20,21 @@
         {
             "label": "Dwarka Sec 23",
             "data": [
-                11,
-                9.67,
-                0.92,
-                1580
+                0.11,
+                0.47,
+                0.62,
+                0.15
             ],
             "backgroundColor": "rgb(46, 184, 122)",
             "borderRadius": 3
         },
         {
-            "label": "India Gate",
+            "label": "Shahdara",
             "data": [
-                33,
-                14.67,
-                1.38,
-                1270
+                0.33,
+                0.167,
+                0.38,
+                0.1
                 
             ],
             "backgroundColor": "rgb(155, 217, 127)",

@@ -27,7 +27,7 @@ const CompositeIndexChart = () => {
     labels: ["HPI", "HEI", "MI", "Cd"],
     datasets: [
       {
-        label: "Site 1",
+        label: "Mayur Vihar",
         data: [65, 40, 55, 10],
         backgroundColor: "rgba(53, 83, 132, 0.2)",
         borderColor: "rgba(53, 83, 132, 1)",
@@ -35,7 +35,7 @@ const CompositeIndexChart = () => {
         pointBackgroundColor: "rgba(53, 83, 132, 1)",
       },
       {
-        label: "Site 2",
+        label: "Dwarka Sec 23",
         data: [80, 45, 60, 20],
         backgroundColor: "rgba(42, 185, 122, 0.2)",
         borderColor: "rgba(42, 185, 122, 1)",
@@ -43,7 +43,7 @@ const CompositeIndexChart = () => {
         pointBackgroundColor: "rgba(42, 185, 122, 1)",
       },
       {
-        label: "Site 3",
+        label: "Shahdara",
         data: [70, 50, 58, 15],
         backgroundColor: "rgba(154, 218, 128, 0.2)",
         borderColor: "rgba(154, 218, 128, 1)",

@@ -47,7 +47,7 @@ const ResultStandardsChart = () => {
   // Generate datasets
   const generateDatasets = (observed, standard) =>
     sitesColors.map((color, siteIndex) => ({
-      label: `Site ${siteIndex + 1}`,
+      label: siteNames[siteIndex],
       data: observed.map((metal) => metal[siteIndex]),
       backgroundColor: color,
       borderRadius: 3,
@@ -55,6 +55,7 @@ const ResultStandardsChart = () => {
       categoryPercentage: 0.9,
       barPercentage: 0.8,
     }));
+  const siteNames = ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"];
 
   const ppmData = {
     labels: ppmMetals,

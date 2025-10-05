@@ -1,63 +1,57 @@
-export default[
+export default [
   {
     "title": "Chromium (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [10, 15, 12]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.05943, 0.043, 0.08943]
   },
   {
     "title": "Manganese (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [20, 25, 22]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.06, 0.031, 0.05]
   },
   {
     "title": "Iron (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [30, 35, 32]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.2, 0.079, 0.064]
   },
   {
     "title": "Nickel (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [12, 18, 15]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.02419, 0.04419, 0.09419]
   },
   {
     "title": "Copper (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [15, 20, 18]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.055095, 0.15, 0.04]
   },
   {
     "title": "Zinc (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [25, 28, 26]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.035, 0.046, 0.069]
   },
   {
     "title": "Arsenic (PPM)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [8, 12, 10]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.259, 0.158, 0.127]
   },
   // {
   //   "title": "Selenium (PPB)",
-  //   "labels": ["Place 1", "Place 2", "Place 3"],
-  //   "data": [40, 38, 35]
+  //   "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+  //   "data": [0.20, 0.11, 0.33]
   // },
   // {
   //   "title": "Silver (PPB)",
-  //   "labels": ["Place 1", "Place 2", "Place 3"],
-  //   "data": [5, 8, 6]
+  //   "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+  //   "data": [0.23, 0.47, 0.167]
   // },
   {
     "title": "Cadmium (PPB)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [6, 10, 8]
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.5, 0.62, 0.38]
   },
   {
     "title": "Lead (PPB)",
-    "labels": ["Place 1", "Place 2", "Place 3"],
-    "data": [7, 12, 9]
-  },
-  // {
-  //   "title": "Uranuim (PPB)",
-  //   "labels": ["Place 1", "Place 2", "Place 3"],
-  //   "data": [2, 3, 4]
-  // }
-]
-
+    "labels": ["Mayur Vihar", "Dwarka Sec 23", "Shahdara"],
+    "data": [0.2, 0.15, 0.1]
+  }
+];
