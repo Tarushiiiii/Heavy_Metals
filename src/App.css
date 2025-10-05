@@ -279,7 +279,7 @@
 
 .map-status-grid {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 75% 25%;
   gap: 1rem;
   align-items: flex-start;
   margin-top: 1rem;
@@ -477,7 +477,76 @@
 .warning-text {
   display: flex;
   align-items: center;
-  gap: 0.5rem; 
-  color: #b78400; 
+  gap: 0.5rem;
+  color: #b78400;
   padding: 0.5rem 0;
+}
+
+.link {
+  color: #1a0dab;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #d93d25;
+  text-decoration: underline;
+}
+
+/* Basic styling for the checkbox */
+.checkbox-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+/* Style for the checkbox when it is checked */
+.checkbox-icon:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+/* Adding a check mark when checkbox is checked */
+.checkbox-icon:checked::after {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  color: white;
+  font-size: 14px;
+}
+
+/* Adding hover effect */
+.checkbox-icon:hover {
+  border-color: #388e3c;
+}
+
+/* Checkbox focus outline */
+.checkbox-icon:focus {
+  outline: 2px solid #388e3c;
+}
+
+/* Sidebar Logout Button */
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  margin-top: auto;
+  border-radius: 0.375rem;
+  color: black;
+  border: 1.5px solid black;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.sidebar-logout:hover {
+  background-color: gray;
+  color: white;
 }

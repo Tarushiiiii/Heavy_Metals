@@ -7,7 +7,8 @@ export const ReportsTable = ({ report, index }) => {
       <td>{report.region}</td>
       <td>{report.date}</td>
       <td>{report.metal}</td>
-      <td>{report.hmpi}</td>
+      <td>{report.hpi}</td>
+      <td>{report.ci}</td>
       <td className={`status-badge ${report.status.toLowerCase()}`}>
         <span>{report.status}</span>
       </td>

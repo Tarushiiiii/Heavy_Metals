@@ -1,35 +1,25 @@
-import { NavLink } from 'react-router-dom';
-import { Logo } from '../ui/sidebar/logo';
-import { NavBar } from '../ui/sidebar/navbar';
-import { LogOut } from 'lucide-react';
+import { NavLink } from "react-router-dom";
+import { Logo } from "../ui/sidebar/logo";
+import { NavBar } from "../ui/sidebar/navbar";
+import { LogOut } from "lucide-react";
+import { Button } from "../ui/button";
 
 const Sidebar = () => {
-    const linkBaseClass = 'flex items-center justify-center gap-3 px-4 py-2 rounded transition-colors whitespace-nowrap';
+  const linkBaseClass =
+    "flex items-center justify-center gap-3 px-4 py-2 rounded transition-colors whitespace-nowrap";
 
-    return (
-        <aside className="bg-white shadow-md h-screen w-[220px] flex flex-col justify-between p-4 fixed left-0 top-0">
-            <div>
-                <Logo />
-                <NavBar />
-            </div>
-            {/* <CTAs /> */}
-            {/* <Button type="main" colorVariant="secondary">
-                Settings
-            </Button> */}
-            <NavLink
-                to="/logout"
-                className={({ isActive }) =>
-                    `${linkBaseClass} ${isActive
-                        ? 'bg-gray-800 text-white'
-                        : 'text-gray-800 border border-gray-800 hover:underline'
-                    }`
-                }
-            >
-                <LogOut size={20} strokeWidth={2} />
-                Log Out
-            </NavLink>
-        </aside>
-    );
+  return (
+    <aside className="bg-white shadow-md h-screen w-[220px] flex flex-col justify-between p-4 fixed left-0 top-0">
+      <div>
+        <Logo />
+        <NavBar />
+      </div>
+      <NavLink to="/logout" className="sidebar-logout">
+        <LogOut size={20} strokeWidth={2} />
+        Log Out
+      </NavLink>
+    </aside>
+  );
 };
 
 export default Sidebar;

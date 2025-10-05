@@ -11,7 +11,7 @@ export const Reports = () => {
   return (
     <div>
       <div className="main-header-wrapper">
-        <div className="main-header">HMPI Reports</div>
+        <div className="main-header">Reports</div>
         <div className="flex justify-between items-center gap-4">
           <div className="main-text">
             View and manage all HMPI reports generated from groundwater sample
@@ -35,7 +35,8 @@ export const Reports = () => {
               <th>Region</th>
               <th>Date</th>
               <th>Metal</th>
-              <th>HMPI</th>
+              <th>HPI</th>
+              <th>CI-ML</th>
               <th>Status</th>
             </tr>
           </thead>

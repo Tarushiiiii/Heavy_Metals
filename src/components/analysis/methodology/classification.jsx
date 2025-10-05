@@ -19,7 +19,7 @@ export const Classification = () => {
         </div>
       </div>
       <p>
-        <b className="card-subtitle">CI + ML Classification:</b> <br />
+        <b className="card-subtitle">Enhanced Classification:</b> <br />
         Combines composite index and ML outputs for enhanced Safe / Moderate /
         Critical categorization, integrated with geospatial mapping to highlight
         hotspots and safe zones.
