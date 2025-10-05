@@ -8,7 +8,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import Graphs from "../components/graphs/graphs.jsx";
-import { ExportReport } from "../utils/export";
+// import { ExportReport } from "../utils/export";
 import PieChart from "../components/graphs/pieChart.jsx";
 import CompositeIndexChart from "../components/graphs/advanced/CompositeIndexChart.jsx";
 import CorrelationHeatmap from "../components/graphs/advanced/CorrelationHeatmap";
@@ -17,12 +17,14 @@ import ResultStandardsChart from "../components/graphs/advanced/ResultStandardsC
 import ForecastingTrendChart from "../components/graphs/advanced/ForecastingTrendChart";
 import Summary from "../components/graphs/advanced/Summary.jsx";
 import Overview from "../components/graphs/advanced/Overview.jsx";
+import HandleExport from "../utils/declaration";
 //Graph dependecies end here
 
 export const Analysis = () => {
   // Tabs state control
   const [activeTab, setActiveTab] = useState("metal-analysis");
-  const [exporting, setExporting] = useState(false);
+  // const [exporting, setExporting] = useState(false);
+  // const [hasExported, setHasExported] = useState(false);
 
   return (
     <div>
@@ -36,21 +38,23 @@ export const Analysis = () => {
       <main className="results-page">
         <div className="card">
           <div className="results-header">
-            <Button
+            {/* <Button
               colorVariant="primary"
               type="main"
               onClickHandler={() => ExportReport("GW-001", setExporting)}
               disabled={exporting}
             >
               {exporting ? "Exporting..." : "Export Report"}
-            </Button>
+            </Button> */}
+
+            <HandleExport />
+
             <div className="suggestion-group yellow px-4 py-2 rounded flex items-center gap-2">
-              <div class="warning-text" >
+              <div class="warning-text">
                 <FileWarning size={24} strokeWidth={1.8} />
                 For the privacy concerns we do not store any data on our
                 servers. If you wish then click to save your results locally.
               </div>
-              
             </div>
           </div>
 

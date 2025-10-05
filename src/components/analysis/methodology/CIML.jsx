@@ -4,7 +4,9 @@ import { BlockMath } from "react-katex";
 export const CIML = () => {
   return (
     <div className="card">
-      <h3 className="card-title">Composite Index + Machine Learning</h3>
+      <h3 className="card-title">
+        Unified Heavy Metal Index: Composite Index + Machine Learning
+      </h3>
 
       <div>
         <b>Composite Index (CI):</b>

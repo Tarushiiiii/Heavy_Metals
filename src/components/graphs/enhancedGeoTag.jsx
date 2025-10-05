@@ -34,7 +34,7 @@ export const EnhancedGeoTag = () => {
     const google = window.google;
     return reportsData.map((item) => ({
       location: new google.maps.LatLng(item.lat, item.lng),
-      weight: item.hmpi,
+      weight: item.hpi,
     }));
   }, [isLoaded]);
 
@@ -65,10 +65,10 @@ export const EnhancedGeoTag = () => {
           <div>
             <span style={{ fontWeight: "bold" }}>{hovered.region}</span>
             <br />
-            <strong>CI Value: </strong>
+            <strong>Unified Value: </strong>
             <span style={{ fontWeight: "bold" }}>{hovered.ci}</span>
             <br />
-            <strong>ML Aspect: </strong>
+            <strong>Regional Analysis: </strong>
             <span>{hovered.ml}</span>
             <br />
             <strong>Root Cause:</strong>
