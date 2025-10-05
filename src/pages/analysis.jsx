@@ -39,7 +39,7 @@ import CorrelationHeatmap from "../components/graphs/advanced/CorrelationHeatmap
 import EnrichmentFactorChart from "../components/graphs/advanced/EnrichmentFactorChart.jsx";
 import ResultStandardsChart from "../components/graphs/advanced/ResultStandardsChart";
 import ForecastingTrendChart from "../components/graphs/advanced/ForecastingTrendChart";
-// import SummaryDashboard from "../components/advanced/SummaryDashboard";
+import SummaryDashboard from "../components/graphs/advanced/Summary.jsx";
 
 //Graph dependecies end here
 
@@ -206,6 +206,7 @@ export const Analysis = () => {
                 <EnrichmentFactorChart />
                 <ResultStandardsChart />
                 <ForecastingTrendChart />
+                <SummaryDashboard />
               </div>
             )}
 
