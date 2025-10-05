@@ -474,3 +474,10 @@
   }
 }
 
+.warning-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  color: #b78400; 
+  padding: 0.5rem 0;
+}

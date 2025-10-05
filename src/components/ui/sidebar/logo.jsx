@@ -8,7 +8,7 @@ export const Logo = () => {
                 alt="JalDhatu Logo"
                 className="h-15 w-15 object-cover"
             />
-            <span className="text-lg font-semibold text-gray-700">
+            <span className="card-title">
                 JalDhatu
             </span>
         </div>
