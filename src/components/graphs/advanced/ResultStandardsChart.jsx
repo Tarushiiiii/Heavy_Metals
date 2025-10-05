@@ -142,7 +142,7 @@ const ResultStandardsChart = () => {
       {/* PPM Metals */}
       <div
         className="graph-card"
-        style={{ marginBottom: "2rem", height: `${ppmMetals.length * 110}px` }}
+        style={{ marginBottom: "2rem", height: `${ppmMetals.length * 105}px` }}
       >
         <Bar data={ppmData} options={options(ppmStandard, "PPM")} plugins={[ChartDataLabels]} />
       </div>

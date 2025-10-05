@@ -7,18 +7,48 @@ ChartJS.register(MatrixController, MatrixElement, Tooltip, Legend, Title, Linear
 
 const metals = ["Cd", "Pb", "As", "Cr", "Ni", "Cu", "Zn", "Fe", "Mn"];
 
-// Example correlation data
+// Sample correlation data from -1 to +1
 const correlations = [
-  [1.0, 0.9, 0.2, 0.4, 0.7, 0.1, 0.6, 0.3, 0.8],
-  [0.9, 1.0, 0.3, 0.5, 0.8, 0.2, 0.7, 0.4, 0.9],
-  [0.2, 0.3, 1.0, 0.6, 0.2, 0.5, 0.3, 0.6, 0.4],
-  [0.4, 0.5, 0.6, 1.0, 0.5, 0.7, 0.2, 0.3, 0.6],
-  [0.7, 0.8, 0.2, 0.5, 1.0, 0.4, 0.8, 0.2, 0.7],
-  [0.1, 0.2, 0.5, 0.7, 0.4, 1.0, 0.5, 0.3, 0.6],
-  [0.6, 0.7, 0.3, 0.2, 0.8, 0.5, 1.0, 0.4, 0.7],
-  [0.3, 0.4, 0.6, 0.3, 0.2, 0.3, 0.4, 1.0, 0.5],
-  [0.8, 0.9, 0.4, 0.6, 0.7, 0.6, 0.7, 0.5, 1.0],
+  [1, 0.8, -0.5, 0.2, 0.7, -0.3, 0.6, -0.6, 0.9],
+  [0.8, 1, -0.4, 0.3, 0.6, -0.2, 0.7, -0.5, 0.85],
+  [-0.5, -0.4, 1, -0.7, -0.2, 0.5, -0.3, 0.6, -0.1],
+  [0.2, 0.3, -0.7, 1, 0.5, -0.4, 0.2, -0.3, 0.6],
+  [0.7, 0.6, -0.2, 0.5, 1, -0.1, 0.8, -0.2, 0.7],
+  [-0.3, -0.2, 0.5, -0.4, -0.1, 1, -0.5, 0.3, -0.6],
+  [0.6, 0.7, -0.3, 0.2, 0.8, -0.5, 1, -0.4, 0.7],
+  [-0.6, -0.5, 0.6, -0.3, -0.2, 0.3, -0.4, 1, -0.5],
+  [0.9, 0.85, -0.1, 0.6, 0.7, -0.6, 0.7, -0.5, 1],
 ];
+
+// Function to interpolate color based on correlation
+const interpolateColor = (value) => {
+  // value: -1 -> +1
+  const rgb = (c) => c.match(/\d+/g).map(Number);
+  const deepBlue = [53, 83, 132]; // -1
+  const green = [42, 185, 122];   // 0
+  const lightGreen = [154, 218, 128]; // +1
+
+  // Normalize value from -1..+1 to 0..1
+  const t = (value + 1) / 2;
+
+  let r, g, b;
+
+  if (t <= 0.5) {
+    // interpolate between deepBlue and green
+    const factor = t / 0.5; // 0 -> 0, 0.5 -> 1
+    r = Math.round(deepBlue[0] * (1 - factor) + green[0] * factor);
+    g = Math.round(deepBlue[1] * (1 - factor) + green[1] * factor);
+    b = Math.round(deepBlue[2] * (1 - factor) + green[2] * factor);
+  } else {
+    // interpolate between green and lightGreen
+    const factor = (t - 0.5) / 0.5; // 0.5 -> 0, 1 -> 1
+    r = Math.round(green[0] * (1 - factor) + lightGreen[0] * factor);
+    g = Math.round(green[1] * (1 - factor) + lightGreen[1] * factor);
+    b = Math.round(green[2] * (1 - factor) + lightGreen[2] * factor);
+  }
+
+  return `rgb(${r},${g},${b})`;
+};
 
 const CorrelationHeatmap = () => {
   const data = {
@@ -32,19 +62,7 @@ const CorrelationHeatmap = () => {
             v: value,
           }))
         ),
-        backgroundColor(ctx) {
-          const value = ctx.raw.v;
-          const interpolate = (c1, c2, factor) => {
-            const rgba = (c) => c.match(/\d+/g).map(Number);
-            const [r1, g1, b1] = rgba(c1);
-            const [r2, g2, b2] = rgba(c2);
-            const r = Math.round(r1 * (1 - factor) + r2 * factor);
-            const g = Math.round(g1 * (1 - factor) + g2 * factor);
-            const b = Math.round(b1 * (1 - factor) + b2 * factor);
-            return `rgb(${r},${g},${b})`;
-          };
-          return interpolate("rgba(53, 83, 132, 1)", "rgba(154, 218, 128, 1)", value);
-        },
+        backgroundColor: (ctx) => interpolateColor(ctx.raw.v),
         borderWidth: 0,
         width: (ctx) => {
           const area = ctx.chart.chartArea;
@@ -68,6 +86,14 @@ const CorrelationHeatmap = () => {
         text: "Correlation Matrix of Heavy Metals",
         font: { size: 18, weight: "bold" },
         color: "#111",
+        padding: { bottom: 4 },
+      },
+      subtitle: {
+        display: true,
+        text:
+          "Visualizing relationships between metals to identify possible shared contamination sources.",
+        font: { size: 14, weight: "400" },
+        color: "#555",
         padding: { bottom: 10 },
       },
       tooltip: {
@@ -82,14 +108,14 @@ const CorrelationHeatmap = () => {
         labels: metals,
         position: "top",
         grid: { display: false },
-        offset: true, // ✅ shift ticks to align with boxes
+        offset: true,
         ticks: { color: "#000", font: { size: 13, weight: "500" } },
       },
       y: {
         type: "category",
         labels: metals.slice().reverse(),
         grid: { display: false },
-        offset: true, // ✅ shift ticks to align with boxes
+        offset: true,
         ticks: { color: "#000", font: { size: 13, weight: "500" } },
       },
     },
@@ -110,9 +136,9 @@ const CorrelationHeatmap = () => {
             const xIndex = metals.indexOf(d.x);
             const yIndex = metals.indexOf(d.y);
             const x = area.left + cellWidth * xIndex + cellWidth / 2;
-            const y = area.top + cellHeight * (metals.length - yIndex - 1) + cellHeight / 2; // y reversed
+            const y =
+              area.top + cellHeight * (metals.length - yIndex - 1) + cellHeight / 2;
             ctx.font = "12px Arial";
-            // ctx.fillStyle = "#fff";
             ctx.fillText(d.v.toFixed(2), x, y);
           });
         });
@@ -121,13 +147,16 @@ const CorrelationHeatmap = () => {
   };
 
   return (
-    <div className="graph-card" style={{ height: "600px", padding: "1.5rem 1.5rem 4rem 1.5rem" }}>
+    <div
+      className="graph-card"
+      style={{ height: "600px", padding: "1.5rem 1.5rem 4rem 1.5rem" }}
+    >
       <Chart type="matrix" data={data} options={options} />
       <div className="legend" style={{ textAlign: "center", marginTop: "10px" }}>
         <div
           style={{
             background:
-              "linear-gradient(to right, rgba(53, 83, 132, 1), rgba(154, 218, 128, 1))",
+              "linear-gradient(to right, rgba(53,83,132,1), rgba(42,185,122,1), rgba(154,218,128,1))",
             height: "12px",
             borderRadius: "6px",
             width: "70%",
@@ -144,9 +173,9 @@ const CorrelationHeatmap = () => {
             fontSize: "13px",
           }}
         >
-          <span>Low(0)</span>
-          <span>Medium(0.5)</span>
-          <span>High(1)</span>
+          <span>Low(-1)</span>
+          <span>Moderate(0)</span>
+          <span>High(+1)</span>
         </div>
       </div>
     </div>
