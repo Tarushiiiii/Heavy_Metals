@@ -20,7 +20,7 @@ export const RecentReports = () => {
             <th>Date</th>
             <th>Metal</th>
             <th>HPI</th>
-            <th>CI-ML</th>
+            <th>UHI</th>
             <th>Status</th>
           </tr>
         </thead>
