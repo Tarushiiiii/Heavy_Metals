@@ -11,6 +11,7 @@ import { Methodology } from "./components/analysis/methodology";
 import { Suggestion } from "./components/analysis/suggestions";
 import { LandingPage } from "./pages/landing_page";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
