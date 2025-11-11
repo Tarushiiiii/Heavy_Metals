@@ -10,6 +10,7 @@ import { Analysis } from './pages/analysis';
 import { Methodology } from './components/analysis/methodology';
 import { Suggestion } from './components/analysis/suggestions';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
