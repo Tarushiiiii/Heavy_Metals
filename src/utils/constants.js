@@ -551,3 +551,27 @@ export const reportsData = [
     ml: "Low risk; ranked as 'Safe', no anomaly detected in 6-month rolling forecast.",
   },
 ];
+
+export const COLORS = {
+  primary: "#007BFF",
+  primaryLight: "#339CFF",
+  primaryDark: "#0056B3",
+};
+
+export const languages = [
+  "English",
+  "हिन्दी",
+  "മലയാളം",
+  "తెలుగు",
+  "ಕನ್ನಡ",
+  "اردو",
+  "ଓଡିଆ",
+];
+
+export const notifications = [
+  "Email Alerts",
+  "SMS Notifications",
+  "Push Notifications",
+  "In-App Messages",
+  "Weekly Summaries",
+];
