@@ -23,19 +23,6 @@ export const Header = ({ userName, children }) => {
       <nav className="header-right">
         <Notifications />
         <LanguageDropdown />
-        {/* <div
-          className="header-item"
-          role="button"
-          tabIndex={0}
-          aria-label="Notifications"
-          onClick={() => alert("Notifications clicked")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") alert("Notifications clicked");
-          }}
-        >
-          <Bell size={20} />
-          <span className="text-xs select-none">Notification</span>
-        </div> */}
         <div className="header-item">
           {user ? (
             <UserButton />

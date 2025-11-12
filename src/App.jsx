@@ -11,10 +11,13 @@ import { Methodology } from "./components/analysis/methodology";
 import { Suggestion } from "./components/analysis/suggestions";
 import { LandingPage } from "./pages/landing_page";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/user",
     element: <Layout />,
     children: [
       { index: true, element: <Dashboard />, handle: { header: "Dashboard" } },
@@ -36,12 +39,12 @@ const router = createBrowserRouter([
         handle: { header: "Analysis" },
       },
       {
-        path: "methodology",
+        path: "analysis/methodology",
         element: <Methodology />,
         handle: { header: "Methodology" },
       },
       {
-        path: "suggestions",
+        path: "analysis/suggestions",
         element: <Suggestion />,
         handle: { header: "Suggestion" },
       },
@@ -50,13 +53,12 @@ const router = createBrowserRouter([
         element: <Settings />,
         handle: { header: "Settings" },
       },
-      {
-        path: "landing",
-        element: <LandingPage />,
-        handle: { header: "Landing" },
-      },
       { path: "*", element: <h1>Not Found</h1> },
     ],
+  },
+  {
+    path: "*",
+    element: <h1>Not Found</h1>,
   },
 ]);
 
