@@ -9,7 +9,9 @@ import { Settings } from "./pages/settings";
 import { Analysis } from "./pages/analysis";
 import { Methodology } from "./components/analysis/methodology";
 import { Suggestion } from "./components/analysis/suggestions";
-import { LandingPage } from "./pages/landing_page";
+import  LandingPage  from "./pages/landing_page";
+import NotFound from "./components/landing_page/error_404";
+
 
 const router = createBrowserRouter([
   {
@@ -53,12 +55,11 @@ const router = createBrowserRouter([
         element: <Settings />,
         handle: { header: "Settings" },
       },
-      { path: "*", element: <h1>Not Found</h1> },
     ],
   },
   {
     path: "*",
-    element: <h1>Not Found</h1>,
+    element: < NotFound />,
   },
 ]);
 

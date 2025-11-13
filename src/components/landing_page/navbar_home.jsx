@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { Button } from "../ui/button";
-import { LanguageDropdown } from "./languageDropdown";
+import { LanguageDropdown } from "../layout/languageDropdown";
 
 const NavbarHome = () => {
   const { user, isLoaded } = useUser();
