@@ -14,10 +14,10 @@ const Sidebar = () => {
         <Logo />
         <NavBar />
       </div>
-      <NavLink to="/logout" className="sidebar-logout">
+      {/* <NavLink to="/logout" className="sidebar-logout">
         <LogOut size={20} strokeWidth={2} />
         Log Out
-      </NavLink>
+      </NavLink> */}
     </aside>
   );
 };
