@@ -4,14 +4,13 @@ import { Dashboard } from "./pages/dashboard";
 import { AboutUs } from "./pages/about_us";
 import { Reports } from "./pages/reports";
 import { Map } from "./pages/map";
-import { CalculateHMPI } from "./pages/data_entry";
+import { CalculateHMPI } from "./pages/calculate";
 import { Settings } from "./pages/settings";
 import { Analysis } from "./pages/analysis";
 import { Methodology } from "./components/analysis/methodology";
 import { Suggestion } from "./components/analysis/suggestions";
-import  LandingPage  from "./pages/landing_page";
-import NotFound from "./components/landing_page/error_404";
-
+import LandingPage from "./pages/landing_page";
+import NotFound from "./pages/not_found";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: < NotFound />,
+    element: <NotFound />,
   },
 ]);
 

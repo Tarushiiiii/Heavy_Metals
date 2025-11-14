@@ -3,24 +3,37 @@ import { KeyRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function APIUpload() {
-  //   const [csvFile, setCsvFile] = useState(null);
+  const [apiKey, setApiKey] = useState("");
   const navigate = useNavigate();
 
-  const handleAPIUpload = (event) => {
-    // const file = event.target.files[0];
-    // if (file) {
-    //     setCsvFile(file);
-    //     const reader = new FileReader();
-    //     reader.onload = (e) => {
-    //         const text = e.target.result;
-    //         const rows = text.split("\n").map((row) => row.split(","));
-    //     };
-    //     reader.readAsText(file);
-    // }
-  };
+  // -------------------------
+  // HANDLE API UPLOAD (MODEL CALL)
+  // -------------------------
+  const handleAPIUpload = async (event) => {
+    event.preventDefault();
 
-  const calculate_hmpi = (event) => {
-    navigate("/analysis");
+    try {
+      // Backend ko call
+      const res = await fetch("http://localhost:8000/predict/hmpi_api_basic", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          features: [12.5, 3.7, 5.9, 1.2],
+          api_key: apiKey, // optional if needed
+        }),
+      });
+
+      const data = await res.json();
+      console.log("Model Prediction:", data);
+
+      // Model result ko next page pe bhejna ho toh localStorage use karo:
+      localStorage.setItem("hmpi_result", JSON.stringify(data));
+
+      // Navigate to analysis page
+      navigate("/analysis");
+    } catch (error) {
+      console.error("Error fetching prediction:", error);
+    }
   };
 
   return (
@@ -29,16 +42,16 @@ export default function APIUpload() {
         <KeyRound size={24} strokeWidth={2.5} />
         Process API Data
       </h2>
+
       <div className="card">
         <div className="input-group">
-          <label htmlFor="api_key">
-            API Key
-            {/* <span className="key">Key: 10 µg/L</span> */}
-          </label>
+          <label htmlFor="api_key">API Key</label>
           <input
             type="text"
             id="api_key"
             placeholder="Enter your Data API key"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
           />
         </div>
       </div>
@@ -56,7 +69,7 @@ export default function APIUpload() {
         <button
           type="submit"
           className="btn calculate-btn"
-          onClick={calculate_hmpi}
+          onClick={handleAPIUpload}
         >
           Calculate HMPI
         </button>
