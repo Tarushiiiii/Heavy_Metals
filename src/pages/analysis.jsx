@@ -50,7 +50,7 @@ export const Analysis = () => {
             <HandleExport />
 
             <div className="suggestion-group yellow px-4 py-2 rounded flex items-center gap-2">
-              <div class="warning-text">
+              <div className="warning-text">
                 <FileWarning size={24} strokeWidth={1.8} />
                 For the privacy concerns we do not store any data on our
                 servers. If you wish then click to save your results locally.
@@ -129,59 +129,13 @@ export const Analysis = () => {
               <div>
                 <Overview />
                 <div className="results-card">
-                  <h2 className="section-title">
-                    <h3 className="text-2xl">
-                      Individual Heavy Metal Analysis
-                    </h3>
+                  <h2 className="section-title text-2xl">
+                    Individual Heavy Metal Analysis
                   </h2>
                   <p className="section-subtitle">
                     Detailed breakdown of each heavy metal concentration.
                   </p>
                   <Graphs />
-
-                  {/* <div className="metal-item">
-                  <div className="metal-info">
-                    <p className="metal-name">Lead (Pb)</p>
-                    <p className="metal-value">
-                      8.5 <span className="unit">µg/L</span>
-                    </p>
-                    <p className="metal-limit">Limit: 10 µg/L</p>
-                  </div>
-                  <div className="metal-graph">
-                    <div className="metal-label">85% of safety limit</div>
-                    <div className="metal-bar-track">
-                      <div
-                        className="metal-bar-fill safe-fill"
-                        style={{ width: "85%" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div className="metal-status">
-                    <span className="status-badge safe">Safe</span>
-                  </div>
-                </div> */}
-
-                  {/* <div className="metal-item">
-                  <div className="metal-info">
-                    <p className="metal-name">Cadmium (Cd)</p>
-                    <p className="metal-value">
-                      3.2 <span className="unit">µg/L</span>
-                    </p>
-                    <p className="metal-limit">Limit: 5 µg/L</p>
-                  </div>
-                  <div className="metal-graph">
-                    <div className="metal-label">64% of safety limit</div>
-                    <div className="metal-bar-track">
-                      <div
-                        className="metal-bar-fill safe-fill"
-                        style={{ width: "64%" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div className="metal-status">
-                    <span className="status-badge safe">Safe</span>
-                  </div>
-                </div> */}
                 </div>
                 <div>
                   <div className="chart-grid">

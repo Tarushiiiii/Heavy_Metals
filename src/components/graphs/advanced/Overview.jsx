@@ -61,8 +61,8 @@ const Overview = () => {
 
       <div className="features-grid">
         {siteIndices.map((site) => (
-          <div className="card">
-            <div key={site.name}>
+          <div className="card" key={site.name}>
+            <div>
               <div className="flex justify-between items-center w-full">
                 <h3 className="text-xl font-semibold text-[#212336] mb-2">
                   {site.name}
