@@ -12,4 +12,7 @@ regex
 httpx
 tenacity
 google.generativeai
-
+langgraph
+langchain_community
+langchain-google-genai
+langchain_tavily

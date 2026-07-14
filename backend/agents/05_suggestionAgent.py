@@ -1,8 +1,8 @@
 from google import genai
 from fastapi import APIRouter, HTTPException
 from dotenv import load_dotenv
-import os, json, requests
-import xml.etree.ElementTree as ET
+import os, json
+from agents.tools import fetch_papers_arxiv_tavily
 
 load_dotenv()
 
@@ -12,74 +12,6 @@ suggestionRouter = APIRouter()
 # Load corpus once only
 with open("data/metal_remove_corpus.txt", "r", encoding="utf-8") as f:
     METAL_CORPUS = f.read()
-
-
-def fetch_papers_arxiv_tavily(contaminant: str) -> list:
-    papers = []
-    
-    # 1. Fetch from Tavily (web search, PMC, ScienceDirect)
-    tavily_key = os.getenv("TAVILY_API_KEY")
-    if tavily_key:
-        try:
-            url = "https://api.tavily.com/search"
-            payload = {
-                "api_key": tavily_key,
-                "query": f"{contaminant} removal from water",
-                "search_depth": "basic",
-                "max_results": 3
-            }
-            res = requests.post(url, json=payload, timeout=4)
-            if res.status_code == 200:
-                data = res.json()
-                for r in data.get("results", []):
-                    papers.append({
-                        "title": r.get("title"),
-                        "url": r.get("url"),
-                        "doi": None,
-                        "abstract": r.get("content")
-                    })
-        except Exception:
-            pass
-            
-    # 2. Fetch from arXiv (academic preprints)
-    try:
-        url = "http://export.arxiv.org/api/query"
-        params = {
-            "search_query": f"all:{contaminant} removal water",
-            "max_results": 2
-        }
-        res = requests.get(url, params=params, timeout=4)
-        if res.status_code == 200:
-            root = ET.fromstring(res.content)
-            ns = {'atom': 'http://www.w3.org/2005/Atom'}
-            entries = root.findall('atom:entry', ns)
-            for entry in entries:
-                title_elem = entry.find('atom:title', ns)
-                title = title_elem.text.strip().replace('\n', ' ') if title_elem is not None else "Unknown preprint"
-                
-                id_elem = entry.find('atom:id', ns)
-                id_url = id_elem.text.strip() if id_elem is not None else None
-                
-                summary_elem = entry.find('atom:summary', ns)
-                summary = summary_elem.text.strip().replace('\n', ' ') if summary_elem is not None else ""
-                
-                # DOI if present in arXiv metadata
-                doi = None
-                doi_elem = entry.find('{http://arxiv.org/schemas/atom}doi')
-                if doi_elem is not None:
-                    doi = doi_elem.text.strip()
-                    
-                papers.append({
-                    "title": title,
-                    "url": id_url,
-                    "doi": doi,
-                    "abstract": summary
-                })
-    except Exception:
-        pass
-        
-    return papers
-
 
 @suggestionRouter.get("/user/analysis/suggestions")
 def api_suggestions(
@@ -168,63 +100,32 @@ def api_suggestions(
   }
   """
 
-    # Construct complete prompt
+    # Build context sources dynamically
+    context_sources = []
+    
+    if corpus_present:
+        label = "CONTEXT SOURCE 1 (Local Corpus Guidelines)" if papers else "CONTEXT SOURCE (Local Corpus Guidelines)"
+        context_sources.append(f"{label}:\n{METAL_CORPUS}")
+    else:
+        if not papers:
+            context_sources.append(f"Note: Neither the local corpus nor web search engines returned documents. Please generate standard environmental mitigation recommendations for '{contaminant_clean}' based on international standards (WHO/EPA).")
+        else:
+            context_sources.append(f"Note: The contaminant '{contaminant_clean}' is not covered in detail in our local corpus. Extract your recommendations and support them ENTIRELY using the verified Scientific Web Resources and Preprints provided below.")
+
     if papers:
         papers_text = "\n\n".join([
             f"Paper Title: {p['title']}\nDOI: {p['doi']}\nURL: {p['url']}\nAbstract: {p['abstract']}"
             for p in papers
         ])
+        label = "CONTEXT SOURCE 2 (Verified Scientific Web Resources and Preprints)" if corpus_present else "CONTEXT SOURCE (Verified Scientific Web Resources and Preprints)"
+        context_sources.append(f"{label}:\n{papers_text}")
 
-        if corpus_present:
-            prompt = f"""
+    context_str = "\n\n".join(context_sources)
+
+    prompt = f"""
   {base_instructions}
   
-  CONTEXT SOURCE 1 (Local Corpus Guidelines):
-  {METAL_CORPUS}
-
-  CONTEXT SOURCE 2 (Verified Scientific Web Resources and Preprints):
-  {papers_text}
-  
-  {risk_context}
-
-  QUESTION:
-  {query}
-  """
-        else:
-            prompt = f"""
-  {base_instructions}
-  
-  Note: The contaminant '{contaminant_clean}' is not covered in detail in our local corpus. 
-  Extract your recommendations and support them ENTIRELY using the verified Scientific Web Resources and Preprints provided below.
-
-  CONTEXT SOURCE (Verified Scientific Web Resources and Preprints):
-  {papers_text}
-  
-  {risk_context}
-
-  QUESTION:
-  {query}
-  """
-    else:
-        # Fall back to corpus guidelines if available
-        if corpus_present:
-            prompt = f"""
-  {base_instructions}
-
-  CONTEXT SOURCE (Local Corpus Guidelines):
-  {METAL_CORPUS}
-  
-  {risk_context}
-
-  QUESTION:
-  {query}
-  """
-        else:
-            # If both fail, let Gemini generate general industry standard guidelines
-            prompt = f"""
-  {base_instructions}
-  
-  Note: Neither the local corpus nor web search engines returned documents. Please generate standard environmental mitigation recommendations for '{contaminant_clean}' based on international standards (WHO/EPA).
+  {context_str}
   
   {risk_context}
 
