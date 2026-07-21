@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StatusLegend } from "./statusLegend";
 
 const getClass = (key, value) => {
@@ -40,11 +41,48 @@ const num = (val) => {
 };
 
 export const CalcTable = ({ prediction }) => {
+  const [visibleCount, setVisibleCount] = useState(100);
+  const [showMetals, setShowMetals] = useState(false);
+
   if (!Array.isArray(prediction)) return null;
+
+  const visibleRows = prediction.slice(0, visibleCount);
+
+  const handleReadMore = () => {
+    setVisibleCount((prev) => prev + 100);
+  };
 
   return (
     <>
-      <StatusLegend />
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "16px", flexWrap: "wrap", gap: "12px" }}>
+        <StatusLegend />
+
+        <label
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            fontSize: "13px",
+            fontWeight: "600",
+            cursor: "pointer",
+            userSelect: "none",
+            backgroundColor: "#f8fafc",
+            padding: "8px 14px",
+            borderRadius: "20px",
+            border: "1px solid #cbd5e1",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={showMetals}
+            onChange={(e) => setShowMetals(e.target.checked)}
+            style={{ width: "16px", height: "16px", accentColor: "#0d9488", cursor: "pointer" }}
+          />
+          <span>Show Metal Concentrations</span>
+        </label>
+      </div>
+
       <div
         className="reports-table"
         style={{ width: "100%", overflowX: "auto" }}
@@ -59,13 +97,20 @@ export const CalcTable = ({ prediction }) => {
           <thead>
             <tr>
               <th>S.No.</th>
-              <th>Cr</th>
-              <th>Mn</th>
-              <th>Fe</th>
-              <th>Ni</th>
-              <th>Cu</th>
-              <th>Zn</th>
-              <th>As</th>
+              <th>State</th>
+              <th>District</th>
+
+              {showMetals && (
+                <>
+                  <th>Cr</th>
+                  <th>Mn</th>
+                  <th>Fe</th>
+                  <th>Ni</th>
+                  <th>Cu</th>
+                  <th>Zn</th>
+                  <th>As</th>
+                </>
+              )}
 
               <th>HPI</th>
               <th>HEI</th>
@@ -76,7 +121,7 @@ export const CalcTable = ({ prediction }) => {
           </thead>
 
           <tbody>
-            {prediction.map((row, idx) => {
+            {visibleRows.map((row, idx) => {
               const HPI = num(row.HPI);
               const HEI = num(row.HEI);
               const MI = num(row.MI);
@@ -85,14 +130,20 @@ export const CalcTable = ({ prediction }) => {
               return (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
+                  <td>{row.State}</td>
+                  <td>{row.District}</td>
 
-                  <td>{row.Cr}</td>
-                  <td>{row.Mn}</td>
-                  <td>{row.Fe}</td>
-                  <td>{row.Ni}</td>
-                  <td>{row.Cu}</td>
-                  <td>{row.Zn}</td>
-                  <td>{row.As}</td>
+                  {showMetals && (
+                    <>
+                      <td>{row.Cr}</td>
+                      <td>{row.Mn}</td>
+                      <td>{row.Fe}</td>
+                      <td>{row.Ni}</td>
+                      <td>{row.Cu}</td>
+                      <td>{row.Zn}</td>
+                      <td>{row.As}</td>
+                    </>
+                  )}
 
                   <td className={getClass("HPI", HPI)}>{HPI.toFixed(4)}</td>
                   <td className={getClass("HEI", HEI)}>{HEI.toFixed(4)}</td>
@@ -103,8 +154,8 @@ export const CalcTable = ({ prediction }) => {
                     {getCategoryFromCI(CI) === "Moderate Pollution"
                       ? "Alert"
                       : getCategoryFromCI(CI) === "High Pollution"
-                      ? "Critical"
-                      : "Safe"}
+                        ? "Critical"
+                        : "Safe"}
                   </td>
                 </tr>
               );
@@ -112,6 +163,42 @@ export const CalcTable = ({ prediction }) => {
           </tbody>
         </table>
       </div>
+
+      {visibleCount < prediction.length && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            marginTop: "14px",
+            marginBottom: "20px",
+          }}
+        >
+          <div
+            onClick={handleReadMore}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "8px 18px",
+              backgroundColor: "#0d9488",
+              color: "#ffffff",
+              borderRadius: "20px",
+              fontSize: "13px",
+              fontWeight: "600",
+              cursor: "pointer",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.12)",
+              userSelect: "none",
+              transition: "all 0.2s ease",
+            }}
+          >
+            <span>Read More</span>
+            <span>→</span>
+          </div>
+        </div>
+      )}
     </>
   );
 };
+
+

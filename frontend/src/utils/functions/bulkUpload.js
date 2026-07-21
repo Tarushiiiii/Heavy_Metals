@@ -18,7 +18,7 @@ export const handleBulkUpload = async (
   event.preventDefault();
 
   if (!file) {
-    setError("Please upload a CSV file first!");
+    setError("Please upload a CSV or Excel (.xlsx / .xls) file first!");
     setPrediction(null);
     return;
   }
@@ -35,14 +35,15 @@ export const handleBulkUpload = async (
     const BASE_URL =
       window.location.hostname === "localhost"
         ? "http://127.0.0.1:8000" // FastAPI backend
-        : import.meta.env.VITE_API_URL;
+        : (import.meta.env.VITE_API_URL || "http://127.0.0.1:8000");
 
-    // Correct endpoint (change if needed)
-    const ENDPOINT = "/process_csv"; // or "/predict-bulk"
+    // Endpoint for 5-Agent Pipeline execution
+    const ENDPOINT = "/pipeline/run";
 
     const response = await axios.post(`${BASE_URL}${ENDPOINT}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+
 
     console.log("API RESPONSE:", response.data);
 

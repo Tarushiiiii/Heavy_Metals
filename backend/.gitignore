@@ -18,3 +18,10 @@ logs/
 .idea/
 
 dataset/
+ignore/
+*.json
+*.csv
+*.pkl
+!package.json
+!package-lock.json
+

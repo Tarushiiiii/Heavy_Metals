@@ -66,7 +66,7 @@ const Hero = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20"></div>
 
-        <main className="relative z-10 max-w-3xl mx-auto flex flex-col items-center justify-center">
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center justify-center">
           {/* TOP BUTTON */}
           <NavLink
             onClick={() => openSignIn({ redirectUrl: "/user" })}
@@ -103,7 +103,8 @@ const Hero = () => {
               Explore Tools
             </div>
           </NavLink>
-        </main>
+        </div>
+
 
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent"></div>
       </section>

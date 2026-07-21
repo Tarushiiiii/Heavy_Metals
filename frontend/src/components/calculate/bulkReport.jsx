@@ -86,39 +86,41 @@ export default function BulkReport() {
   }
 
   return (
-    <div className="w-[90%] mx-auto">
-      {/* Controls */}
-      {/* Download CSV */}
-      <div className="flex justify-end">
-        <Button onClickHandler={downloadCSV} type="main" colorVariant="primary">
-          <Download size={18} className="mr-2" />
-          Download CSV
-        </Button>
-      </div>
-      <div className="flex justify-between items-center mb-5">
-        {/* Search */}
-        <div className="flex items-center border px-3 py-2 rounded-md w-1/3">
-          <Search size={18} className="mr-2 text-gray-600" />
-          <input
-            type="text"
-            placeholder="Search all fields..."
-            className="outline-none w-full"
-            onChange={(e) => setSearch(e.target.value)}
+    <div className="w-[95%] max-w-[1400px] mx-auto px-4 flex flex-col items-center">
+      <div className="w-full">
+        {/* Download CSV */}
+
+        <div className="flex justify-end">
+          <Button onClickHandler={downloadCSV} type="main" colorVariant="primary">
+            <Download size={18} className="mr-2" />
+            Download CSV
+          </Button>
+        </div>
+        <div className="flex justify-between items-center mb-5">
+          {/* Search */}
+          <div className="flex items-center border px-3 py-2 rounded-md w-1/3">
+            <Search size={18} className="mr-2 text-gray-600" />
+            <input
+              type="text"
+              placeholder="Search all fields..."
+              className="outline-none w-full"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
+          {/* Date Range Filter */}
+          <DateRangeFilter
+            startDate={startDate}
+            endDate={endDate}
+            min={minDate}
+            max={maxDate}
+            onChange={handleDateChange}
           />
         </div>
 
-        {/* Date Range Filter */}
-        <DateRangeFilter
-          startDate={startDate}
-          endDate={endDate}
-          min={minDate}
-          max={maxDate}
-          onChange={handleDateChange}
-        />
+        {/* Data Table */}
+        <CalcTable prediction={filteredData} />
       </div>
-
-      {/* Data Table */}
-      <CalcTable prediction={filteredData} />
     </div>
   );
 }

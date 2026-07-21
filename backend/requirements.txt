@@ -16,3 +16,13 @@ langgraph
 langchain_community
 langchain-google-genai
 langchain_tavily
+openpyxl 
+joblib
+matplotlib
+sentence-transformers 
+faiss-cpu 
+pypdf 
+tqdm
+transformers 
+accelerate 
+bitsandbytes

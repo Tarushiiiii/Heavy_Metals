@@ -37,8 +37,9 @@ export default function BulkUpload() {
         <div className="upload-box">
           <p className="upload-text">Upload File</p>
           <p className="card-subtitle">
-            Upload a file with multiple groundwater samples for batch processing
+            Upload a CSV or Excel (.xlsx / .xls) file with multiple groundwater samples for 5-Agent pipeline batch processing
           </p>
+
 
           <button
             className="btn choose-file-btn"
@@ -50,10 +51,11 @@ export default function BulkUpload() {
           <input
             type="file"
             id="file-upload"
-            accept=".csv"
+            accept=".csv, .xlsx, .xls"
             style={{ display: "none" }}
             onChange={onFileChange}
           />
+
         </div>
       </div>
 

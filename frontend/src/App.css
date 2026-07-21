@@ -22,12 +22,12 @@ body,
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-main,
 .main-content-wrapper {
   background-color: var(--color-bg) !important;
   color: var(--color-text) !important;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
+
 
 aside {
   background-color: var(--color-card-bg) !important;
