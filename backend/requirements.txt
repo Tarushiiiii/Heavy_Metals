@@ -26,3 +26,4 @@ tqdm
 transformers 
 accelerate 
 bitsandbytes
+arxiv
