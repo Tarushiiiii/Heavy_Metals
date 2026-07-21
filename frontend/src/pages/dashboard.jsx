@@ -1,7 +1,7 @@
 import "../App.css";
 import { KeyMetrics } from "../components/dashboard/key_metrics";
 import { StatusLegend } from "../components/dashboard/legend";
-import { DelhiHeatMap } from "../components/graphs/geoTag";
+import { HeatMap } from "../components/graphs/geoTag";
 import { RecentReports } from "../components/dashboard/recent_reports";
 import { SearchFilter } from "../components/dashboard/searchfilter";
 
@@ -26,9 +26,9 @@ export const Dashboard = () => {
           <SearchFilter />
            </div>
           {/* Map and Charts to be added here */}
-          <DelhiHeatMap />
+          <HeatMap />
         </div>
-        <div className="flex w-[25%] flex-col space-y-1 mx-2">
+        <div className="flex w-[25%] flex-col space-y-1 mx-2 text-wrap">
           {/* Key Metrics to be added here */}
           <KeyMetrics />
           {/* Status Legend to be added here */}

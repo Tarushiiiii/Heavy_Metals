@@ -233,14 +233,14 @@ export default function ManualUpload() {
       formulaHMPI < 50
         ? "Safe"
         : formulaHMPI <= 100
-        ? "Moderate Pollution"
-        : "High Pollution";
+          ? "Moderate Pollution"
+          : "High Pollution";
     const riskLevel =
       formulaHMPI < 50
         ? "Low Risk"
         : formulaHMPI <= 100
-        ? "Medium Risk"
-        : "High Risk";
+          ? "Medium Risk"
+          : "High Risk";
 
     const metalsMap = {};
     if (hmpi.valuesInUgPerL) {
@@ -267,6 +267,20 @@ export default function ManualUpload() {
       Pollution_Status: pollutionStatus,
       Risk_Level: riskLevel,
     };
+
+    const report = {
+      region: formData.location || "Manual Sample",
+      date: new Date().toISOString().slice(0, 10),
+      metal: "N/A",
+      hpi: formulaHMPI,
+      ci: formulaHMPI,
+      status: riskLevel,
+      lat: formData.latitude ? parseFloat(formData.latitude) : 28.7041,
+      lng: formData.longitude ? parseFloat(formData.longitude) : 77.1025,
+      cause: `Manual entry analysis. HPI = ${formulaHMPI.toFixed(2)}, Risk Level = ${riskLevel}.`,
+      ml: "N/A"
+    };
+    useReportStore.getState().setReports([report]);
 
     navigate("/user/analysis", { state: { analysis: analysisPayload } });
   };

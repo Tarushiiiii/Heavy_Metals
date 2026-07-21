@@ -1,7 +1,6 @@
 import React from "react";
 import {
   GoogleMap,
-  HeatmapLayer,
   Circle,
   InfoWindow,
   useJsApiLoader,
@@ -9,7 +8,6 @@ import {
 import { jsPDF } from "jspdf";
 
 import logoImage from "../../assets/images/logo.png";
-import { reportsData } from "../../utils/constants";
 import { formatReportForDownload } from "../../utils/functions/getReport";
 
 const containerStyle = { width: "100%", height: "500px" };
@@ -21,25 +19,18 @@ const statusColors = {
   Safe: "#52d17a",
 };
 
-export const EnhancedGeoTag = () => {
+export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.1025 }, zoom = 10 }) => {
   const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey,
-    libraries: ["visualization"],
-    version: "3.64",
   });
+
+  const displayData = data || [];
 
   const [hovered, setHovered] = React.useState(null);
 
-  const dataPoints = React.useMemo(() => {
-    if (!isLoaded) return [];
-    const google = window.google;
-    return reportsData.map((item) => ({
-      location: new google.maps.LatLng(item.lat, item.lng),
-      weight: item.hpi,
-    }));
-  }, [isLoaded]);
+
 
   // ================== PDF DOWNLOAD FUNCTION ==================
   const handleDownloadReport = (reportData) => {
@@ -235,25 +226,29 @@ export const EnhancedGeoTag = () => {
 
   // ================== MAP RENDER ==================
   return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
       <HeatmapLayer data={dataPoints} />
 
-      {reportsData.map((item) => (
-        <Circle
-          key={item.region}
-          center={{ lat: item.lat, lng: item.lng }}
-          radius={700}
-          options={{
-            strokeColor: statusColors[item.status],
-            strokeOpacity: 1,
-            strokeWeight: 2,
-            fillColor: statusColors[item.status],
-            fillOpacity: 0.5,
-          }}
-          onMouseOver={() => setHovered(item)}
-          onMouseOut={() => setHovered(null)}
-        />
-      ))}
+      {displayData.slice(0, 50).map((item, idx) => {
+        const lat = Number(item.lat ?? item.latitude ?? 28.7041);
+        const lng = Number(item.lng ?? item.longitude ?? 77.1025);
+        return (
+          <Circle
+            key={item.region || `${lat}-${lng}-${idx}`}
+            center={{ lat, lng }}
+            radius={700}
+            options={{
+              strokeColor: statusColors[item.status] || "gray",
+              strokeOpacity: 1,
+              strokeWeight: 2,
+              fillColor: statusColors[item.status] || "gray",
+              fillOpacity: 0.5,
+            }}
+            onMouseOver={() => setHovered({ ...item, lat, lng })}
+            onMouseOut={() => setHovered(null)}
+          />
+        );
+      })}
 
       {hovered && (
         <InfoWindow
@@ -283,7 +278,7 @@ export const EnhancedGeoTag = () => {
             <strong>Analysis:</strong> {hovered.ml}
             <br />
             <strong>Root Cause:</strong>{" "}
-            <span style={{ color: statusColors[hovered.status] }}>
+            <span style={{ color: statusColors[hovered.status] || "gray" }}>
               {hovered.cause}
             </span>
           </div>

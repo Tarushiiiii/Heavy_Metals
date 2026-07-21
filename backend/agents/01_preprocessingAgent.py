@@ -27,7 +27,16 @@ def preprocess_data(df: pd.DataFrame) -> tuple:
     # Track if Lead was in PPB units in original dataset
     is_pb_ppb = any(c in original_cols for c in ["Pb (PPB)", "Pb_ppb", "Lead_Pb_ppb", "Pb (ppb)"])
 
-    df = df.rename(columns=COLUMN_MAP)
+    # Rename columns safely by avoiding duplicate columns
+    rename_dict = {}
+    for old_col, new_col in COLUMN_MAP.items():
+        if old_col in df.columns:
+            if new_col in df.columns:
+                # If target column already exists, we drop the old column (likely a pre-calculated index or redundant column)
+                df = df.drop(columns=[old_col])
+            else:
+                rename_dict[old_col] = new_col
+    df = df.rename(columns=rename_dict)
 
     filename = getattr(df, "attrs", {}).get("filename", "")
     is_ppb_file = "ppb" in str(filename).lower() or any("ppb" in str(c).lower() for c in original_cols)

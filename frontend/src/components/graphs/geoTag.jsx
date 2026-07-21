@@ -1,18 +1,15 @@
 import React from "react";
 import {
   GoogleMap,
-  HeatmapLayer,
   Circle,
   InfoWindow,
   useJsApiLoader,
 } from "@react-google-maps/api";
-import { reportsData } from "../../utils/constants";
 
 const containerStyle = {
   width: "100%",
   height: "500px",
 };
-const center = { lat: 28.7041, lng: 77.1025 };
 
 const statusColors = {
   Alert: "orange",
@@ -20,14 +17,14 @@ const statusColors = {
   Safe: "#52d17a",
 };
 
-export const DelhiHeatMap = () => {
+export const HeatMap = ({ data = [], center = { lat: 28.7041, lng: 77.1025 }, zoom = 10 }) => {
   const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey,
-    libraries: ["visualization"],
-    version: "3.64",
   });
+
+  const displayData = data || [];
 
   const [hovered, setHovered] = React.useState(null);
   const [address, setAddress] = React.useState("Loading...");
@@ -45,42 +42,36 @@ export const DelhiHeatMap = () => {
     }
   };
 
-  const dataPoints = React.useMemo(() => {
-    if (!isLoaded || !window.google) return [];
-    return reportsData.map((item) => ({
-      location: new window.google.maps.LatLng(item.lat, item.lng),
-      weight: item.hpi,
-    }));
-  }, [isLoaded]);
-
   if (!isLoaded) return <div>Loading Map...</div>;
 
   return (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-      <HeatmapLayer data={dataPoints} />
-
-      {reportsData.map((item) => (
-        <Circle
-          key={`${item.lat}-${item.lng}`}
-          center={{ lat: item.lat, lng: item.lng }}
-          radius={700}
-          options={{
-            strokeColor: statusColors[item.status],
-            strokeOpacity: 1,
-            strokeWeight: 2,
-            fillColor: statusColors[item.status],
-            fillOpacity: 0.5,
-          }}
-          onMouseOver={() => {
-            setHovered(item);
-            fetchAddress(item.lat, item.lng); // FREE ADDRESS LOOKUP
-          }}
-          onMouseOut={() => {
-            setHovered(null);
-            setAddress("Loading...");
-          }}
-        />
-      ))}
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
+      {displayData.slice(0, 200).map((item, idx) => {
+        const lat = Number(item.lat ?? item.latitude ?? 28.7041);
+        const lng = Number(item.lng ?? item.longitude ?? 77.1025);
+        return (
+          <Circle
+            key={`${lat}-${lng}-${idx}`}
+            center={{ lat, lng }}
+            radius={700}
+            options={{
+              strokeColor: statusColors[item.status] || "gray",
+              strokeOpacity: 1,
+              strokeWeight: 2,
+              fillColor: statusColors[item.status] || "gray",
+              fillOpacity: 0.5,
+            }}
+            onMouseOver={() => {
+              setHovered({ ...item, lat, lng });
+              fetchAddress(lat, lng);
+            }}
+            onMouseOut={() => {
+              setHovered(null);
+              setAddress("Loading...");
+            }}
+          />
+        );
+      })}
 
       {hovered && (
         <InfoWindow
@@ -96,7 +87,7 @@ export const DelhiHeatMap = () => {
             <strong>Risk:</strong>{" "}
             <span
               style={{
-                color: statusColors[hovered.status],
+                color: statusColors[hovered.status] || "gray",
                 fontWeight: "bold",
               }}
             >

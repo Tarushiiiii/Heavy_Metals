@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FolderUp, Check } from "lucide-react";
 import {
@@ -6,12 +6,23 @@ import {
   handleBulkUpload,
 } from "../../utils/functions/bulkUpload";
 import { CalcTable } from "../ui/calcTable";
+import { useReportStore } from "../../store/reportStore";
+import { formatUploadedRecordsToReports } from "../../utils/functions/utility";
 
 export default function BulkUpload() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [prediction, setPrediction] = useState(null);
+
+  const setReports = useReportStore((state) => state.setReports);
+
+  useEffect(() => {
+    if (prediction?.results) {
+      const mapped = formatUploadedRecordsToReports(prediction.results);
+      setReports(mapped);
+    }
+  }, [prediction, setReports]);
 
   const navigate = useNavigate();
 

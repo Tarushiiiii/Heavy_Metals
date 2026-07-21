@@ -332,12 +332,27 @@ class PipelineOrchestrator:
                 results_records.append(formatted_row)
 
 
+        # Convert state into a JSON-serializable dict by converting any pandas DataFrames to records
+        serializable_state = {}
+        for k, v in state.items():
+            if isinstance(v, dict):
+                serializable_state[k] = {}
+                for sub_k, sub_v in v.items():
+                    if isinstance(sub_v, pd.DataFrame):
+                        serializable_state[k][sub_k] = sub_v.fillna("").to_dict(orient="records")
+                    else:
+                        serializable_state[k][sub_k] = sub_v
+            elif isinstance(v, pd.DataFrame):
+                serializable_state[k] = v.fillna("").to_dict(orient="records")
+            else:
+                serializable_state[k] = v
+
         final_response = {
             "status": "success",
             "total_rows": len(results_records),
             "results": results_records,
             "suggestions": state.get("result_5", {}).get("suggestions"),
-            "pipeline_state": state
+            "pipeline_state": serializable_state
         }
         return final_response
 

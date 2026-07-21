@@ -30,7 +30,6 @@ export const handleAPIUpload = async (
     });
 
     setPrediction(response.data);
-
     console.log("Response:", response.data);
   } catch (err) {
     console.error(err);
