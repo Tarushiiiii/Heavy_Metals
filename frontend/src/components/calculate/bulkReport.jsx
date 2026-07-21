@@ -5,14 +5,18 @@ import { saveAs } from "file-saver";
 import { CalcTable } from "../ui/calcTable";
 import { Button } from "../ui/button";
 import DateRangeFilter from "../ui/calender";
+import { useViewReport } from "../../utils/functions/utility";
 
-export default function BulkReport() {
+export default function BulkReport({ prediction: propPrediction }) {
   const { state } = useLocation();
   const data = state?.fullData || [];
+  const activePrediction = propPrediction || state?.prediction || (data.length > 0 ? { results: data } : null);
 
   const [search, setSearch] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const viewReport = useViewReport();
 
   // Dynamic columns
   const columns = useMemo(() => {
@@ -90,10 +94,15 @@ export default function BulkReport() {
       <div className="w-full">
         {/* Download CSV */}
 
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-4">
           <Button onClickHandler={downloadCSV} type="main" colorVariant="primary">
             <Download size={18} className="mr-2" />
             Download CSV
+          </Button>
+          <Button type="main"
+            colorVariant="secondary"
+            onClickHandler={() => viewReport(activePrediction)}>
+            View Report
           </Button>
         </div>
         <div className="flex justify-between items-center mb-5">

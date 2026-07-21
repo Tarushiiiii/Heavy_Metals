@@ -46,7 +46,106 @@ const getBadgeColor = (classification) => {
   }
 };
 
-const Overview = () => {
+const Overview = ({ analysis }) => {
+  let displaySites = [];
+
+  if (analysis) {
+    let records = [];
+    if (Array.isArray(analysis)) {
+      records = analysis;
+    } else if (Array.isArray(analysis.results)) {
+      records = analysis.results;
+    } else if (Array.isArray(analysis.records)) {
+      records = analysis.records;
+    } else if (Array.isArray(analysis.fullData)) {
+      records = analysis.fullData;
+    }
+
+    if (records.length > 0) {
+      const stateMap = {};
+      let totalHPI = 0, totalHEI = 0, totalCd = 0, totalMI = 0, totalCI = 0;
+
+      records.forEach((row) => {
+        const hmpiVal = Number(row.HMPI || row.Formula_HMPI || row.ML_Predicted_HMPI || row.HPI || row.hpi || 0);
+        const heiVal = Number(row.HEI || row.hei || 0);
+        const miVal = Number(row.MI || row.mi || 0);
+        const cdVal = Number(row.Cd || row.Cd_Excess || row.cd || 0);
+        const ciVal = Number(row.CI || row.Composite_Index || hmpiVal || 0);
+
+        totalHPI += hmpiVal;
+        totalHEI += heiVal;
+        totalCd += cdVal;
+        totalMI += miVal;
+        totalCI += ciVal;
+
+        const rawState = row.State || row.state || row.Region || row.region || row.Location || row.location;
+        const stateName = rawState ? String(rawState).trim() : "Other Regions";
+        if (!stateMap[stateName]) {
+          stateMap[stateName] = { count: 0, HPI: 0, HEI: 0, Cd: 0, MI: 0, CI: 0 };
+        }
+        const st = stateMap[stateName];
+        st.count += 1;
+        st.HPI += hmpiVal;
+        st.HEI += heiVal;
+        st.Cd += cdVal;
+        st.MI += miVal;
+        st.CI += ciVal;
+      });
+
+      const count = records.length;
+      displaySites.push({
+        name: "Overall Dataset Average",
+        HPI: (totalHPI / count).toFixed(2),
+        HEI: (totalHEI / count).toFixed(2),
+        Cd: (totalCd / count).toFixed(2),
+        MI: (totalMI / count).toFixed(2),
+        CI: Math.min(100, Math.round(totalCI / count)),
+        classification: (totalCI / count) > 100 ? "Critical" : (totalCI / count) > 50 ? "Alert" : "Safe"
+      });
+
+      Object.entries(stateMap).forEach(([stateName, st]) => {
+        if (st.count > 0) {
+          const avgCI = st.CI / st.count;
+          displaySites.push({
+            name: `${stateName} Average`,
+            HPI: (st.HPI / st.count).toFixed(2),
+            HEI: (st.HEI / st.count).toFixed(2),
+            Cd: (st.Cd / st.count).toFixed(2),
+            MI: (st.MI / st.count).toFixed(2),
+            CI: Math.min(100, Math.round(avgCI)),
+            classification: avgCI > 100 ? "Critical" : avgCI > 50 ? "Alert" : "Safe"
+          });
+        }
+      });
+    } else {
+      const hmpiVal = Number(analysis.Formula_HMPI || analysis.ML_Predicted_HMPI || analysis.HMPI || analysis.HPI || 0);
+      const cdVal = Number(
+        analysis?.Decoded_Input?.Cd ??
+        analysis?.Decoded_Input?.Cd_Excess ??
+        analysis.Cd_Excess ??
+        analysis.Cd ??
+        0
+      );
+      displaySites = [
+        {
+          name: analysis?.Decoded_Input?.sample_id || "Submitted Sample",
+          HPI: hmpiVal.toFixed(2),
+          HEI: Number(analysis.HEI || 0).toFixed(2),
+          Cd: cdVal.toFixed(2),
+          MI: Number(analysis.MI || 0).toFixed(2),
+          CI: Math.min(100, Math.round(Number(analysis.CI || analysis.Formula_HMPI || hmpiVal || 0))),
+          classification:
+            analysis.Risk_Level === "High Risk" || analysis.Pollution_Status === "High Pollution" || hmpiVal > 100
+              ? "Critical"
+              : analysis.Risk_Level === "Medium Risk" || analysis.Pollution_Status === "Moderate Pollution" || hmpiVal > 50
+                ? "Alert"
+                : "Safe",
+        }
+      ];
+    }
+  } else {
+    displaySites = siteIndices;
+  }
   return (
     <div className="card">
       <h2 className="summary-title">
@@ -60,7 +159,7 @@ const Overview = () => {
       </p>
 
       <div className="features-grid">
-        {siteIndices.map((site) => (
+        {displaySites.map((site) => (
           <div className="card" key={site.name}>
             <div>
               <div className="flex justify-between items-center w-full">
@@ -111,7 +210,7 @@ const Overview = () => {
                 </div>
               </div>
               {/* Composite Index as progress bar */}
-              <div
+              {/* <div
                 style={{ width: "150px", height: "150px", margin: "0 auto" }}
               >
                 <CircularProgressbar
@@ -129,7 +228,7 @@ const Overview = () => {
               </div>
               <p className="font-semibold text-center">
                 Composite Index + ML Result
-              </p>
+              </p> */}
             </div>
           </div>
         ))}

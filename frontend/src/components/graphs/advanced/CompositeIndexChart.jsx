@@ -1,139 +1,6 @@
-// // src/components/graphs/advanced/CompositeIndexChart.jsx
-// import React from "react";
-// import { Radar } from "react-chartjs-2";
-// import {
-//   Chart as ChartJS,
-//   RadialLinearScale,
-//   PointElement,
-//   LineElement,
-//   Filler,
-//   Tooltip,
-//   Legend,
-//   Title,
-// } from "chart.js";
-
-// ChartJS.register(
-//   RadialLinearScale,
-//   PointElement,
-//   LineElement,
-//   Filler,
-//   Tooltip,
-//   Legend,
-//   Title
-// );
-
-// const buildFromComposite = (compositeData) => {
-//   // compositeData expected shape:
-//   // { labels: [...], series: [{ name, data: [...] }, ...] }
-//   if (!compositeData) {
-//     // fallback to original dummy
-//     return {
-//       labels: ["HPI", "HEI", "MI", "Cd"],
-//       datasets: [
-//         {
-//           label: "Mayur Vihar",
-//           data: [65, 40, 55, 10],
-//           backgroundColor: "rgba(53, 83, 132, 0.2)",
-//           borderColor: "rgba(53, 83, 132, 1)",
-//           borderWidth: 2,
-//           pointBackgroundColor: "rgba(53, 83, 132, 1)",
-//         },
-//         {
-//           label: "Dwarka Sec 23",
-//           data: [80, 45, 60, 20],
-//           backgroundColor: "rgba(42, 185, 122, 0.2)",
-//           borderColor: "rgba(42, 185, 122, 1)",
-//           borderWidth: 2,
-//           pointBackgroundColor: "rgba(42, 185, 122, 1)",
-//         },
-//       ],
-//     };
-//   }
-
-//   const labels = compositeData.labels || [];
-//   const datasets = (compositeData.series || []).map((s, i) => {
-//     // choose colors by index (chartjs accepts rgba string)
-//     const baseColors = [
-//       "53,83,132",
-//       "42,185,122",
-//       "154,218,128",
-//       "240,120,120",
-//       "180,140,220",
-//     ];
-//     const c = baseColors[i % baseColors.length];
-//     return {
-//       label: s.name || `Series ${i + 1}`,
-//       data: s.data || [],
-//       backgroundColor: `rgba(${c}, 0.2)`,
-//       borderColor: `rgba(${c}, 1)`,
-//       borderWidth: 2,
-//       pointBackgroundColor: `rgba(${c}, 1)`,
-//     };
-//   });
-
-//   return { labels, datasets };
-// };
-
-// const CompositeIndexChart = ({ compositeData }) => {
-//   const chartData = buildFromComposite(compositeData);
-
-//   const options = {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     plugins: {
-//       legend: {
-//         position: "top",
-//         labels: {
-//           font: { size: 13 },
-//           color: "#000",
-//         },
-//       },
-//       title: {
-//         display: true,
-//         text: "Composite Index Comparison (HPI, HEI, MI, Cd)",
-//         font: { size: 18, weight: "bold" },
-//         color: "#111",
-//         padding: { bottom: 12, top: 10 },
-//       },
-//     },
-//     scales: {
-//       r: {
-//         beginAtZero: true,
-//         min: 0,
-//         max: 100,
-//         ticks: {
-//           stepSize: 20,
-//           color: "#444",
-//         },
-//         pointLabels: {
-//           color: "#111",
-//           font: {
-//             size: 14,
-//             weight: "bold",
-//           },
-//         },
-//         grid: {
-//           color: "rgba(0,0,0,0.1)",
-//         },
-//         angleLines: {
-//           color: "rgba(0,0,0,0.1)",
-//         },
-//       },
-//     },
-//   };
-
-//   return (
-//     <div className="graph-card" style={{ height: "500px", padding: "1rem" }}>
-//       <Radar data={chartData} options={options} />
-//     </div>
-//   );
-// };
-
-// export default CompositeIndexChart;
-
-// src/components/graphs/advanced/CompositeIndexChart.jsx
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Radar } from "react-chartjs-2";
+import { Compass } from "lucide-react";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -155,65 +22,121 @@ ChartJS.register(
   Title
 );
 
-/**
- * Utility: try to build a unified compositeData shape from several possible inputs:
- * - Already in shape { labels: [...], series: [{ name, data: [...]}, ...] }
- * - analysis-like object: { Formula_HMPI, HEI, MI, Decoded_Input: { Cd: ... } }
- * - a single-series object where values are numbers
- */
 function normalizeComposite(input) {
   if (!input) return null;
 
-  // If already the expected shape
-  if (Array.isArray(input.labels) && Array.isArray(input.series)) {
+  // 1. If already the expected shape { labels: [...], series: [{ name, data: [...] }] }
+  if (Array.isArray(input.labels) && Array.isArray(input.series) && input.series.length > 0) {
     return input;
   }
 
-  // If someone passed an "analysis" raw object (fields at top-level)
-  const topKeys = ["Formula_HMPI", "HEI", "MI"];
-  const hasTopKeys = topKeys.every((k) => k in input);
+  // 2. Extract bulk dataset records array if available
+  let records = [];
+  if (Array.isArray(input)) {
+    records = input;
+  } else if (Array.isArray(input.results)) {
+    records = input.results;
+  } else if (Array.isArray(input.records)) {
+    records = input.records;
+  } else if (Array.isArray(input.fullData)) {
+    records = input.fullData;
+  }
 
-  if (hasTopKeys) {
-    const cdVal =
-      input?.Decoded_Input?.Cd ??
-      input?.Decoded_Input?.Cd_Excess ??
-      input?.Cd ??
-      input?.Cd_Excess ??
-      0;
+  if (records.length > 0) {
+    const stateMap = {};
+    records.forEach((row) => {
+      const rawState = row.State || row.state || row.Region || row.region || row.Location || row.location;
+      const stateName = rawState ? String(rawState).trim() : "Submitted Dataset";
 
+      if (!stateMap[stateName]) {
+        stateMap[stateName] = {
+          name: stateName,
+          count: 0,
+          totalHMPI: 0,
+          totalHEI: 0,
+          totalCd: 0,
+          totalMI: 0,
+        };
+      }
+
+      const st = stateMap[stateName];
+      st.count += 1;
+      st.totalHMPI += Number(row.HMPI || row.Formula_HMPI || row.ML_Predicted_HMPI || row.HPI || row.hpi || 0);
+      st.totalHEI += Number(row.HEI || row.hei || 0);
+      st.totalCd += Number(row.Cd || row.Cd_Excess || row.cd || 0);
+      st.totalMI += Number(row.MI || row.mi || 0);
+    });
+
+    const series = Object.values(stateMap).map((st) => ({
+      name: st.name,
+      data: [
+        Number((st.totalHMPI / st.count).toFixed(2)),
+        Number((st.totalHEI / st.count).toFixed(2)),
+        Number((st.totalMI / st.count).toFixed(2)),
+        Number((st.totalCd / st.count).toFixed(2)),
+      ],
+    }));
+
+    return {
+      labels: ["HMPI", "HEI", "MI", "Cd"],
+      series,
+    };
+  }
+
+  // 3. Single sample object fallback (flexible key checking)
+  const hmpi =
+    input.Formula_HMPI ??
+    input.ML_Predicted_HMPI ??
+    input.HMPI ??
+    input.HPI ??
+    input.hpi;
+
+  const hei = input.HEI ?? input.hei;
+  const mi = input.MI ?? input.mi;
+  const cd =
+    input?.Decoded_Input?.Cd ??
+    input?.Decoded_Input?.Cd_Excess ??
+    input.Cd_Excess ??
+    input.Cd ??
+    input.cd;
+
+  if (hmpi !== undefined || hei !== undefined || mi !== undefined || cd !== undefined) {
     return {
       labels: ["HMPI", "HEI", "MI", "Cd"],
       series: [
         {
-          name: "This Sample",
+          name: input?.Decoded_Input?.sample_id || "Submitted Sample",
           data: [
-            Number(input.Formula_HMPI || 0),
-            Number(input.HEI || 0),
-            Number(input.MI || 0),
-            Number(cdVal || 0),
+            Number(hmpi || 0),
+            Number(hei || 0),
+            Number(mi || 0),
+            Number(cd || 0),
           ],
         },
       ],
     };
   }
 
-  // If input is an object with numeric values directly (e.g. {HPI:.., HEI:..})
-  const numericKeys = Object.entries(input).filter(
-    ([k, v]) => typeof v === "number" || typeof v === "string"
-  );
+  // 4. Object with direct numeric properties
+  if (typeof input === "object") {
+    const numericEntries = Object.entries(input).filter(
+      ([k, v]) => (typeof v === "number" || (!isNaN(v) && v !== "")) && typeof v !== "boolean"
+    );
 
-  if (numericKeys.length >= 2) {
-    // pick first 4 numeric keys (stable order)
-    const sliced = numericKeys.slice(0, 4);
-    const labels = sliced.map(([k]) => k);
-    const data = sliced.map(([, v]) => Number(v));
-    return {
-      labels,
-      series: [{ name: "This Sample", data }],
-    };
+    if (numericEntries.length >= 2) {
+      const sliced = numericEntries.slice(0, 4);
+      return {
+        labels: sliced.map(([k]) => k),
+        series: [
+          {
+            name: "Submitted Sample",
+            data: sliced.map(([, v]) => Number(v)),
+          },
+        ],
+      };
+    }
   }
 
-  // If nothing matched
   return null;
 }
 
@@ -221,52 +144,45 @@ const chooseColor = (i) => {
   const baseColors = [
     "53,83,132",
     "42,185,122",
-    "154,218,128",
-    "240,120,120",
+    "240,140,60",
+    "239,68,68",
     "180,140,220",
+    "59,130,246",
   ];
   return baseColors[i % baseColors.length];
 };
 
-const buildChartData = (compositeDataNormalized) => {
+const buildChartData = (compositeDataNormalized, selectedState = "ALL") => {
   if (!compositeDataNormalized) return null;
 
   const labels = compositeDataNormalized.labels || [];
-  const datasets =
-    (compositeDataNormalized.series || []).map((s, i) => {
-      // if s.data is not array but single number, convert it to array matching labels length
+  const series = compositeDataNormalized.series || [];
+
+  const datasets = series
+    .map((s, i) => ({ s, originalIndex: i }))
+    .filter(({ s }) => selectedState === "ALL" || s.name === selectedState)
+    .map(({ s, originalIndex }) => {
       let data = s.data;
       if (!Array.isArray(data)) {
-        if (typeof data === "number") {
-          // replicate the single number across labels (fallback)
-          data = labels.map(() => data);
-        } else if (typeof data === "object" && data !== null) {
-          // If data is an object like {HPI:.., HEI:..} convert by labels
-          data = labels.map((lab) =>
-            typeof data[lab] !== "undefined" ? Number(data[lab]) : 0
-          );
-        } else {
-          data = labels.map(() => 0);
-        }
+        data = labels.map(() => 0);
       }
 
-      // ensure length matches labels (pad/truncate)
       if (data.length < labels.length) {
         data = data.concat(new Array(labels.length - data.length).fill(0));
       } else if (data.length > labels.length) {
         data = data.slice(0, labels.length);
       }
 
-      const c = chooseColor(i);
+      const c = chooseColor(originalIndex);
       return {
-        label: s.name || `Series ${i + 1}`,
+        label: s.name || `Series ${originalIndex + 1}`,
         data,
-        backgroundColor: `rgba(${c}, 0.2)`,
+        backgroundColor: `rgba(${c}, 0.25)`,
         borderColor: `rgba(${c}, 1)`,
         borderWidth: 2,
         pointBackgroundColor: `rgba(${c}, 1)`,
       };
-    }) || [];
+    });
 
   return { labels, datasets };
 };
@@ -276,11 +192,42 @@ const CompositeIndexChart = ({ compositeData }) => {
   // eslint-disable-next-line no-console
   console.debug("CompositeIndexChart: received compositeData:", compositeData);
 
+  const [selectedState, setSelectedState] = useState("ALL");
+
   // normalize and memoize to avoid unnecessary recalcs
   const normalized = useMemo(() => normalizeComposite(compositeData), [compositeData]);
 
+  // Extract available states dynamically
+  const stateNames = useMemo(() => {
+    if (!normalized || !normalized.series) return [];
+    return normalized.series.map((s) => s.name).filter(Boolean);
+  }, [normalized]);
+
+  // Auto-reset state filter if it doesn't exist in new dataset
+  useEffect(() => {
+    if (selectedState !== "ALL" && !stateNames.includes(selectedState)) {
+      setSelectedState("ALL");
+    }
+  }, [stateNames, selectedState]);
+
   // build chartData
-  const chartData = useMemo(() => buildChartData(normalized), [normalized]);
+  const chartData = useMemo(() => buildChartData(normalized, selectedState), [normalized, selectedState]);
+
+  // Dynamically calculate the maximum value to avoid scale squash or clipping
+  const maxVal = useMemo(() => {
+    if (!chartData || !chartData.datasets) return 100;
+    let highest = 100;
+    chartData.datasets.forEach((ds) => {
+      if (Array.isArray(ds.data)) {
+        ds.data.forEach((val) => {
+          if (val && !isNaN(val) && val > highest) {
+            highest = val;
+          }
+        });
+      }
+    });
+    return Math.ceil(highest / 20) * 20;
+  }, [chartData]);
 
   const options = {
     responsive: true,
@@ -294,21 +241,16 @@ const CompositeIndexChart = ({ compositeData }) => {
         },
       },
       title: {
-        display: true,
-        text: "Composite Index Comparison (HPI, HEI, MI, Cd)",
-        font: { size: 18, weight: "bold" },
-        color: "#111",
-        padding: { bottom: 12, top: 10 },
+        display: false,
       },
     },
     scales: {
       r: {
         beginAtZero: true,
         min: 0,
-        // If values exceed 100, auto-scale by not forcing max.
-        // You can set max to 100 if you want a fixed scale.
+        max: maxVal,
         ticks: {
-          stepSize: 10,
+          stepSize: 20,
           color: "#444",
         },
         pointLabels: {
@@ -328,7 +270,6 @@ const CompositeIndexChart = ({ compositeData }) => {
     },
   };
 
-  // show friendly placeholder if no usable data
   if (!chartData || !chartData.datasets || chartData.datasets.length === 0) {
     return (
       <div className="graph-card" style={{ height: "300px", padding: "1rem" }}>
@@ -344,8 +285,41 @@ const CompositeIndexChart = ({ compositeData }) => {
   }
 
   return (
-    <div className="graph-card" style={{ height: "500px", padding: "1rem" }}>
-      <Radar data={chartData} options={options} />
+    <div className="graph-card" style={{ height: "500px", padding: "1.2rem 1rem", display: "flex", flexDirection: "column" }}>
+      <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
+        <div>
+          <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <Compass size={22} className="text-blue-600" />
+            Composite Index Comparison
+          </h3>
+          <p className="text-xs text-gray-500" style={{ margin: 0 }}>
+            Radar chart comparing HMPI, HEI, MI, and Cd
+          </p>
+        </div>
+
+        {stateNames.length > 1 && (
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold text-gray-700">Filter State:</span>
+            <select
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+              className="custom-select py-1.5 px-3 border rounded text-sm bg-white shadow-sm"
+              style={{ height: "auto" }}
+            >
+              <option value="ALL">All States ({stateNames.length})</option>
+              {stateNames.map((st) => (
+                <option key={st} value={st}>
+                  {st}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
+
+      <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
+        <Radar data={chartData} options={options} />
+      </div>
     </div>
   );
 };

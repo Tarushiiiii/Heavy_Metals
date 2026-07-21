@@ -25,7 +25,7 @@ const demoPayload = {
   ],
 };
 
-export default function ShowAnalysis({ applyAnalysis, response }) {
+export default function ShowAnalysis({ applyAnalysis, prediction }) {
   // Normalize axios-like response
   const extractPayload = (res) => {
     if (!res) return null;

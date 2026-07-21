@@ -22,7 +22,7 @@ export default function BulkUpload() {
 
   const handleReadMore = () => {
     navigate("/user/analysis/bulk-report", {
-      state: { fullData: prediction.results },
+      state: { fullData: prediction?.results || [], prediction: prediction },
     });
   };
 

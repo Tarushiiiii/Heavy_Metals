@@ -35,10 +35,9 @@ export const Footer = () => {
                 <NavLink
                   to="/user/about_us"
                   className={({ isActive }) =>
-                    `${linkBaseClass} ${
-                      isActive
-                        ? "bg-[#0e9486] text-white"
-                        : "text-white hover:underline"
+                    `${linkBaseClass} ${isActive
+                      ? "bg-[#0e9486] text-white"
+                      : "text-white hover:underline"
                     }`
                   }
                 >
@@ -50,10 +49,9 @@ export const Footer = () => {
                 <NavLink
                   to="/user/calculate_hmpi"
                   className={({ isActive }) =>
-                    `${linkBaseClass} ${
-                      isActive
-                        ? "bg-[#0e9486] text-white"
-                        : "text-white hover:underline"
+                    `${linkBaseClass} ${isActive
+                      ? "bg-[#0e9486] text-white"
+                      : "text-white hover:underline"
                     }`
                   }
                 >
@@ -65,10 +63,9 @@ export const Footer = () => {
                 <NavLink
                   to="/user/analysis"
                   className={({ isActive }) =>
-                    `${linkBaseClass} ${
-                      isActive
-                        ? "bg-[#0e9486] text-white"
-                        : "text-white hover:underline"
+                    `${linkBaseClass} ${isActive
+                      ? "bg-[#0e9486] text-white"
+                      : "text-white hover:underline"
                     }`
                   }
                 >
@@ -80,10 +77,9 @@ export const Footer = () => {
                 <NavLink
                   to="/user/map"
                   className={({ isActive }) =>
-                    `${linkBaseClass} ${
-                      isActive
-                        ? "bg-[#0e9486] text-white"
-                        : "text-white hover:underline"
+                    `${linkBaseClass} ${isActive
+                      ? "bg-[#0e9486] text-white"
+                      : "text-white hover:underline"
                     }`
                   }
                 >
@@ -95,10 +91,9 @@ export const Footer = () => {
                 <NavLink
                   to="/user/reports"
                   className={({ isActive }) =>
-                    `${linkBaseClass} ${
-                      isActive
-                        ? "bg-[#0e9486] text-white"
-                        : "text-white hover:underline"
+                    `${linkBaseClass} ${isActive
+                      ? "bg-[#0e9486] text-white"
+                      : "text-white hover:underline"
                     }`
                   }
                 >
@@ -121,7 +116,7 @@ export const Footer = () => {
 
       {/* Bottom */}
       <p className="pt-4 text-center text-xs md:text-sm pb-5 opacity-80">
-        © 2025{" "}
+        © 2026{" "}
         <NavLink to="/user" className="font-medium text-white hover:underline">
           JalDhatu
         </NavLink>{" "}

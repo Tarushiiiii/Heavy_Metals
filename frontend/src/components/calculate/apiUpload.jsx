@@ -107,7 +107,7 @@ export default function APIUpload() {
           <Button
             type="main"
             colorVariant="secondary"
-            onClickHandler={viewReport}
+            onClickHandler={() => viewReport(prediction)}
           >
             View Detailed Report
           </Button>

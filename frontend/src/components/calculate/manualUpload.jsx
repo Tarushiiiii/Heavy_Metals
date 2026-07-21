@@ -1,10 +1,12 @@
 import React, { useState, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FlaskConical,
   TestTubeDiagonal,
   ChevronDown,
   CircleCheckBig,
 } from "lucide-react";
+import { Button } from "../ui/button";
 import { handleManualSubmit } from "../../utils/functions/manualUpload"; // path -> adjust if needed
 import "../ui/css/about_us.css";
 import "../ui/css/data_entry.css";
@@ -222,6 +224,52 @@ export default function ManualUpload() {
   // errors & result
   const [errors, setErrors] = useState({});
   const [hmpi, setHmpi] = useState(null);
+  const navigate = useNavigate();
+
+  const handleViewReport = () => {
+    if (!hmpi) return;
+    const formulaHMPI = typeof hmpi.hpi === "number" ? hmpi.hpi : 0;
+    const pollutionStatus =
+      formulaHMPI < 50
+        ? "Safe"
+        : formulaHMPI <= 100
+        ? "Moderate Pollution"
+        : "High Pollution";
+    const riskLevel =
+      formulaHMPI < 50
+        ? "Low Risk"
+        : formulaHMPI <= 100
+        ? "Medium Risk"
+        : "High Risk";
+
+    const metalsMap = {};
+    if (hmpi.valuesInUgPerL) {
+      Object.keys(hmpi.valuesInUgPerL).forEach((key) => {
+        metalsMap[key] = (hmpi.valuesInUgPerL[key] / 1000).toFixed(4);
+      });
+    }
+
+    const analysisPayload = {
+      Decoded_Input: {
+        ...metalsMap,
+        sample_id: "MANUAL-" + Date.now().toString().slice(-4),
+        coordinates:
+          formData.latitude && formData.longitude
+            ? `${formData.latitude}, ${formData.longitude}`
+            : "40.7128, -74.0060",
+      },
+      Formula_HMPI: formulaHMPI,
+      ML_Predicted_HMPI: formulaHMPI,
+      HEI: hmpi.hei ?? 0,
+      Cd_Excess: hmpi.Cd ?? 0,
+      MI: hmpi.mi ?? 0,
+      CI: formulaHMPI,
+      Pollution_Status: pollutionStatus,
+      Risk_Level: riskLevel,
+    };
+
+    navigate("/user/analysis", { state: { analysis: analysisPayload } });
+  };
 
   // custom metal temp state
   const [customMetal, setCustomMetal] = useState({
@@ -480,6 +528,15 @@ export default function ManualUpload() {
             </ul>
           </div>
           <StatusLegend statusLabels={["Safe", "Critical", "Risky"]} />
+          <div style={{ marginTop: "16px" }}>
+            <Button
+              type="main"
+              colorVariant="secondary"
+              onClickHandler={handleViewReport}
+            >
+              View Detailed Report
+            </Button>
+          </div>
         </div>
       )}
 
