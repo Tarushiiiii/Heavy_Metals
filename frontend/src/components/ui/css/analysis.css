@@ -26,7 +26,9 @@
   font-weight: 600;
   border-radius: 24px 24px 0 0;
   cursor: pointer;
-  transition: background 0.17s, color 0.17s;
+  transition:
+    background 0.17s,
+    color 0.17s;
   outline: none;
 }
 
@@ -394,19 +396,19 @@
 .classification-box.safe {
   border: 2px solid #20c15b;
   background-color: #1bb581;
-  color: #ffffff;
+  color: #000000;
 }
 
 .classification-box.moderate {
   border: 2px solid #ff902e;
   background-color: #ffb366;
-  color: #ffffff;
+  color: #000000;
 }
 
 .classification-box.elevated {
   border: 2px solid #ff3131;
   background-color: #ff6b6b;
-  color: #ffffff;
+  color: #000000;
 }
 
 .range-value {

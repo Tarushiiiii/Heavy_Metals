@@ -71,11 +71,11 @@ const router = createBrowserRouter([
         handle: { header: "Suggestions" },
       },
 
-      {
-        path: "settings",
-        element: <Settings />,
-        handle: { header: "Settings" },
-      },
+      // {
+      //   path: "settings",
+      //   element: <Settings />,
+      //   handle: { header: "Settings" },
+      // },
       {
         path: "analysis/bulk-report",
         element: <BulkReport />,
