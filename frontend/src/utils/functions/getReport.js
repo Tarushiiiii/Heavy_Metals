@@ -18,9 +18,10 @@ export const formatReportForDownload = (reportData) => {
         suggestionText = "Maintain regular surveillance and promote local Aquifer Recharge.";
     }
 
-    const placeName = reportData.district && reportData.state
-        ? `${reportData.district}, ${reportData.state}`
-        : (reportData.district || reportData.region || reportData.place || reportData.location || "N/A");
+    const placeName = reportData.reverseAddress
+        || (reportData.district && reportData.state ? `${reportData.district}, ${reportData.state}` : null)
+        || reportData.district || reportData.region || reportData.place || reportData.location
+        || "N/A";
 
     // --- Mapping Logic ---
     return {

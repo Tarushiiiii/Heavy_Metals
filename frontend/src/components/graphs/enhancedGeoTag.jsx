@@ -8,6 +8,7 @@ import {
 
 import { handleDownloadReport } from "../../utils/functions/userNavs";
 import { getLocationName } from "../../utils/functions/utility";
+import { X } from "lucide-react";
 
 const containerStyle = { width: "100%", height: "550px", borderRadius: "12px" };
 
@@ -17,7 +18,9 @@ const statusColors = {
   Safe: "#10b981",
 };
 
-export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.1025 }, zoom = 10 }) => {
+const DELHI_CENTER = { lat: 28.6139, lng: 77.2090 };
+
+export const EnhancedGeoTag = ({ data = [], zoom = 11 }) => {
   const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const { isLoaded } = useJsApiLoader({
@@ -27,15 +30,46 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
   const displayData = Array.isArray(data) ? data.slice(0, 50) : [];
 
   const [hovered, setHovered] = React.useState(null);
+  const [reverseAddress, setReverseAddress] = React.useState("");
+  const geoCacheRef = React.useRef(new Map());
+
+  React.useEffect(() => {
+    if (!hovered) { setReverseAddress(""); return; }
+    const key = `${hovered.lat.toFixed(4)},${hovered.lng.toFixed(4)}`;
+    if (geoCacheRef.current.has(key)) {
+      setReverseAddress(geoCacheRef.current.get(key));
+      return;
+    }
+    let active = true;
+    fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${hovered.lat}&lon=${hovered.lng}`,
+      { headers: { "Accept-Language": "en" } }
+    )
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (!active || !data) return;
+        const addr = data.address || {};
+        const place =
+          addr.suburb || addr.neighbourhood || addr.village ||
+          addr.residential || addr.city_district ||
+          data.display_name?.split(",")?.[0] || "";
+        const city = addr.city || addr.town || addr.county || "";
+        const label = place && city && place !== city ? `${place}, ${city}` : place || city || data.display_name || "";
+        geoCacheRef.current.set(key, label);
+        setReverseAddress(label);
+      })
+      .catch(() => { });
+    return () => { active = false; };
+  }, [hovered]);
 
   const handleButtonFixedClick = (e, reportData) => {
     e.stopPropagation();
-    handleDownloadReport(reportData);
+    handleDownloadReport({ ...reportData, reverseAddress });
   };
 
   // ================== MAP RENDER ==================
   return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
+    <GoogleMap mapContainerStyle={containerStyle} center={DELHI_CENTER} zoom={zoom}>
       {displayData.map((item, idx) => {
         const lat = Number(item.lat ?? item.latitude ?? item.Lat ?? item.LATITUDE ?? item.Latitude);
         const lng = Number(item.lng ?? item.longitude ?? item.Lng ?? item.LONGITUDE ?? item.Longitude);
@@ -91,8 +125,8 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
           onCloseClick={() => setHovered(null)}
         >
           <div style={{ padding: "6px", maxWidth: "260px", fontFamily: "sans-serif" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-              <strong style={{ fontSize: "14px", color: "#1f2937" }}>{hovered.locationName}</strong>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px", gap: "8px" }}>
+              <strong style={{ fontSize: "14px", color: "#1f2937" }}>{reverseAddress || hovered.locationName}</strong>
               <span
                 style={{
                   backgroundColor: hovered.color,
@@ -106,7 +140,6 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
                 {hovered.statusKey}
               </span>
             </div>
-
             {hovered.sample_id && (
               <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "4px" }}>
                 Sample ID: {hovered.sample_id}
@@ -135,7 +168,7 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
               }}
               onClick={(e) => handleButtonFixedClick(e, hovered)}
             >
-              📄 Download PDF Report
+              Download PDF Report
             </button>
           </div>
         </InfoWindow>

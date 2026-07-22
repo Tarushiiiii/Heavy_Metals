@@ -120,10 +120,10 @@ export const handleDownloadReport = (reportData) => {
     let boxColor = [82, 209, 122];
     let statusText = "Safe";
 
-    if (ciValue >= 0.9) {
+    if (ciValue >= 100) {
         boxColor = [255, 92, 92];
         statusText = "Critical";
-    } else if (ciValue >= 0.5) {
+    } else if (ciValue >= 50) {
         boxColor = [255, 204, 0];
         statusText = "Alert";
     }
@@ -133,7 +133,7 @@ export const handleDownloadReport = (reportData) => {
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
     doc.text(
-        "Unified Value",
+        "Composite Index",
         rightColX + boxWidth / 2,
         unifiedBoxY + 12,
         { align: "center" }
@@ -191,7 +191,10 @@ export const handleDownloadReport = (reportData) => {
     doc.setTextColor(51, 51, 255);
     doc.text("JalDhatu", 105, 280, { align: "center" });
 
-    doc.save(`${regionIdentifier}_HMPI_Report.pdf`);
+    const safePlace = (finalReportData.Place || regionIdentifier)
+        .replace(/[/\\?%*:|"<>]/g, "")
+        .trim();
+    doc.save(`${safePlace} HMPI Report.pdf`);
 };
 
 export const handleFileUpload = async (event) => {
