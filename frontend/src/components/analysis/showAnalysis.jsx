@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const demoPayload = {
   Decoded_Input: {
     Pb: 0.02,
@@ -34,9 +36,9 @@ export default function ShowAnalysis({ applyAnalysis, prediction }) {
   };
 
   useEffect(() => {
-    const payload = extractPayload(response);
+    const payload = extractPayload(prediction);
     if (payload) applyAnalysis(payload);
-  }, [response]);
+  }, [prediction, applyAnalysis]);
 
   return (
     <div className="results-page" style={{ padding: "2rem" }}>

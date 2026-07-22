@@ -44,7 +44,7 @@ const ResultStandardsChart = () => {
   const ppbStandard = [40, 100, 3, 10];
 
   // Generate datasets
-  const generateDatasets = (observed, standard) =>
+  const generateDatasets = (observed) =>
     sitesColors.map((color, siteIndex) => ({
       label: siteNames[siteIndex],
       data: observed.map((metal) => metal[siteIndex]),

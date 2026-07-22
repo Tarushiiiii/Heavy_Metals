@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-export const parseStateData = (records) => {
+const parseStateData = (records) => {
   if (!Array.isArray(records) || records.length === 0) return null;
 
   const stateMap = {};

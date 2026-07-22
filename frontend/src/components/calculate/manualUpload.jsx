@@ -9,6 +9,7 @@ import {
 import { Button } from "../ui/button";
 import { handleManualSubmit } from "../../utils/functions/manualUpload"; // path -> adjust if needed
 import { formatUploadedRecordsToReports } from "../../utils/functions/utility";
+import { useReportStore } from "../../store/reportStore";
 import "../ui/css/about_us.css";
 import "../ui/css/data_entry.css";
 
@@ -198,7 +199,6 @@ export default function ManualUpload() {
       };
     });
     return res;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // state

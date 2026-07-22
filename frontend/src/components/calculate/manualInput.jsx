@@ -1,12 +1,10 @@
 import { useState } from "react";
 import {
-  FlaskConical,
   TestTubeDiagonal,
   ChevronDown,
   CircleCheckBig,
 } from "lucide-react";
 import { handleManualSubmit } from "../../utils/functions/manualUpload";
-import { useViewReport } from "../../utils/functions/utility";
 import "../ui/css/about_us.css";
 import "../ui/css/data_entry.css";
 export default function ManualInput() {
@@ -35,6 +33,13 @@ export default function ManualInput() {
     zinc: "µg/L",
     nickel: "µg/L",
   });
+
+  const handleUnitChange = (e, id) => {
+    setUnits((prev) => ({
+      ...prev,
+      [id]: e.target.value,
+    }));
+  };
 
   const [errors, setErrors] = useState({});
   const [hmpi, setHmpi] = useState(null);

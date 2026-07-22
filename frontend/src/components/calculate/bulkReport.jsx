@@ -9,7 +9,7 @@ import { useViewReport } from "../../utils/functions/utility";
 
 export default function BulkReport({ prediction: propPrediction }) {
   const { state } = useLocation();
-  const data = state?.fullData || [];
+  const data = useMemo(() => state?.fullData || [], [state?.fullData]);
   const activePrediction = propPrediction || state?.prediction || (data.length > 0 ? { results: data } : null);
 
   const [search, setSearch] = useState("");

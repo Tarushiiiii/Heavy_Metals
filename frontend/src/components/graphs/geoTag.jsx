@@ -37,7 +37,7 @@ export const HeatMap = ({ data = [], center = { lat: 28.7041, lng: 77.1025 }, zo
       );
       const data = await res.json();
       setAddress(data.display_name || "Address not available");
-    } catch (err) {
+    } catch {
       setAddress("Address not available");
     }
   };

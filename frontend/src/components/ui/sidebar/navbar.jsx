@@ -16,7 +16,7 @@ export const NavBar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleAnalysisClick = (e) => {
+  const handleAnalysisClick = () => {
     navigate("/user/analysis"); // Navigate to Analysis page
     setOpen((prev) => !prev); // Toggle dropdown
   };

@@ -52,13 +52,6 @@ export const Map = () => {
     };
   }, [reports]);
 
-  const activeDataStandard = useMemo(() => {
-    return reports.map((p) => ({
-      ...p,
-      status: p.hpi >= 100 ? "Critical" : p.hpi >= 50 ? "Alert" : "Safe"
-    }));
-  }, [reports]);
-
   // const activeDataEnhanced = useMemo(() => {
   //   return reports.map((p) => ({
   //     ...p,
@@ -134,7 +127,7 @@ export const Map = () => {
                 <input
                   type="file"
                   accept=".csv, .xlsx, .xls"
-                  onChange={handleFileUpload}
+                  onChange={(e) => handleFileUpload(e, setLoading, setError, setFileName)}
                   className="hidden"
                   style={{ display: "none" }}
                 />

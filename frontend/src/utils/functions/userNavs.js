@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import axios from "axios";
 
 import logoImage from "../../assets/images/logo.png";
 import { formatReportForDownload } from "../../utils/functions/getReport";
@@ -168,7 +169,12 @@ export const handleDownloadReport = (reportData) => {
     doc.save(`${safePlace} HMPI Report.pdf`);
 };
 
-export const handleFileUpload = async (event) => {
+export const handleFileUpload = async (
+    event,
+    setLoading = () => {},
+    setError = () => {},
+    setFileName = () => {}
+) => {
     const file = event.target.files?.[0];
     if (!file) return;
 

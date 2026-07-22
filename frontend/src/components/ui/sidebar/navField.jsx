@@ -1,19 +1,11 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
-  ChevronDown,
-  ChartArea,
-  Map,
-  BarChart2,
   Info,
   Calculator,
 } from "lucide-react";
-import Dropdown from "../../dashboard/dropdown";
 
 export const NavBarField = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
 
   const linkBaseClass =
     "flex items-center gap-3 px-2 py-2 rounded transition-colors whitespace-nowrap";

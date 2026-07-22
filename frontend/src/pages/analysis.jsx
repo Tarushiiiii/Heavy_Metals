@@ -43,7 +43,7 @@ const transformGraphData = (payload) => {
 
     records.forEach((row) => {
       metalsList.forEach((m) => {
-        const val = row[m] ?? row[`${m}_mgL` ?? row[m.toLowerCase()]];
+        const val = row[m] ?? row[`${m}_mgL`] ?? row[m.toLowerCase()];
         if (val !== undefined && val !== null && !isNaN(val)) {
           sums[m] += Number(val);
           counts[m] += 1;
@@ -60,7 +60,7 @@ const transformGraphData = (payload) => {
     // Single sample
     const metalsInput = payload.Decoded_Input || {};
     metalsList.forEach((m) => {
-      const val = metalsInput[m] ?? payload[m] ?? payload[`${m}_mgL` ?? payload[m.toLowerCase()]];
+      const val = metalsInput[m] ?? payload[m] ?? payload[`${m}_mgL`] ?? payload[m.toLowerCase()];
       if (val !== undefined && val !== null && !isNaN(val)) {
         pie.push({ label: m, value: Number(val) });
       }
@@ -68,6 +68,11 @@ const transformGraphData = (payload) => {
   }
 
   let composite = null;
+  let formulaHMPI = 0;
+  let hei = 0;
+  let mi = 0;
+  let cd = 0;
+
   if (isBulk && records.length > 0) {
     const stateMap = {};
     records.forEach((row) => {
@@ -108,10 +113,10 @@ const transformGraphData = (payload) => {
       series,
     };
   } else {
-    const formulaHMPI = Number(payload.Formula_HMPI || payload.ML_Predicted_HMPI || 0);
-    const hei = Number(payload.HEI || 0);
-    const mi = Number(payload.MI || 0);
-    const cd = Number(payload.Cd_Excess || payload.Cd || 0);
+    formulaHMPI = Number(payload.Formula_HMPI || payload.ML_Predicted_HMPI || 0);
+    hei = Number(payload.HEI || 0);
+    mi = Number(payload.MI || 0);
+    cd = Number(payload.Cd_Excess || payload.Cd || 0);
 
     composite = {
       labels: ["HMPI", "HEI", "MI", "Cd"],
@@ -166,7 +171,7 @@ export const Analysis = () => {
     // No state provided — clear any previous analysis (shows CTA)
     setAnalysis(null);
     setChartProps(null);
-  }, [location.key, location.search, location.state]); // react to search or state changes
+  }, [location.key, location.search, location.state, location.pathname]); 
 
   // Demo click handler — navigates with a tiny unique query so router treats it as new navigation
   const onClickDemo = (e) => {

@@ -13,8 +13,6 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement, Legend);
 
-import defaultBarData from "./barData.json";
-import defaultBarData2 from "./barData2.json";
 import defaultMetalConc from "./metalConc.js";
 
 const WHO_LIMITS = {
@@ -122,23 +120,11 @@ const extractIndividualMetals = (rawAnalysis) => {
   };
 };
 
-const Graphs = ({ chartProps, rawAnalysis }) => {
+const Graphs = ({ rawAnalysis }) => {
   const parsed = useMemo(() => extractIndividualMetals(rawAnalysis), [rawAnalysis]);
 
   const dynamicMetals = parsed?.metals;
   const availableRegions = parsed?.availableRegions || [];
-
-  const barOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: "top" },
-    },
-    scales: {
-      x: { grid: { display: false } },
-      y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" } },
-    },
-  };
 
   const miniBarOptions = {
     responsive: true,

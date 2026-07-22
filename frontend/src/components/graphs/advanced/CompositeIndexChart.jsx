@@ -120,7 +120,7 @@ function normalizeComposite(input) {
   // 4. Object with direct numeric properties
   if (typeof input === "object") {
     const numericEntries = Object.entries(input).filter(
-      ([k, v]) => (typeof v === "number" || (!isNaN(v) && v !== "")) && typeof v !== "boolean"
+      ([, v]) => (typeof v === "number" || (!isNaN(v) && v !== "")) && typeof v !== "boolean"
     );
 
     if (numericEntries.length >= 2) {
@@ -188,10 +188,6 @@ const buildChartData = (compositeDataNormalized, selectedState = "ALL") => {
 };
 
 const CompositeIndexChart = ({ compositeData }) => {
-  // debug - helps you see what arrives in props (remove in production)
-  // eslint-disable-next-line no-console
-  console.debug("CompositeIndexChart: received compositeData:", compositeData);
-
   const [selectedState, setSelectedState] = useState("ALL");
 
   // normalize and memoize to avoid unnecessary recalcs

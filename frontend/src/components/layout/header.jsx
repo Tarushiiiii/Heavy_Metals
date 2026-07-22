@@ -7,6 +7,8 @@ import { LanguageDropdown } from "./languageDropdown";
 import { Notifications } from "./notifications";
 import { TextResize } from "../ui/TestResize";
 
+const GREETINGS = ["Welcome", "Good to see you", "Glad you're here", "Hello"];
+
 export const Header = ({ userName, children }) => {
   const { user } = useUser();
   const { openSignIn } = useClerk();
@@ -17,9 +19,8 @@ export const Header = ({ userName, children }) => {
     hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 
   // Random greeting (but stable)
-  const greetings = ["Welcome", "Good to see you", "Glad you're here", "Hello"];
   const randomGreeting = useMemo(
-    () => greetings[Math.floor(Math.random() * greetings.length)],
+    () => GREETINGS[Math.floor(Math.random() * GREETINGS.length)],
     []
   );
 

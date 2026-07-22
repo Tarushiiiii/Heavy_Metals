@@ -1,4 +1,4 @@
-export const ReportsTable = ({ report, index }) => {
+export const ReportsTable = ({ report }) => {
   // This component renders a single table row based on the 'report' prop.
   // The previous code to fetch data by ID was incorrect for this component's purpose.
   return (

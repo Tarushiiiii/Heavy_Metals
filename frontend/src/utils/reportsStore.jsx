@@ -12,7 +12,7 @@ const ReportFetcher = () => {
         if (reports.length === 0) {
             setReports(reportsData);
         }
-    }, [setReports]); // Only re-run the effect if setReports changes
+    }, [reports.length, setReports]); // Only re-run the effect if setReports changes
 
     return null;
 };
