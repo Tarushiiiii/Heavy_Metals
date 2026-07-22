@@ -262,3 +262,17 @@ export const acceptableLimitsUgPerL = {
   "Flouride (F)": 1000,
   "Uranium (U)": 30,
 };
+
+export const WHO_LIMITS = {
+  "Lead_Pb_mgL": 0.01,
+  "Arsenic_As_mgL": 0.01,
+  "Copper_Cu_mgL": 2.0,
+  "Iron_Fe_mgL": 2.0,
+  "Mercury_Hg_mgL": 0.001,
+  "Chromium_Cr_mgL": 0.05,
+  "Manganese_Mn_mgL": 0.5,
+  "Nickel_Ni_mgL": 0.02,
+  "Cadmium_Cd_mgL": 0.003,
+  "Zinc_Zn_mgL": 3.0,
+  "Selenium_Se_mgL": 0.04
+}

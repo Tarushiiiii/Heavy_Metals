@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { KeyRound } from "lucide-react";
 import { Button } from "../ui/button";
 import { handleAPIUpload } from "../../utils/functions/apiUpload";
-import { useViewReport } from "../../utils/functions/utility";
+import { useViewReport, formatUploadedRecordsToReports } from "../../utils/functions/utility";
 import { useReportStore } from "../../store/reportStore";
 
 export default function APIUpload() {
@@ -15,23 +15,11 @@ export default function APIUpload() {
 
   useEffect(() => {
     if (prediction) {
-      const decoded = prediction.Decoded_Input || {};
-      const lat = parseFloat(decoded.latitude ?? decoded.Latitude ?? decoded.lat ?? 28.7041);
-      const lng = parseFloat(decoded.longitude ?? decoded.Longitude ?? decoded.lng ?? 77.1025);
-      
-      const report = {
-        region: decoded.district || "API Location",
-        date: decoded.date ?? decoded.Sampling_Date ?? new Date().toISOString().slice(0, 10),
-        metal: "N/A",
-        hpi: prediction.Formula_HMPI,
-        ci: prediction.CI,
-        status: prediction.Risk_Level || "Safe",
-        lat: lat,
-        lng: lng,
-        cause: `API decoded values analysis. HPI = ${prediction.Formula_HMPI.toFixed(2)}, Risk Level = ${prediction.Risk_Level || 'N/A'}.`,
-        ml: "N/A"
-      };
-      setReports([report]);
+      const recordsToFormat = prediction.results || [prediction.Decoded_Input || prediction];
+      const mapped = formatUploadedRecordsToReports(recordsToFormat);
+      if (mapped.length > 0) {
+        setReports(mapped);
+      }
     }
   }, [prediction, setReports]);
 

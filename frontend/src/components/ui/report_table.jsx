@@ -3,8 +3,9 @@ export const ReportsTable = ({ report, index }) => {
   // The previous code to fetch data by ID was incorrect for this component's purpose.
   return (
     <tr>
-      <td>{index + 1}</td>
-      <td>{report.region}</td>
+      <td>{report.sample_id}</td>
+      <td>{report.state}</td>
+      <td>{report.district}</td>
       <td>{report.date}</td>
       <td>{report.metal}</td>
       <td>{report.hpi}</td>

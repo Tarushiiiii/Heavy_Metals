@@ -10,20 +10,23 @@ export const Reports = () => {
   const reports = useReportStore((state) => state.reports || []);
 
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("All");
+  const [state, setState] = useState("All");
   const [metal, setMetal] = useState("All");
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const metalVals = ["Arsenic", "Zinc", "Nickel", "Cadmium", "Lead"];
-  const regionVals = [
-    "Mayur Vihar",
-    "GK-2",
-    "Burari",
-    "Janakpuri",
-    "Daulatpur",
-  ];
+  // DYNAMICALLY COMPUTE METAL OPTIONS
+  const metalVals = useMemo(() => {
+    const unique = Array.from(new Set(reports.map((r) => r.metal).filter(Boolean)));
+    return ["All", ...unique];
+  }, [reports]);
+
+  // DYNAMICALLY COMPUTE REGION OPTIONS
+  const stateVals = useMemo(() => {
+    const unique = Array.from(new Set(reports.map((r) => r.state).filter(Boolean)));
+    return ["All", ...unique];
+  }, [reports]);
 
   // COMPUTE MIN/MAX DATE FROM REPORTS
   const { minDate, maxDate } = useMemo(() => {
@@ -48,7 +51,7 @@ export const Reports = () => {
   // RESET FILTERS
   const resetFilters = () => {
     setSearch("");
-    setRegion("All");
+    setState("All");
     setMetal("All");
     setStartDate("");
     setEndDate("");
@@ -59,6 +62,36 @@ export const Reports = () => {
     if (type === "start") setStartDate(value);
     if (type === "end") setEndDate(value);
   }
+
+  const filteredReports = useMemo(() => {
+    return reports.filter((report) => {
+      const reportDate = new Date(report.date);
+      const validDate = !isNaN(reportDate);
+
+      // Effective date window:
+      const effStart = startDate || minDate;
+      const effEnd = endDate || maxDate;
+
+      const matchDate = validDate
+        ? (!effStart || reportDate >= new Date(effStart)) &&
+        (!effEnd || reportDate <= new Date(effEnd))
+        : true;
+
+      const matchSearch =
+        search === "" ||
+        (report.sample_id && report.sample_id.toLowerCase().includes(search.toLowerCase())) ||
+        (report.state && report.state.toLowerCase().includes(search.toLowerCase())) ||
+        (report.district && report.district.toLowerCase().includes(search.toLowerCase())) ||
+        (report.metal && report.metal.toLowerCase().includes(search.toLowerCase())) ||
+        (report.status && report.status.toLowerCase().includes(search.toLowerCase())) ||
+        (report.date && report.date.includes(search));
+
+      const matchState = state === "All" || state === report.state;
+      const matchMetal = metal === "All" || metal === report.metal;
+
+      return matchSearch && matchState && matchMetal && matchDate;
+    });
+  }, [reports, search, state, metal, startDate, endDate, minDate, maxDate]);
 
   return (
     <div>
@@ -99,10 +132,10 @@ export const Reports = () => {
         />
 
         <Filters
-          values={regionVals}
-          value={region}
-          onChange={setRegion}
-          placeholder="All Regions"
+          values={stateVals}
+          value={state}
+          onChange={setState}
+          placeholder="All States"
         />
 
         <DateRangeFilter
@@ -119,47 +152,29 @@ export const Reports = () => {
         <table className="reports-table">
           <thead>
             <tr>
-              <th>Report ID</th>
-              <th>Region</th>
+              <th>Sample ID</th>
+              <th>State</th>
+              <th>District</th>
               <th>Date</th>
-              <th>Metal</th>
+              <th>Dominant Metal</th>
               <th>HPI</th>
-              <th>UHI</th>
+              <th>CI</th>
               <th>Status</th>
             </tr>
           </thead>
 
           <tbody>
-            {reports
-              .filter((report) => {
-                const reportDate = new Date(report.date);
-                const validDate = !isNaN(reportDate);
-
-                // Effective date window:
-                const effStart = startDate || minDate;
-                const effEnd = endDate || maxDate;
-
-                const matchDate = validDate
-                  ? (!effStart || reportDate >= new Date(effStart)) &&
-                    (!effEnd || reportDate <= new Date(effEnd))
-                  : true;
-
-                const matchSearch =
-                  search === "" ||
-                  report.region.toLowerCase().includes(search.toLowerCase()) ||
-                  report.metal.toLowerCase().includes(search.toLowerCase()) ||
-                  report.status.toLowerCase().includes(search.toLowerCase()) ||
-                  report.date.includes(search);
-
-                const matchRegion =
-                  region === "All" || region === report.region;
-                const matchMetal = metal === "All" || metal === report.metal;
-
-                return matchSearch && matchRegion && matchMetal && matchDate;
-              })
-              .map((report, index) => (
+            {filteredReports.length > 0 ? (
+              filteredReports.map((report, index) => (
                 <ReportsTable key={index} report={report} index={index} />
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" style={{ textAlign: "center", padding: "24px", color: "#6b7280" }}>
+                  No reports matching current criteria.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

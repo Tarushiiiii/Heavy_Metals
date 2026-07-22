@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import { handleManualSubmit } from "../../utils/functions/manualUpload"; // path -> adjust if needed
+import { formatUploadedRecordsToReports } from "../../utils/functions/utility";
 import "../ui/css/about_us.css";
 import "../ui/css/data_entry.css";
 
@@ -268,19 +269,21 @@ export default function ManualUpload() {
       Risk_Level: riskLevel,
     };
 
-    const report = {
-      region: formData.location || "Manual Sample",
-      date: new Date().toISOString().slice(0, 10),
-      metal: "N/A",
-      hpi: formulaHMPI,
-      ci: formulaHMPI,
-      status: riskLevel,
-      lat: formData.latitude ? parseFloat(formData.latitude) : 28.7041,
-      lng: formData.longitude ? parseFloat(formData.longitude) : 77.1025,
-      cause: `Manual entry analysis. HPI = ${formulaHMPI.toFixed(2)}, Risk Level = ${riskLevel}.`,
-      ml: "N/A"
+    const sampleRecord = {
+      ...formData,
+      valuesInUgPerL: hmpi?.valuesInUgPerL,
+      HPI: formulaHMPI,
+      HMPI: formulaHMPI,
+      CI: formulaHMPI,
+      Risk_Level: riskLevel,
+      District: formData.location || "Manual Sample",
+      Latitude: formData.latitude ? parseFloat(formData.latitude) : 28.7041,
+      Longitude: formData.longitude ? parseFloat(formData.longitude) : 77.1025,
     };
-    useReportStore.getState().setReports([report]);
+    const mappedReports = formatUploadedRecordsToReports([sampleRecord]);
+    if (mappedReports.length > 0) {
+      useReportStore.getState().setReports(mappedReports);
+    }
 
     navigate("/user/analysis", { state: { analysis: analysisPayload } });
   };
