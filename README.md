@@ -97,6 +97,12 @@
 - **Machine Learning & Data Science**: PyTorch, Scikit-Learn, Pandas, NumPy, Joblib
 - **AI & RAG**: Google Gemini API, arXiv API, Custom Knowledge Corpus
 
+### 4.2 Key Technologies & Concepts
+
+- **Multi-Agent AI Architecture & RAG**: The platform utilizes a 5-agent autonomous pipeline to orchestrate end-to-end data validation, multi-index calculation (HMPI, HPI, HEI, $C_d$, MI, CI), predictive modeling, and scientific remediation synthesis. Integrated Retrieval-Augmented Generation (RAG) backed by Google Gemini API and arXiv literature retrieval enables real-time context-aware answers and verified DOI research citations.
+- **Dual-Head BiLSTM with Multi-Head Temporal Attention**: For time-series trend forecasting and pollution source attribution (Anthropogenic vs. Geogenic), the machine learning engine employs a PyTorch Dual-Head BiLSTM model augmented with temporal attention. Coupled with PCA dimensionality reduction and Random Forest classification, it accurately models complex non-linear contaminant trajectories.
+- **Geospatial Mapping & Reverse Geocoding**: The visualization engine combines Google Maps JavaScript API with OpenStreetMap Nominatim reverse geocoding to pinpoint high-risk groundwater contamination zones with dynamic risk indicators. This provides localized address resolution and powers automated single-page PDF environmental report generation.
+
 ---
 
 ## 11. Deployment & Usage Guide
