@@ -26,28 +26,27 @@ export const NavBar = () => {
 
   return (
     <nav className="flex flex-col gap-2 mt-6 bg-white w-[100%]">
-      <NavLink
+      {/* <NavLink
         to="/user"
         end
         className={({ isActive }) =>
-          `${linkBaseClass} ${
-            isActive
-              ? "nav-active"
-              : "nav-inactive"
+          `${linkBaseClass} ${isActive
+            ? "nav-active"
+            : "nav-inactive"
           }`
         }
       >
         <LayoutDashboard size={20} strokeWidth={1.8} />
         Dashboard
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
-        to="/user/calculate_hmpi"
+        to="/user"
+        end
         className={({ isActive }) =>
-          `${linkBaseClass} ${
-            isActive
-              ? "nav-active"
-              : "nav-inactive"
+          `${linkBaseClass} ${isActive
+            ? "nav-active"
+            : "nav-inactive"
           }`
         }
       >
@@ -56,11 +55,10 @@ export const NavBar = () => {
       </NavLink>
 
       <div
-        className={`${linkBaseClass} flex items-center justify-between cursor-pointer ${
-          window.location.pathname === "/user/analysis"
-            ? "nav-active"
-            : "nav-inactive"
-        }`}
+        className={`${linkBaseClass} flex items-center justify-between cursor-pointer ${window.location.pathname === "/user/analysis"
+          ? "nav-active"
+          : "nav-inactive"
+          }`}
         onClick={handleAnalysisClick}
       >
         <div className="flex items-center gap-2">
@@ -70,9 +68,8 @@ export const NavBar = () => {
 
         <ChevronDown
           size={16}
-          className={`transform transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`transform transition-transform duration-200 ${open ? "rotate-180" : ""
+            }`}
         />
       </div>
       {open && (
@@ -84,10 +81,9 @@ export const NavBar = () => {
       <NavLink
         to="/user/map"
         className={({ isActive }) =>
-          `${linkBaseClass} ${
-            isActive
-              ? "nav-active"
-              : "nav-inactive"
+          `${linkBaseClass} ${isActive
+            ? "nav-active"
+            : "nav-inactive"
           }`
         }
       >
@@ -98,10 +94,9 @@ export const NavBar = () => {
       <NavLink
         to="/user/reports"
         className={({ isActive }) =>
-          `${linkBaseClass} ${
-            isActive
-              ? "nav-active"
-              : "nav-inactive"
+          `${linkBaseClass} ${isActive
+            ? "nav-active"
+            : "nav-inactive"
           }`
         }
       >
@@ -112,10 +107,9 @@ export const NavBar = () => {
       <NavLink
         to="/user/about_us"
         className={({ isActive }) =>
-          `${linkBaseClass} ${
-            isActive
-              ? "nav-active"
-              : "nav-inactive"
+          `${linkBaseClass} ${isActive
+            ? "nav-active"
+            : "nav-inactive"
           }`
         }
       >
@@ -123,7 +117,7 @@ export const NavBar = () => {
         About Us
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         to="/user/settings"
         className={({ isActive }) =>
           `${linkBaseClass} ${
@@ -135,7 +129,7 @@ export const NavBar = () => {
       >
         <SettingsIcon size={20} strokeWidth={1.8} />
         Settings
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 };

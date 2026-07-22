@@ -35,7 +35,12 @@ const router = createBrowserRouter([
     ),
     errorElement: <RouteErrorBoundary />,
     children: [
-      { index: true, element: <Dashboard />, handle: { header: "Dashboard" } },
+      // { index: true, element: <Dashboard />, handle: { header: "Dashboard" } },
+      {
+        index: true,
+        element: <CalculateHMPI />,
+        handle: { header: "Calculate HMPI" },
+      },
 
       {
         path: "about_us",
