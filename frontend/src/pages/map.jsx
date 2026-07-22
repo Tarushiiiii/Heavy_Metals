@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import axios from "axios";
+// import axios from "axios";
 import {
   UploadCloud,
   CheckCircle2,
@@ -8,23 +8,24 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { StatusLegend } from "../components/dashboard/legend";
-import { HeatMap } from "../components/graphs/geoTag";
+// import { HeatMap } from "../components/graphs/geoTag";
 import { EnhancedGeoTag } from "../components/graphs/enhancedGeoTag";
 import { useReportStore } from "../store/reportStore";
-import { formatUploadedRecordsToReports } from "../utils/functions/utility";
+// import { formatUploadedRecordsToReports } from "../utils/functions/utility";
+import { handleFileUpload } from "../utils/functions/userNavs";
 
 export const Map = () => {
-  const [activeTab, setActiveTab] = useState("standard");
+  // const [activeTab, setActiveTab] = useState("standard");
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const reports = useReportStore((state) => state.reports || []);
-  const setReports = useReportStore((state) => state.setReports);
+  // const setReports = useReportStore((state) => state.setReports);
 
-  const showTab = (tabId) => {
-    setActiveTab(tabId);
-  };
+  // const showTab = (tabId) => {
+  //   setActiveTab(tabId);
+  // };
 
   const mapConfig = useMemo(() => {
     if (reports.length === 0) {
@@ -33,10 +34,12 @@ export const Map = () => {
     let sumLat = 0;
     let sumLng = 0;
     let validCount = 0;
-    reports.forEach((p) => {
-      if (p.lat && p.lng) {
-        sumLat += p.lat;
-        sumLng += p.lng;
+    reports.slice(0, 50).forEach((p) => {
+      const latVal = Number(p.lat ?? p.latitude);
+      const lngVal = Number(p.lng ?? p.longitude);
+      if (!isNaN(latVal) && !isNaN(lngVal) && latVal !== 0 && lngVal !== 0) {
+        sumLat += latVal;
+        sumLng += lngVal;
         validCount++;
       }
     });
@@ -56,59 +59,15 @@ export const Map = () => {
     }));
   }, [reports]);
 
-  const activeDataEnhanced = useMemo(() => {
-    return reports.map((p) => ({
-      ...p,
-      status: p.ci >= 0.9 ? "Critical" : p.ci >= 0.5 ? "Alert" : "Safe"
-    }));
-  }, [reports]);
-
-  const handleFileUpload = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setLoading(true);
-    setError("");
-    setFileName(file.name);
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const BASE_URL =
-        window.location.hostname === "localhost"
-          ? "http://127.0.0.1:8000"
-          : (import.meta.env.VITE_API_URL || "http://127.0.0.1:8000");
-
-      const response = await axios.post(`${BASE_URL}/pipeline/run`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (response.data.status && response.data.status !== "success") {
-        setError(response.data.message || "Failed to process the dataset on backend.");
-        setLoading(false);
-        return;
-      }
-
-      const results = response.data.results || [];
-      if (results.length === 0) {
-        setError("No sample rows detected in the uploaded dataset.");
-        setLoading(false);
-        return;
-      }
-
-      const mapped = formatUploadedRecordsToReports(results);
-      setReports(mapped);
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred while uploading or processing the file. Please check column headers and try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const activeDataEnhanced = useMemo(() => {
+  //   return reports.map((p) => ({
+  //     ...p,
+  //     status: p.ci >= 100 ? "Critical" : p.ci >= 50 ? "Alert" : "Safe"
+  //   }));
+  // }, [reports]);
 
   const handleReset = () => {
-    setReports([]);
+    // setReports([]);
     setFileName("");
     setError("");
   };
@@ -118,7 +77,7 @@ export const Map = () => {
       <div className="main-header-wrapper">
         <div className="main-header">Map Visualization</div>
         <div className="main-text">
-          Geotagged heavy metal risk zones across Delhi.
+          Geotagged heavy metal risk zones as per the user uploaded data.
         </div>
       </div>
 
@@ -224,7 +183,21 @@ export const Map = () => {
         )}
       </div>
 
-      <div className="tabs">
+      <div className="map-status-grid">
+        <div className="map-section">
+          <EnhancedGeoTag data={reports} center={mapConfig.center} zoom={mapConfig.zoom} />
+        </div>
+        <div className="legend-section">
+          <StatusLegend
+            statusLabels={[
+              "Composite Index < 50",
+              "50 ≤ Composite Index < 100",
+              "Composite Index ≥ 100",
+            ]}
+          />
+        </div>
+      </div>
+      {/* <div className="tabs">
         <button
           className={`tab-btn ${activeTab === "standard" ? "active" : ""}`}
           onClick={() => showTab("standard")}
@@ -237,9 +210,9 @@ export const Map = () => {
         >
           Enhanced
         </button>
-      </div>
+      </div> */}
 
-      {activeTab === "standard" && (
+      {/* {activeTab === "standard" && (
         <div className="card">
           <div className="card-title">HPI Based Classification</div>
           <div className="map-status-grid">
@@ -253,9 +226,9 @@ export const Map = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
-      {activeTab === "enhanced" && (
+      {/* {activeTab === "enhanced" && (
         <div className="card">
           <div className="card-title">Enhanced Classification</div>
           <div className="map-status-grid">
@@ -265,15 +238,16 @@ export const Map = () => {
             <div className="legend-section">
               <StatusLegend
                 statusLabels={[
-                  "Unified Value < 0.5",
-                  "0.5 ≤ Unified Value < 0.9",
-                  "Unified Value ≥ 0.9",
+                  "Composite Index < 50",
+                  "50 ≤ Composite Index < 100",
+                  "Composite Index ≥ 100",
                 ]}
               />
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
+

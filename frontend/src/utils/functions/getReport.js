@@ -18,11 +18,15 @@ export const formatReportForDownload = (reportData) => {
         suggestionText = "Maintain regular surveillance and promote local Aquifer Recharge.";
     }
 
+    const placeName = reportData.district && reportData.state
+        ? `${reportData.district}, ${reportData.state}`
+        : (reportData.district || reportData.region || reportData.place || reportData.location || "N/A");
+
     // --- Mapping Logic ---
     return {
         // Location Details
         Coordinates: `${reportData.lat}° N , ${reportData.lng}° E`,
-        Place: reportData.region,
+        Place: placeName,
         
         // HMPI Values
         "HPI Value": reportData.hpi,

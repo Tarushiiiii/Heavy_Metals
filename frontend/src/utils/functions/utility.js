@@ -93,6 +93,25 @@ export const getDominantMetal = (row) => {
   return "Heavy Metals";
 };
 
+export const getLocationName = (item) => {
+  if (!item || typeof item !== "object") return "Sample Location";
+
+  const region = (item.region || item.Region || item.place || item.Place || item.location || item.Location || "").trim();
+  const district = (item.district || item.District || "").trim();
+  const state = (item.state || item.State || "").trim();
+
+  const parts = [];
+  if (region) parts.push(region);
+  if (district && district !== region) parts.push(district);
+  if (state && state !== district && state !== region) parts.push(state);
+
+  if (parts.length > 0) {
+    return parts.join(", ");
+  }
+
+  return item.sample_id || item.Sample_ID || "Sample Location";
+};
+
 export const formatUploadedRecordsToReports = (records) => {
   if (!Array.isArray(records) || records.length === 0) return [];
 
@@ -127,8 +146,9 @@ export const formatUploadedRecordsToReports = (records) => {
       sample_id = `SMP-${String(idx + 1).padStart(3, '0')}`;
     }
 
-    const district = row.District ?? row.district ?? row.Region ?? row.region ?? row.Location ?? row.location ?? row.City ?? row.city ?? "N/A";
-    const state = row.State ?? row.state ?? "Delhi";
+    const region = row.region ?? row.Region ?? row.Place ?? row.place ?? row.Location ?? row.location ?? "";
+    const district = row.District ?? row.district ?? row.City ?? row.city ?? "";
+    const state = row.State ?? row.state ?? row.STATE ?? "";
 
     // 6. Metals & Date (Dominant metal computed from concentration / WHO limit ratio)
     const metal = getDominantMetal(row);
@@ -146,8 +166,9 @@ export const formatUploadedRecordsToReports = (records) => {
 
     return {
       sample_id,
-      state,
+      region,
       district,
+      state,
       date,
       metal,
       hpi: Number(hpi.toFixed(2)),

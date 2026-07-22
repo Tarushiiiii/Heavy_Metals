@@ -5,18 +5,16 @@ import {
   InfoWindow,
   useJsApiLoader,
 } from "@react-google-maps/api";
-import { jsPDF } from "jspdf";
 
-import logoImage from "../../assets/images/logo.png";
-import { formatReportForDownload } from "../../utils/functions/getReport";
+import { handleDownloadReport } from "../../utils/functions/userNavs";
+import { getLocationName } from "../../utils/functions/utility";
 
-const containerStyle = { width: "100%", height: "500px" };
-const center = { lat: 28.7041, lng: 77.1025 };
+const containerStyle = { width: "100%", height: "550px", borderRadius: "12px" };
 
 const statusColors = {
-  Alert: "orange",
-  Critical: "#ff5c5c",
-  Safe: "#52d17a",
+  Alert: "#f59e0b",
+  Critical: "#ef4444",
+  Safe: "#10b981",
 };
 
 export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.1025 }, zoom = 10 }) => {
@@ -26,198 +24,9 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
     googleMapsApiKey,
   });
 
-  const displayData = data || [];
+  const displayData = Array.isArray(data) ? data.slice(0, 50) : [];
 
   const [hovered, setHovered] = React.useState(null);
-
-
-
-  // ================== PDF DOWNLOAD FUNCTION ==================
-  const handleDownloadReport = (reportData) => {
-    const finalReportData = formatReportForDownload(reportData);
-    const doc = new jsPDF();
-
-    const pageMargin = 5;
-    const pageContentWidth = 210 - 2 * pageMargin;
-    const marginLeft = pageMargin + 5;
-    const rightColX = marginLeft + pageContentWidth / 2 + 5;
-    const boxWidth = pageContentWidth / 2 - 5;
-    const labelWidth = 35;
-    const valueWidth = boxWidth - labelWidth - 5;
-    const lineHeight = 6;
-    const contentPadding = 2;
-    let currentY = 10;
-
-    // PAGE BORDER
-    doc.rect(pageMargin, pageMargin, pageContentWidth, 297 - 2 * pageMargin);
-
-    const drawItem = (x, y, label, value) => {
-      doc.setFont("helvetica", "bold");
-      doc.text(label + ":", x + contentPadding, y);
-      doc.setFont("helvetica", "normal");
-      const lines = doc.splitTextToSize(String(value), valueWidth);
-      doc.text(lines, x + labelWidth + contentPadding, y);
-      return lineHeight * Math.max(lines.length, 1);
-    };
-
-    const drawBoxHeader = (x, y, title) => {
-      doc.setFillColor(52, 189, 172);
-      doc.rect(x, y, boxWidth, lineHeight, "F");
-      doc.setTextColor(255);
-      doc.setFont("helvetica", "bold");
-      doc.text(title, x + contentPadding, y + 4.5);
-      doc.setTextColor(0);
-    };
-
-    // HEADER
-    doc.addImage(logoImage, "PNG", marginLeft, currentY, 10, 15);
-    doc.setFontSize(18);
-    doc.text(
-      "Ground Water Unified Heavy Metal Index",
-      marginLeft + 15,
-      currentY + 5
-    );
-    doc.setFontSize(11);
-    doc.text("Sample Information", marginLeft + 15, currentY + 12);
-    currentY += 18;
-
-    const sampleId = `GW-${reportData.region
-      .substring(0, 3)
-      .toUpperCase()}`;
-    doc.text(`Sample ID: ${sampleId}`, marginLeft, currentY);
-    currentY += 10;
-
-    // LOCATION BOX
-    drawBoxHeader(marginLeft, currentY, "Location Details");
-    let y1 = currentY + 10;
-    y1 += drawItem(marginLeft, y1, "Coordinates", finalReportData.Coordinates);
-    y1 += drawItem(marginLeft, y1, "Place", finalReportData.Place);
-    doc.rect(marginLeft, currentY, boxWidth, y1 - currentY + 5);
-
-    // HMPI BOX
-    drawBoxHeader(rightColX, currentY, "HMPI Values");
-    let y2 = currentY + 10;
-    y2 += drawItem(
-      rightColX,
-      y2,
-      "HPI Value",
-      finalReportData["HPI Value"]
-    );
-    y2 += drawItem(
-      rightColX,
-      y2,
-      "HEI Value",
-      finalReportData["HEI Value"]
-    );
-    y2 += drawItem(
-      rightColX,
-      y2,
-      "MI Value",
-      finalReportData["MI Value"]
-    );
-    y2 += drawItem(
-      rightColX,
-      y2,
-      "Cd Value",
-      finalReportData["Cd Value"]
-    );
-    doc.rect(rightColX, currentY, boxWidth, y2 - currentY + 5);
-
-    currentY = Math.max(y1, y2) + 8;
-
-    // ASSESSMENT
-    drawBoxHeader(marginLeft, currentY, "Assessment");
-    let y3 = currentY + 10;
-    y3 += drawItem(marginLeft, y3, "Risk", finalReportData.Risk);
-    y3 += drawItem(
-      marginLeft,
-      y3,
-      "Root Cause",
-      finalReportData["Root Cause"]
-    );
-    y3 += drawItem(marginLeft, y3, "Suggestion", finalReportData.Suggestion);
-    doc.rect(marginLeft, currentY, boxWidth, y3 - currentY + 5);
-
-    // ================== ✅ UNIFIED COLORED BOX + LEGEND ==================
-    const unifiedBoxY = currentY;
-    const ciValue = Number(finalReportData["CI Value"] || 0);
-
-    let boxColor = [82, 209, 122];
-    let statusText = "Safe";
-
-    if (ciValue >= 0.9) {
-      boxColor = [255, 92, 92];
-      statusText = "Critical";
-    } else if (ciValue >= 0.5) {
-      boxColor = [255, 204, 0];
-      statusText = "Alert";
-    }
-
-    doc.rect(rightColX, unifiedBoxY, boxWidth, y3 - currentY + 5);
-
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.text(
-      "Unified Value",
-      rightColX + boxWidth / 2,
-      unifiedBoxY + 12,
-      { align: "center" }
-    );
-
-    doc.setFillColor(...boxColor);
-    doc.rect(rightColX + 20, unifiedBoxY + 20, boxWidth - 40, 12, "F");
-
-    doc.setTextColor(0);
-    doc.setFontSize(14);
-    doc.text(
-      ciValue.toFixed(2),
-      rightColX + boxWidth / 2,
-      unifiedBoxY + 29,
-      { align: "center" }
-    );
-
-    doc.setFontSize(10);
-    doc.text(
-      statusText,
-      rightColX + boxWidth / 2,
-      unifiedBoxY + 42,
-      { align: "center" }
-    );
-
-    // ================== ✅ STATUS LEGEND ==================
-    let legendStartY = unifiedBoxY + 50;
-
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "bold");
-    doc.text(
-      "Status Legend",
-      rightColX + boxWidth / 2,
-      legendStartY,
-      { align: "center" }
-    );
-
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-
-    doc.setFillColor(82, 209, 122);
-    doc.circle(rightColX + 25, legendStartY + 8, 2, "F");
-    doc.text("Safe  (< 0.5)", rightColX + 32, legendStartY + 9);
-
-    doc.setFillColor(255, 204, 0);
-    doc.circle(rightColX + 25, legendStartY + 16, 2, "F");
-    doc.text("Alert  (0.5 - 0.9)", rightColX + 32, legendStartY + 17);
-
-    doc.setFillColor(255, 92, 92);
-    doc.circle(rightColX + 25, legendStartY + 24, 2, "F");
-    doc.text("Critical  (>= 0.9)", rightColX + 32, legendStartY + 25);
-
-    // FOOTER
-    doc.setFontSize(10);
-    doc.setTextColor(51, 51, 255);
-    doc.text("JalDhatu", 105, 280, { align: "center" });
-
-    doc.save(`${reportData.region}_HMPI_Report.pdf`);
-  };
 
   const handleButtonFixedClick = (e, reportData) => {
     e.stopPropagation();
@@ -227,26 +36,52 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
   // ================== MAP RENDER ==================
   return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
-      <HeatmapLayer data={dataPoints} />
+      {displayData.map((item, idx) => {
+        const lat = Number(item.lat ?? item.latitude ?? item.Lat ?? item.LATITUDE ?? item.Latitude);
+        const lng = Number(item.lng ?? item.longitude ?? item.Lng ?? item.LONGITUDE ?? item.Longitude);
 
-      {displayData.slice(0, 50).map((item, idx) => {
-        const lat = Number(item.lat ?? item.latitude ?? 28.7041);
-        const lng = Number(item.lng ?? item.longitude ?? 77.1025);
+        if (isNaN(lat) || isNaN(lng) || (lat === 0 && lng === 0)) {
+          return null;
+        }
+
+        const statusKey = item.status
+          ? item.status.charAt(0).toUpperCase() + item.status.slice(1).toLowerCase()
+          : "Safe";
+        const color = statusColors[statusKey] || statusColors.Safe;
+        const locationName = getLocationName(item);
+
         return (
-          <Circle
-            key={item.region || `${lat}-${lng}-${idx}`}
-            center={{ lat, lng }}
-            radius={700}
-            options={{
-              strokeColor: statusColors[item.status] || "gray",
-              strokeOpacity: 1,
-              strokeWeight: 2,
-              fillColor: statusColors[item.status] || "gray",
-              fillOpacity: 0.5,
-            }}
-            onMouseOver={() => setHovered({ ...item, lat, lng })}
-            onMouseOut={() => setHovered(null)}
-          />
+          <React.Fragment key={item.sample_id || item.id || `${lat}-${lng}-${idx}`}>
+            {/* Outer Risk Radius Zone */}
+            <Circle
+              center={{ lat, lng }}
+              radius={800}
+              options={{
+                strokeColor: color,
+                strokeOpacity: 0.8,
+                strokeWeight: 1.5,
+                fillColor: color,
+                fillOpacity: 0.25,
+              }}
+              onMouseOver={() => setHovered({ ...item, lat, lng, locationName, statusKey, color })}
+              onClick={() => setHovered({ ...item, lat, lng, locationName, statusKey, color })}
+            />
+
+            {/* Inner Center Point Pin Dot */}
+            <Circle
+              center={{ lat, lng }}
+              radius={100}
+              options={{
+                strokeColor: "#ffffff",
+                strokeOpacity: 1,
+                strokeWeight: 2,
+                fillColor: color,
+                fillOpacity: 1,
+              }}
+              onMouseOver={() => setHovered({ ...item, lat, lng, locationName, statusKey, color })}
+              onClick={() => setHovered({ ...item, lat, lng, locationName, statusKey, color })}
+            />
+          </React.Fragment>
         );
       })}
 
@@ -255,35 +90,57 @@ export const EnhancedGeoTag = ({ data = [], center = { lat: 28.7041, lng: 77.102
           position={{ lat: hovered.lat, lng: hovered.lng }}
           onCloseClick={() => setHovered(null)}
         >
-          <div>
+          <div style={{ padding: "6px", maxWidth: "260px", fontFamily: "sans-serif" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+              <strong style={{ fontSize: "14px", color: "#1f2937" }}>{hovered.locationName}</strong>
+              <span
+                style={{
+                  backgroundColor: hovered.color,
+                  color: "#ffffff",
+                  fontSize: "11px",
+                  fontWeight: "bold",
+                  padding: "2px 8px",
+                  borderRadius: "12px",
+                }}
+              >
+                {hovered.statusKey}
+              </span>
+            </div>
+
+            {hovered.sample_id && (
+              <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "4px" }}>
+                Sample ID: {hovered.sample_id}
+              </div>
+            )}
+
+            <div style={{ fontSize: "12px", color: "#374151", lineHeight: "1.5", marginBottom: "10px" }}>
+              {hovered.hpi !== undefined && <div><strong>HPI Value:</strong> {hovered.hpi}</div>}
+              {hovered.ci !== undefined && <div><strong>Composite Index:</strong> {hovered.ci}</div>}
+              {hovered.metal && <div><strong>Dominant Metal:</strong> {hovered.metal}</div>}
+              {/* {hovered.ml && <div style={{ marginTop: "4px", fontSize: "11px", color: "#4b5563" }}><strong>Analysis:</strong> {hovered.ml}</div>}
+              {hovered.cause && <div style={{ marginTop: "2px", fontSize: "11px", color: "#4b5563" }}><strong>Root Cause:</strong> {hovered.cause}</div>} */}
+            </div>
+
             <button
               style={{
-                backgroundColor: "#1B5E20",
+                width: "100%",
+                backgroundColor: "#0d9488",
                 color: "white",
-                padding: "8px 12px",
-                borderRadius: "4px",
+                padding: "6px 12px",
+                borderRadius: "6px",
                 border: "none",
+                fontSize: "12px",
+                fontWeight: "600",
                 cursor: "pointer",
-                marginBottom: "10px",
               }}
               onClick={(e) => handleButtonFixedClick(e, hovered)}
             >
-              Download PDF Report
+              📄 Download PDF Report
             </button>
-            <br />
-            <b>{hovered.region}</b>
-            <br />
-            <strong>Unified Value:</strong> {hovered.ci}
-            <br />
-            <strong>Analysis:</strong> {hovered.ml}
-            <br />
-            <strong>Root Cause:</strong>{" "}
-            <span style={{ color: statusColors[hovered.status] || "gray" }}>
-              {hovered.cause}
-            </span>
           </div>
         </InfoWindow>
       )}
     </GoogleMap>
   ) : null;
 };
+
