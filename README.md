@@ -1,303 +1,227 @@
-#  Heavy Metals 
+# Heavy Metals — Groundwater Water Quality & Pollution Analysis Platform
 
-A web-based application that analyzes **heavy metal contamination** in water samples using **Machine Learning**, **Google Maps heatmaps**, and **automated reporting tools**.  
-It helps identify polluted regions, calculate HMPI scores, and generate professional environmental assessment reports.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/Frontend-React%20%7C%20Vite-blue)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688)](https://fastapi.tiangolo.com/)
+[![PyTorch](https://img.shields.io/badge/ML-PyTorch%20%7C%20Scikit--Learn-ee4c2c)](https://pytorch.org/)
 
----
-
-##  Features
-
--  Upload & analyze water quality datasets  
--  Heavy Metal Pollution Index (HPI) calculation  
--  KNN-based location similarity analysis  
--  Interactive heatmap using Google Maps API  
--  Automated PDF report generation  
--  Clean and user-friendly React UI  
--  FastAPI backend with ML preprocessing and prediction  
+**Heavy Metals** is a comprehensive, multi-agent AI and Machine Learning platform designed to analyze groundwater contamination, compute Heavy Metal Pollution Indices (HMPI, HPI, HEI, Cd, MI, CI), perform spatial geospatial mapping with reverse geocoding, predict pollution sources (Anthropogenic vs. Geogenic), and generate automated environmental assessment reports.
 
 ---
 
-##  Installation Guide
+## Key Features
 
-### **Frontend Setup**
-```bash
-cd frontend
-npm install
-npm run dev
+- **Multi-Index Pollution Computation**: Calculates HPI, HEI (Heavy Metal Evaluation Index), $C_d$ (Degree of Contamination), MI (Metal Index), and Unified Composite Index (CI).
+- **Interactive Geospatial Mapping**: Powered by Google Maps JavaScript API centered on high-risk zones (Delhi NCR) with custom radius risk indicators and **OpenStreetMap Nominatim** reverse geocoding.
+- **5-Agent Autonomous Architecture**: End-to-end pipeline covering preprocessing, calculation, BiLSTM forecasting, risk assessment, RAG-assisted scientific suggestions, and export rendering.
+- **EcoMitigate AI Chatbot**: Interactive conversational assistant powered by RAG and Gemini AI for retrieving immediate remediation steps and scientific research citations (arXiv/Tavily/DOIs).
+- **Structured PDF Report Export**: Instant, single-page formatted PDF report generation featuring location details, HMPI scores, side-by-side Composite Index / Status Legend, and source attribution.
+- **Advanced Analytics Dashboard**: Interactive pie charts, state cumulative charts, metal concentration breakdowns, and bulk dataset processing.
+
+---
+
+## Multi-Agent Architecture
+
 ```
-Backend Setup
-```
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-## How to Use
-1. Start the Application
-
-Run the frontend and backend servers.
-
-Open the frontend in your browser.
-
-2. Upload Water Sample Data
-
-Navigate to Dashboard → Upload Data
-You can choose:
-
-Manual Upload: enter metal concentrations one by one
-
-Bulk Upload: upload a CSV file for batch analysis
-
-3. View HMPI Analysis
-
-Go to the Analysis page
-
-See individual metal values, HMPI score, and contamination level
-
-4. Explore Pollution on Map
-
-Open the Map section
-
-View heatmap of high-risk zones
-
-Check location-based similarity using KNN
-
-5. Generate Reports
-
-Go to Reports → Generate PDF
-
-Automatically creates:
-
-HMPI score summary
-
-Risk classification
-
-Graphs & heatmap snapshots
-
-Editable downloadable PDF
-
-🛠️ Tech Stack
-
-Frontend: React.js, Zustand, Tailwind
-Backend: FastAPI (Python)
-Machine Learning: Scikit-learn, Pandas, NumPy
-Visualization: Google Maps API
-Report Generation: jsPDF
-Tools: VS Code, Google Colab
-
-## Agents:
-```
-                    User Uploads Dataset
-                            │
-                            ▼
+                    User Uploads Dataset / Input
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ Agent 1 : Data Preprocessing Agent                          │
 ├─────────────────────────────────────────────────────────────┤
-│ Input: Raw groundwater dataset                              │
+│ • Validates schema & units (mg/L, ug/L, PPB)                │
+│ • Handles missing values via KNN Imputation                 │
+│ • Removes duplicates & detects statistical outliers         │
 │                                                             │
-│ Tasks                                                       │
-│ • Validate dataset                                          │
-│ • Handle missing values                                     │
-│ • Remove duplicates                                         │
-│ • Detect outliers                                           │
-│ • Standardize units                                         │
-│ • Normalize data                                            │
-│                                                             │
-│ Output                                                      │
-│ ✓ Clean standardized dataset                                │
+│ Output ➔ Clean Standardized Dataset                         │
 └─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ Agent 2 : Pollution Index Computation Agent                 │
 ├─────────────────────────────────────────────────────────────┤
-│ Input                                                       │
-│ • Clean dataset                                             │
-│ • WHO/BIS Standards                                         │
+│ • Evaluates WHO / BIS permissible limits                    │
+│ • Computes HMPI, HPI, HEI, Cd, MI, & Composite Index (CI)   │
+│ • Determines severity (Safe, Alert, Critical)               │
 │                                                             │
-│ Tasks                                                       │
-│ • Calculate HPI/HMPI                                        │
-│ • Calculate HEI                                             │
-│ • Calculate Cd                                              │
-│ • Calculate MI                                              │
-│ • Composite Risk Score                                      │
-│ • Identify dominant metals                                  │
-│                                                             │
-│ Output                                                      │
-│ ✓ Pollution indices                                         │
-│ ✓ Dominant contaminants                                     │
+│ Output ➔ Multi-Index Scores & Dominant Metals               │
 └─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│ Agent 3 : Forecast & Source Analysis Agent                  │
+│ Agent 3 : Forecast & Source Attribution Agent               │
 ├─────────────────────────────────────────────────────────────┤
-│ Input                                                       │
-│ • Historical groundwater data                               │
-│ • Current pollution indices                                 │
+│ • Dual-Head BiLSTM + Multi-Head Temporal Attention Model    │
+│ • Feature Engineering: Contamination Factor (CF), PLI      │
+│ • PCA Dimensionality Reduction + K-Means Clustering        │
+│ • Random Forest Classifier: Anthropogenic vs. Geogenic      │
 │                                                             │
-│ Tasks                                                       │
-│ Forecasting                                                 │
-│ • Predict future HMPI                                       │
-│ • Predict future metal concentrations                       │
-│                                                             │
-│ Source Analysis                                             │
-│ • PCA                                                       │
-│ • Contamination Factor                                      │
-│ • Enrichment Factor                                         │
-│ • Geogenic vs Anthropogenic source detection                │
-│                                                             │
-│ Output                                                      │
-│ ✓ Forecast results                                          │
-│ ✓ Pollution source                                          │
-│ ✓ Confidence score                                          │
+│ Output ➔ Forecast Trends, Source Type & Confidence Score    │
 └─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ Agent 4 : Risk Assessment & Explainability Agent            │
 ├─────────────────────────────────────────────────────────────┤
-│ Input                                                       │
-│ • Pollution indices                                         │
-│ • Forecast results                                          │
-│ • Source analysis                                           │
+│ • Evaluates risk severity thresholds                        │
+│ • Computes key contributing pollutants & root causes        │
+│ • Generates human-readable environmental explanations       │
 │                                                             │
-│ Tasks                                                       │
-│ • Risk classification                                       │
-│ • Explainable AI analysis                                   │
-│ • Identify key contributing metals                          │
-│ • Confidence estimation                                     │
-│                                                             │
-│ Output                                                      │
-│ ✓ Safe / Moderate / Critical                                │
-│ ✓ Risk explanation                                          │
-│ ✓ Major pollutants                                          │
+│ Output ➔ Risk Explanation & Severity Metrics                │
 └─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│ Agent 5 : RAG Suggestions Agent                             │
+│ Agent 5 : RAG Suggestions & Recommendations Agent           │
 ├─────────────────────────────────────────────────────────────┤
-│ Input                                                       │
-│ • Contaminant                                               │
-│ • Risk level                                                │
-│ • Pollution status                                          │
-│ • HMPI                                                      │
-│ • Dominant metals                                           │
+│ • Queries local remediation vector corpus & arXiv API       │
+│ • Synthesizes immediate actions & long-term monitoring      │
+│ • Provides verified scientific literature citations (DOIs)  │
 │                                                             │
-│ Retrieval                                                   │
-│ • Local remediation corpus                                  │
-│ • Tavily scientific search                                  │
-│ • arXiv papers                                              │
-│                                                             │
-│ Reasoning                                                   │
-│ • Merge retrieved knowledge                                 │
-│ • Incorporate risk profile                                  │
-│ • Generate mitigation recommendations                       │
-│                                                             │
-│ Output                                                      │
-│ ✓ Immediate actions                                         │
-│ ✓ Long-term remediation                                     │
-│ ✓ Positive indicators                                       │
-│ ✓ Supporting research citations                             │
+│ Output ➔ Expert Remediation Plan & Research Sources         │
 └─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+                                │
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│ Agent 6 : Report Generation Agent                           │
-├─────────────────────────────────────────────────────────────┤
-│ Input                                                       │
-│ • Clean dataset                                             │
-│ • Pollution indices                                         │
-│ • Forecast results                                          │
-│ • Risk assessment                                           │
-│ • Recommendations                                           │
-│                                                             │
-│ Tasks                                                       │
-│ • Generate dashboard                                        │
-│ • Maps                                                      │
-│ • Trend graphs                                              │
-│ • PDF report                                                │
-│ • Executive summary                                         │
-│                                                             │
-│ Output                                                      │
-│ ✓ Interactive dashboard                                     │
-│ ✓ Heatmaps                                                  │
-│ ✓ PDF report                                                │
-│ ✓ Executive summary                                         │
+│ Output ➔ Interactive Web App & PDF Export                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## File structure
+---
+
+## Tech Stack
+
+- **Frontend**: React 18, Vite, Zustand, TailwindCSS, Lucide React, jsPDF
+- **Maps**: Google Maps JavaScript API (`@react-google-maps/api`), Leaflet, OpenStreetMap Nominatim
+- **Backend**: FastAPI, Uvicorn, Python 3.10+
+- **Machine Learning & Data Science**: PyTorch, Scikit-Learn, Pandas, NumPy, Joblib
+- **AI & RAG**: Google Gemini API, arXiv API, Custom Knowledge Corpus
+
+---
+
+## 11. Deployment & Usage Guide
+
+### 11.1 System Requirements
+
+| Parameter | Specification |
+|---|---|
+| **Python Version** | Python 3.10+ |
+| **Node.js Version** | Node.js v18+ |
+| **OS / Platform** | Windows 10/11 / macOS 14 / Ubuntu 22.04 / Google Colab |
+| **GPU Requirement** | Optional (NVIDIA T4 16GB / Google Colab T4 supported for PyTorch training; CPU supported) |
+| **API Keys Required** | `GEMINI_API_KEY`, `TAVILY_API_KEY` (optional), `VITE_REACT_APP_GOOGLE_MAPS_API_KEY` |
+| **Disk Space** | ~500 MB for PyTorch model weights + ~200 MB for vector store & dependencies |
+
+---
+
+### 11.2 Installation & Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Tarushiiiii/Heavy_Metals.git
+   cd Heavy_Metals
+   ```
+
+2. **Create and activate a virtual environment (Backend)**:
+   ```bash
+   cd backend
+   python -m venv venv
+
+   # Windows (PowerShell):
+   .\venv\Scripts\activate
+   # Linux / macOS:
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set environment variables**:
+   Create a `.env` file in `backend/`:
+   ```env
+   GEMINI_API_KEY="your_gemini_api_key"
+   TAVILY_API_KEY="your_tavily_api_key"
+   CORS_ORIGIN="http://localhost:5173"
+   ```
+   Create a `.env` file in `frontend/`:
+   ```env
+   VITE_REACT_APP_GOOGLE_MAPS_API_KEY="your_google_maps_api_key"
+   VITE_BACKEND_URL="http://127.0.0.1:8000"
+   ```
+
+5. **Launch the backend server**:
+   ```bash
+   uvicorn main:app --reload
+   ```
+   > Backend running at: `http://127.0.0.1:8000` (Swagger docs: `http://127.0.0.1:8000/docs`)
+
+6. **Install and launch the frontend application**:
+   ```bash
+   cd ../frontend
+   npm install
+   npm run dev
+   ```
+   > Web app running at: `http://localhost:5173`
+
+---
+
+## How to Use
+
+1. **Calculate HMPI**: Navigate to **Calculate HMPI** to input sample data manually, submit an API key, or upload a bulk CSV/Excel dataset.
+2. **View Analysis**: Explore interactive charts, including individual metal concentration breakdowns, Composite Index radar charts, and risk severity metrics.
+3. **Geospatial Map**: View high-risk zones in Delhi NCR with custom radius risk indicators. Hover over points to view Nominatim reverse-geocoded addresses and click to download individual location PDF reports.
+4. **Browse Suggestions**: Filter by contaminant (e.g. Lead, Arsenic) to view immediate response actions, long-term monitoring strategies, and scientific paper references.
+5. **Chatbot (EcoMitigate AI)**: Use the floating bottom-right chatbot to query remediation methods or get scientific references for any heavy metal contaminant.
+
+---
+
+## File Structure
 
 ```
 Heavy_Metals/
-│
 ├── frontend/
-│   ├── node_modules/
 │   ├── src/
-│   │   ├── assets/
 │   │   ├── components/
-│   │   ├── context/
-│   │   │   └── TextSizeContext.jsx
+│   │   │   ├── analysis/       # Suggestions & Methodology components
+│   │   │   ├── calculate/      # Bulk report & input components
+│   │   │   ├── chatbot/        # EcoMitigate AI Chatbot
+│   │   │   ├── graphs/         # Google Maps (EnhancedGeoTag), Pie, & Composite Charts
+│   │   │   ├── layout/         # Header, Layout, Sidebar, & Error Boundaries
+│   │   │   └── ui/             # Buttons, Cards, & Navbar
 │   │   ├── pages/
 │   │   │   ├── about_us.jsx
 │   │   │   ├── analysis.jsx
 │   │   │   ├── calculate.jsx
-│   │   │   ├── dashboard.jsx
-│   │   │   ├── landing_page.jsx
 │   │   │   ├── map.jsx
-│   │   │   ├── not_found.jsx
 │   │   │   ├── reports.jsx
-│   │   │   └── settings.jsx
-│   │   ├── store/
+│   │   │   └── landing_page.jsx
+│   │   ├── store/              # Zustand state management
 │   │   ├── utils/
-│   │   │   ├── functions/
-│   │   │   │   ├── apiUpload.js
-│   │   │   │   ├── bulkUpload.js
-│   │   │   │   ├── getReport.js
-│   │   │   │   ├── manualUpload.js
-│   │   │   │   └── utility.js
-│   │   │   ├── constants.js
-│   │   │   ├── declaration.jsx
-│   │   │   ├── export.js
-│   │   │   ├── reportsStore.jsx
-│   │   │   └── riskData.js
-│   │   ├── App.css
+│   │   │   └── functions/      # Utility helpers, PDF exporter (userNavs.js), getReport.js
 │   │   ├── App.jsx
-│   │   ├── index.css
 │   │   └── main.jsx
-│   ├── .env
 │   ├── package.json
-│   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── vercel.json
+│   └── vite.config.js
 │
 ├── backend/
-│   ├── .venv/
-│   ├── controllers/
-│   │   ├── bulk.py
-│   │   ├── hmpiCalc.py
-│   │   └── suggestionsController.py
-│   ├── dataset/
-│   │   └── metal_remove_corpus.txt
-│   ├── models/
-│   │   ├── bulk_upload.pkl
-│   │   ├── model_fixed.pkl
-│   │   ├── model.pkl
-│   │   ├── preprocessor_fixed.pkl
-│   │   └── preprocessor.pkl
-│   ├── load_old.py
-│   ├── main.py
-│   ├── requirements.txt
-│   └── .env
+│   ├── agents/
+│   │   ├── 01_preprocessingAgent.py   # Agent 1: Data Preprocessing & Cleaning
+│   │   ├── 02_computeAgent.py         # Agent 2: HMPI, HEI, Cd, MI, CI Computation
+│   │   ├── 03_forcastAgent.py         # Agent 3: BiLSTM & Source Attribution Training
+│   │   ├── 04_riskassessmentAgent.py # Agent 4: Risk Explanation & Severity
+│   │   ├── 05_recommendationAgent.py # Agent 5a: Transformer ML Model Recommendations
+│   │   ├── 05_suggestionAgent.py     # Agent 5b: RAG & Gemini Remediation Suggestions
+│   │   └── hmpiCalc.py               # Calculation tools
+│   ├── main.py                        # FastAPI endpoints
+│   ├── orchestrator.py                # Multi-Agent Pipeline Execution Engine
+│   └── requirements.txt
 │
 └── README.md
 ```
 
-### Contributing
+---
 
-Feel free to submit issues or pull requests to improve the system.
-
-### By Team Solve321
-
+### Developed by Team CodeBlooded
+*Building intelligent environmental software for cleaner water resources.*
