@@ -7,6 +7,7 @@ import sys
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional, Union
 import pandas as pd
+from time import perf_counter
 
 # Ensure sys.path includes backend directory and map 'backend' package in sys.modules
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -264,8 +265,11 @@ class PipelineOrchestrator:
 
     def execute(self, user_input: Any) -> Dict[str, Any]:
         """Executes the pipeline sequentially with state tracking, logging, and error handling."""
+        pipeline_start = perf_counter()
+        
         state: Dict[str, Any] = {}
         current_input = user_input
+        latency_report = {}
 
         print("\n" + "=" * 70)
         print("🚀 STARTING HEAVY METALS ANALYSIS PIPELINE")
@@ -279,11 +283,26 @@ class PipelineOrchestrator:
 
             try:
                 # Execute agent
+                # Measure execution time
+                start = perf_counter()
+                
                 output = agent.run(current_input)
+            
+                end = perf_counter()
+                latency_ms = (end - start) * 1000
 
+                latency_report[agent.name] = round(latency_ms, 2)
+            
+                logger.info(
+                    f"[{agent.name}] "
+                    f"Latency={latency_ms:.2f} ms"
+                )
+            
                 # Store intermediate output
                 state[var_name] = output
+                
                 print(f"📤 Output Produced ({var_name}): {self._format_log_value(output)}")
+                print(f"⏱ Latency: {latency_ms:.2f} ms")
                 print(f"✅ [{agent.name}] Completed Successfully.\n")
 
                 # Pass output to next agent step
@@ -292,11 +311,17 @@ class PipelineOrchestrator:
             except Exception as e:
                 error_msg = f"❌ Error executing {agent.name}: {str(e)}"
                 logger.error(error_msg, exc_info=True)
+                pipeline_end = perf_counter()
+
                 return {
                     "status": "error",
                     "failed_agent": agent.name,
                     "error": str(e),
-                    "intermediate_state": state
+                    "intermediate_state": state,
+                    "latency_report": latency_report,
+                    "total_pipeline_latency_ms": round(
+                        (pipeline_end - pipeline_start) * 1000, 2
+                    )
                 }
 
         print("=" * 70)
@@ -331,9 +356,9 @@ class PipelineOrchestrator:
                     formatted_row["CI"] = formatted_row["Composite_Index"]
                 results_records.append(formatted_row)
 
-
         # Convert state into a JSON-serializable dict by converting any pandas DataFrames to records
         serializable_state = {}
+        
         for k, v in state.items():
             if isinstance(v, dict):
                 serializable_state[k] = {}
@@ -346,14 +371,32 @@ class PipelineOrchestrator:
                 serializable_state[k] = v.fillna("").to_dict(orient="records")
             else:
                 serializable_state[k] = v
-
+                
         final_response = {
             "status": "success",
             "total_rows": len(results_records),
             "results": results_records,
             "suggestions": state.get("result_5", {}).get("suggestions"),
-            "pipeline_state": serializable_state
+            "pipeline_state": serializable_state,
+            "latency_report": latency_report
         }
+
+        pipeline_end = perf_counter()
+
+        final_response["total_pipeline_latency_ms"] = round(
+            (pipeline_end - pipeline_start) * 1000,
+            2
+        )
+
+        print("\nPipeline Performance Summary")
+        print("-" * 40)
+        
+        for agent, time_ms in latency_report.items():
+            print(f"{agent:<40} {time_ms:>8.2f} ms")
+        
+        print("-" * 40)
+        print(f"Total Pipeline Latency: {final_response['total_pipeline_latency_ms']} ms")
+        
         return final_response
 
 
