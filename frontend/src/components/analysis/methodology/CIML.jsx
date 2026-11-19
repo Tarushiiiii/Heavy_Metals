@@ -12,7 +12,7 @@ export const CIML = () => {
         <b>Composite Index (CI):</b>
         <BlockMath
           math={
-            "CI = \\alpha (HPI) + \\beta (HEI) + \\gamma (C_d) + \\delta (MI)"
+            "CI = α (HPI) + β (HEI) + γ (C_d) + δ (MI)"
           }
         />
         <ul className="standard-list">
